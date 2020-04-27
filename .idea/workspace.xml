@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41e8ea09-ed34-4299-98e0-37e7e504885f" name="Default Changelist" comment="integrante 6 rehecho">
+    <list default="true" id="41e8ea09-ed34-4299-98e0-37e7e504885f" name="Default Changelist" comment="era el 1 no el 6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prueba de concepto/src/main/java/domain/DummyDesign.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prueba de concepto/src/main/java/domain/DummyDesign.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prueba de concepto/src/test/java/test/TestDummyDesign.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prueba de concepto/src/test/java/test/TestDummyDesign.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +66,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587950597673</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="era el 1 no el 6">
+      <created>1587951417737</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587951417737</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,16 +91,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="integrante 6 hecho" />
     <MESSAGE value="integrante 6 rehecho" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrante 6 rehecho" />
+    <MESSAGE value="era el 1 no el 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="era el 1 no el 6" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587951089608">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1587951089608" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587950613378">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587951427128">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587950613378" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587951427128" />
   </component>
 </project>
