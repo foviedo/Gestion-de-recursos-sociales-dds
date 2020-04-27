@@ -28,5 +28,7 @@ public class TestDummyDesign {
 	public void testIntegrante5() {
 		assertEquals(5, dummy.integrante5());
 	}
+	@Test
+	public void testIntegrante6() { assertEquals(5, dummy.integrante6()); }
 
 }
