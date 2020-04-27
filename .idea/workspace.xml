@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41e8ea09-ed34-4299-98e0-37e7e504885f" name="Default Changelist" comment="integrante 6 hecho" />
+    <list default="true" id="41e8ea09-ed34-4299-98e0-37e7e504885f" name="Default Changelist" comment="integrante 6 hecho">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prueba de concepto/src/test/java/test/TestDummyDesign.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prueba de concepto/src/test/java/test/TestDummyDesign.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +71,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="integrante 6 hecho" />
