@@ -1,0 +1,11 @@
+1- Es necesario modelar una nueva subclase para los medios de pago de rapipago, pago fácil, mastercard y visa? No, porque comparten el mismo comportamiento entre ellos (rapipago y pago fácil), (mastercard y visa)
+2- Conviene modelar medio de pago como una interface o como una abstract class?
+No había mucha información respecto a esto, pero decidimos ir por una interfaz ya que no encontramos comportamiento compartido entre los medios de pago
+3- Qué atributo le ponemos al medio de pago de efectivo?
+Para solucionarlo sin hacernos muchos problemas le agregamos un identificador
+4- La organización es usuario del sistema o debería ser una clase incluída en el dominio?
+Momentáneamente decidimos incluirla como una clase para tenerlo como punto de partida 
+5- ¿Cómo reflejamos en características en la creación que las entidades jurídicas pueden tener o no entidades bases, y que las bases corresponden a una sola jurídica? Pensamos en que a la hora de tener un constructor o un builder se puede enlazar a los dos objetos facilmente.
+6- La organización debería tener una lista de entidades jurídicas y bases que implementen una interfaz o solo una lista de entidades jurídicas que conozcan a sus entidades base? Terminamos decidiendo por lo primero en caso de que a futuro nos pidan operar sobre la lista de la organizacion.
+7- Relacionado con 5, teníamos 3 opciones viables: a) que cada entidad jurídica tenga una lista por la que pueda conocer a sus entidades bases, y éstas, tengan un atributo que se relacione, ésto tenía un problema de bad smell. b) que cada entidad jurídica solo tenga la lista de entidades bases c) que solo las entidades bases puedan conocer a sus entidades jurídicas. Terminamos eligiendo a la tercera, pero dejamos esta estructura sensible a cambios en el futuro dependiendo los requerimientos que nos pidan.
+
