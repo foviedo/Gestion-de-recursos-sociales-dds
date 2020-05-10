@@ -6,4 +6,5 @@ public class Juridica implements Entidad{
 	int cuit;
 	String direccionPostal;
 	int codInscripcion;
+	
 }
