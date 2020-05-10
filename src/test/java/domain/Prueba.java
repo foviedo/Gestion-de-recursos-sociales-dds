@@ -1,10 +1,23 @@
 package domain;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class Prueba {
-    @Test
-    public void test() {
-        assertTrue(true);
-    }
+	public TipoEmpresa tipoE;
+	public Empresa samsung;
+
+	@Before
+	public void init() {
+		 tipoE = new Tramo1();
+		 samsung = new Empresa("a", "n", 1, "c", 2, tipoE);
+	}
+
+	@Test
+	public void test() {
+		assertTrue(samsung.getTipoEmpresa().prueba());
+	}
+
 }
