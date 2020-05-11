@@ -9,3 +9,8 @@ Momentáneamente decidimos incluirla como una clase para tenerlo como punto de p
 6- La organización debería tener una lista de entidades jurídicas y bases que implementen una interfaz o solo una lista de entidades jurídicas que conozcan a sus entidades base? Terminamos decidiendo por lo primero en caso de que a futuro nos pidan operar sobre la lista de la organizacion.
 7- Relacionado con 5, teníamos 3 opciones viables: a) que cada entidad jurídica tenga una lista por la que pueda conocer a sus entidades bases, y éstas, tengan un atributo que se relacione, ésto tenía un problema de bad smell. b) que cada entidad jurídica solo tenga la lista de entidades bases c) que solo las entidades bases puedan conocer a sus entidades jurídicas. Terminamos eligiendo a la tercera, pero dejamos esta estructura sensible a cambios en el futuro dependiendo los requerimientos que nos pidan.
 
+Validadores de Passwords:
+1- Debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula, una mayúscula y un caracter no alfanumérico
+2- No debe ser un password común
+3- No debe ser un derivado del nombre de usuario
+4- No debe contener caracteres repetitivos consecutivos
