@@ -1,6 +1,6 @@
 package domain;
 
-public class Pequeña implements TipoEmpresa {
+public class Pequenia implements TipoEmpresa {
 	
 	public boolean prueba() {
 		return true;

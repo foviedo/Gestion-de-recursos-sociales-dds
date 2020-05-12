@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Prueba {
+public class TestsOrganizaciones {
 	private TipoEmpresa tipoE;
 	private Empresa samsung;
 	private Egreso unEgreso;

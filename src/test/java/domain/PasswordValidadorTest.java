@@ -1,4 +1,4 @@
-import domain.*;
+package domain;
 import exception.PasswordInvalidoException;
 import org.junit.Test;
 
