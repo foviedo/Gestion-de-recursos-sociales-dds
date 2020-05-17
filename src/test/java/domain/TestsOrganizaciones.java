@@ -17,19 +17,18 @@ public class TestsOrganizaciones {
 	private MedioDePago unaTarjeta;
 	private TarjetaDeDebito laTarjeta;
 	private LocalDate fechaOperacion; 
-	private int importe;
 	private List<Item> items = new ArrayList<Item>();
 	private Proveedor unProveedor = new Proveedor("carlos",0214,"Av Pepito 1356");
+	private List<Entidad> entidades = new ArrayList<Entidad>();
 	@Before
 	public void init() {
 		 tipoE = new Tramo1();
-		 samsung = new Empresa("a", "n", 1, "c", 2, tipoE);
+		 samsung = new Empresa("a", "n", 1, "c", 2,entidades, tipoE);
 		 unDocumento = new Documento ("factura",1231);
-		 laTarjeta = new TarjetaDeDebito(5);
+		 laTarjeta = new TarjetaDeDebito("5");
 		 unaTarjeta = laTarjeta;
 		 fechaOperacion = LocalDate.now();
-		 importe = 2000;
-		 unEgreso = new Egreso(unDocumento, unaTarjeta, unProveedor ,fechaOperacion,importe,items);
+		 unEgreso = new Egreso(unDocumento, unaTarjeta, unProveedor ,fechaOperacion,items);
 		 
 	}
 

@@ -1,11 +1,13 @@
 package domain;
 
+import java.util.List;
+
 public class Empresa extends Juridica {
 
 	TipoEmpresa unTipo;
 
-	Empresa(String razonSocial, String nombreFicticio, int cuit, String direccionPostal, int codInscripcion,TipoEmpresa unTipo) {
-		super(razonSocial, nombreFicticio, cuit, direccionPostal, codInscripcion);
+	Empresa(String razonSocial, String nombreFicticio, int cuit, String direccionPostal, int codInscripcion,List<Entidad> listaDeEntidades, TipoEmpresa unTipo) {
+		super(razonSocial, nombreFicticio, cuit, direccionPostal, codInscripcion, listaDeEntidades);
 		this.unTipo = unTipo;
 	}
 	

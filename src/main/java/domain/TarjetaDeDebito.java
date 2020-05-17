@@ -1,8 +1,8 @@
 package domain;
 
 public class TarjetaDeDebito implements MedioDePago{
-	int numero;
-	public TarjetaDeDebito (int n) {
+	String numero;
+	public TarjetaDeDebito (String n) {
 		this.numero = n;
 	}
 	
