@@ -3,11 +3,11 @@ package domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PasswordRobustoValidador implements Validador {
+public class PasswordRobustoValidador implements ValidadorPassword {
     @Override
-    public Boolean noEsValido(Usuario usuario) {
-        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{8,16}$");
-        Matcher matcher = pattern.matcher(usuario.getPassword());
-        return !matcher.find();
+    public Boolean esValido(String nombreUsuario, String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,16}$");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 }

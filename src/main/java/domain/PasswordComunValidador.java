@@ -7,15 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class PasswordComunValidador implements Validador {
+public class PasswordComunValidador implements ValidadorPassword {
     @Override
-    public Boolean noEsValido(Usuario usuario) {
-        String password = usuario.getPassword();
+    public Boolean esValido(String nombreUsuario, String password) {
         Path path = Paths.get("src/main/resources/utils/10k-most-common.txt");
         Stream<String> stream;
         try {
             stream = Files.lines(path);
-            return stream.anyMatch(palabraComun -> palabraComun.equals(password));
+            return stream.noneMatch(palabraComun -> palabraComun.equals(password));
         } catch (IOException e) {
             throw new ReadFileException();
         }

@@ -3,11 +3,11 @@ package domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PasswordDerivadoValidador implements Validador {
+public class PasswordDerivadoValidador implements ValidadorPassword {
     @Override
-    public Boolean noEsValido(Usuario usuario) {
-        Pattern pattern = Pattern.compile(String.format("(?i).*(%s).*", usuario.getUsuario()));
-        Matcher matcher = pattern.matcher(usuario.getPassword());
-        return matcher.find();
+    public Boolean esValido(String nombreUsuario, String password) {
+        Pattern pattern = Pattern.compile(String.format("(?i).*(%s).*", nombreUsuario));
+        Matcher matcher = pattern.matcher(password);
+        return !matcher.find();
     }
 }
