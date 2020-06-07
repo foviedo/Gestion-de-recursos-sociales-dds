@@ -15,3 +15,14 @@ Validadores de Passwords:
 2- No debe ser un password comÃºn
 3- No debe ser un derivado del nombre de usuario
 4- No debe contener caracteres repetitivos consecutivos
+
+SEGUNDA ENTREGA
+
+1- ¿Cómo asociamos un presupuesto a los items que le corresponden? Decidimos, para no pisar lo que hicimos
+en la primer entrega, y no establecer relaciones que estén de más, que el presupuesto conozca a sus items
+a través de los egresos.
+
+2- Decidimos modelar a los códigos postales como clases que contengan los datos necesarios y se encargue de
+obtener dicha información de la API de mercado libre.
+
+ 
