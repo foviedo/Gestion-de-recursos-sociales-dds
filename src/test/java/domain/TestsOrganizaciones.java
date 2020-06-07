@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestsOrganizaciones {
+	private DireccionPostal unaDireccion = new DireccionPostal();
 	private TipoEmpresa tipoE;
 	private Empresa samsung;
 	private Egreso unEgreso;
@@ -18,7 +19,7 @@ public class TestsOrganizaciones {
 	private TarjetaDeDebito laTarjeta;
 	private LocalDate fechaOperacion; 
 	private List<Item> items = new ArrayList<Item>();
-	private Proveedor unProveedor = new Proveedor("carlos",0214,"Av Pepito 1356");
+	private Proveedor unProveedor = new Proveedor("carlos",0214,unaDireccion);
 	private List<Entidad> entidades = new ArrayList<Entidad>();
 	@Before
 	public void init() {
