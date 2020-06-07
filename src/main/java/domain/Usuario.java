@@ -2,11 +2,13 @@ package domain;
 
 public class Usuario {
     private String usuario;
-    private String password;
+    private byte[] password;
 
     public Usuario(String usuario, String password) {
+        GeneradorPassword generadorPassword = new GeneradorPassword();
+        byte[] hash = generadorPassword.encriptarPassword(usuario, password);
         this.usuario = usuario;
-        this.password = password;
+        this.password = hash;
     }
 
     public String getUsuario() {
@@ -17,11 +19,11 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(byte[] password) {
         this.password = password;
     }
 }

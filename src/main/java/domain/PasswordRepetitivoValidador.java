@@ -3,11 +3,11 @@ package domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PasswordRepetitivoValidador implements Validador {
+public class PasswordRepetitivoValidador implements ValidadorPassword {
     @Override
-    public Boolean noEsValido(Usuario usuario) {
+    public Boolean esValido(String nombreUsuario, String password) {
         Pattern pattern = Pattern.compile("(.)\\1{2}");
-        Matcher matcher = pattern.matcher(usuario.getPassword());
-        return matcher.find();
+        Matcher matcher = pattern.matcher(password);
+        return !matcher.find();
     }
 }
