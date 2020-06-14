@@ -1,7 +1,8 @@
 package domain;
 
-public interface MedioDePago {
-
-	boolean prueba();
+public class MedioDePago {
 	
+	TipoMedioDePago tipo;
+	String identificador;
+
 }

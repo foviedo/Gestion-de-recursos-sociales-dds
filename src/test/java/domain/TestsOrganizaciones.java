@@ -37,10 +37,8 @@ public class TestsOrganizaciones {
 	public void test() {
 		assertTrue(samsung.getTipoEmpresa().prueba());
 	}
-	@Test
-	public void testEgreso() {
-		assertTrue(unEgreso.prueba());
-	}
+
+	
 	@Test
 	public void testTarjeta() {
 		assertTrue(unEgreso.medioDePago.prueba());

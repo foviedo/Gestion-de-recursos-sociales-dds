@@ -1,0 +1,6 @@
+package domain;
+
+public enum TipoMedioDePago {
+	
+		TARJETA_DE_CREDITO,TARJETA_DE_DEBITO,EFECTIVO,DINERO_EN_CUENTA,CAJERO_AUTOMATICO
+}

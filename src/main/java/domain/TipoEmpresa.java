@@ -1,7 +1,7 @@
 package domain;
 
-public interface TipoEmpresa {
-
-	public boolean prueba();
+public enum TipoEmpresa {
+	
+	TRAMO1,TRAMO2,MICRO,PEQUENIA
 
 }
