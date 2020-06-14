@@ -10,6 +10,9 @@ public class Egreso {
 	Proveedor proveedor;
 	LocalDate fechaDeOperacion;
 	Entidad destinatario;
+	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
+	static final int cantidadPresupuestos = 2;
+	
 	
 	List<Item> listaDeItems = new ArrayList<Item>();
 	
@@ -21,11 +24,23 @@ public class Egreso {
 		this.listaDeItems = listaDeItems;
 	}
 	
-	public boolean prueba() {
-		return true;
+	List<Item> getListaDeItems(){
+		return listaDeItems;
+	}
+	
+	List<Presupuesto> getPresupuestos(){
+		return presupuestos;
+	}
+	
+	void cargarPresupuesto(String detalle, List<Item> listaDeItems) { //Misma lista Egreso-Presupuesto?
+		
+		Presupuesto unPresupuesto = new Presupuesto(detalle,listaDeItems);
+		presupuestos.add(unPresupuesto);
+		
 	}
 	
 	public double valorTotal() {
 		return listaDeItems.stream().mapToDouble(item -> item.getValor()).sum();
 	}
 }
+

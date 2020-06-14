@@ -8,18 +8,21 @@ import exception.EgresosException;
 public class Presupuesto {
 
 	String detalle;
-	List<Egreso> listaDeEgresos = new ArrayList<Egreso>();
+	List<Item> items = new ArrayList<Item>();
 	
-	public Presupuesto(List<Egreso> listaDeEgresos) { // Obligatoriamente se instancia un presupuesto si tiene previamente egresos
-		if(listaDeEgresos.isEmpty()) {
-			throw new EgresosException();
-		}
-		this.listaDeEgresos = listaDeEgresos;
+	
+	public Presupuesto(String detalle, List<Item> items){
+		this.detalle = detalle;
+		this.items = items;
+	}
+	
+	List<Item> getListaItems(){
+		return items;
 	}
 
 	public double total() {
 
-		return listaDeEgresos.stream().mapToDouble(egreso -> egreso.valorTotal()).sum();
+		return items.stream().mapToDouble(unItem -> unItem.getValor()).sum();
 	}
 
 }
