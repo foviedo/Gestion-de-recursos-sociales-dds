@@ -41,8 +41,8 @@ public class Egreso {
 
 	}
 
-	public double valorTotal() {
-		return listaDeItems.stream().mapToDouble(item -> item.getValor()).sum();
+	public double getMontoTotal() {
+		return listaDeItems.stream().mapToDouble(item -> item.getMonto()).sum();
 	}
 
 	boolean esDe(Usuario unUsuario) {

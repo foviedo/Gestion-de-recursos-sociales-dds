@@ -21,7 +21,7 @@ public class Presupuesto {
 
 	public double total() {
 
-		return items.stream().mapToDouble(unItem -> unItem.getValor()).sum();
+		return items.stream().mapToDouble(unItem -> unItem.getMonto()).sum();
 	}
 
 }

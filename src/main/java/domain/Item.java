@@ -9,7 +9,7 @@ public class Item {
 		this.descripcion = descrip;
 	}
 
-	public double getValor() {
+	public double getMonto() {
 		return valor;
 	}
 }
