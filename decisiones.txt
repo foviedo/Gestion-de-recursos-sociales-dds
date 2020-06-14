@@ -18,11 +18,33 @@ Validadores de Passwords:
 
 SEGUNDA ENTREGA
 
-1- ¿Cómo asociamos un presupuesto a los items que le corresponden? Decidimos, para no pisar lo que hicimos
+1- ¿Cómo asociamos un presupuesto a los items que le corresponden? Decidimos en primera instancia, para no pisar lo que hicimos
 en la primer entrega, y no establecer relaciones que estén de más, que el presupuesto conozca a sus items
 a través de los egresos.
+Luego, después de recibir feedback acerca de los issues que comenzamos, decidimos por que el egreso conozca a sus presupuestos y el presupuesto a sus items. Y un presupuesto solo tendrá sentido de ser creado desde un presupuesto.
+
 
 2- Decidimos modelar a los códigos postales como clases que contengan los datos necesarios y se encargue de
 obtener dicha información de la API de mercado libre.
 
- 
+3- Para el tema de las validaciones, decidimos tener un servicio que se encargue de validar y utilice el patrón observer, para poder tener distintas formas de validar cada egreso. De esa forma evitamos realizar muchos ifs y conservar polimorfismo. Adicionalmente, nos permitio no tener que realizar muchos cambios a la hora de tener que fijarse si hay que validar por el mas bajo proveedor si el criterio de seleccion es el mas economico, basta que en la prueba no agreguemos esa validacion a la lsita de validaciones de validacionesDeEgresos
+
+4- ¿
+
+5- Las clases que se encargan de validar, que implementan la interfaz de validacion, ¿deberían ser singleton? Probablemente no sea necesario, y es algo que manejaremos desde los tests, por lo cual decidimos no implementarlo así por ahora.
+
+6- A la hora de modelar al usuarioRevisor, pensamos en hacerlo con una herencia, que pueda realizar las mismas cosas que el usuario y además, revisar las validaciones de sus egresos. Terminamos dando de baja esta opción por la posibilidad de que un usuario pueda pasar a ser un usuarioRevisor, por ello, utilizamos composición.
+
+7- Un egreso puede tener varios usuarios revisores? La lógica decía que esto tenía sentido
+
+8- El egreso conoce a sus usuarios revisores, o los usuarios revisores conocen a los egresos que les corresponden? Por un tema de no tener que pasarle los egresos que les corresponden a un usuario al servicio de validadorDeEgresos, preferimos optar por lo primero, y que sea el validador el que se encargue de fijarse cuales compras le van a ese usuario, aunque las dos opciones parecían bastante similares.
+
+9- Teníamos para decidir entre que el validadorDeEgresos le de una lista al usuario los egresos que le interesan, con un estadoDeValidacion, a partir del cual el usuario conoce los resultados, o, que el validador le de al usuario una matriz de egresos, con un boolean de valido o no valido. Lo primero parecía de más alto nivel y más sencillo de implementar, así que fuimos por ello.
+
+10- Al tomar los puntos 8 y 9, tuvimos una dificultad al dejar de tener registro de los egresos que ya fueron validados, para darle despúes al usuario los que le interesan. Es así como salimos con la idea de crear un repositorio de egresos validados.
+
+11- Descartamos la idea de volver a validar un egreso ya validado ya que el enunciado no determinaba que esto fuera un requerimiento o que fuera a ocurrir.
+
+12- Finalmente, decidimos cambiar lo que hicimos entre los items 8 y 11, debido a que hacían ruido varias cosas, entre ellas: la implementación del tipoUsuario, y su uso es un pasamanos; el usuario debe poder conocer cuales fueron las validaciones de sus egresos sin tener que decirle al validador, "dame los resultados". Optamos por cada vez que un empleado valide egresos, los egresos se encarguen de notificarle a los usuarios que los revisan que se les ha validado egresos, a través de decirle al usuario que los sume a su bandeja de entrada.
+
+13- Por último, cambiamos muchas clases que no tenían comportamientos por enums.
