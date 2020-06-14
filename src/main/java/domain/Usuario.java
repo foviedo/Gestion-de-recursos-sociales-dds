@@ -1,8 +1,13 @@
 package domain;
 
+import java.util.List;
+
 public class Usuario {
+	
     private String usuario;
     private byte[] password;
+    private List<Egreso> bandejaDeEntrada;
+    
 
     public Usuario(String usuario, String password) {
         GeneradorPassword generadorPassword = new GeneradorPassword();
@@ -26,4 +31,9 @@ public class Usuario {
     public void setPassword(byte[] password) {
         this.password = password;
     }
+    
+    void agrerarResultado(Egreso unEgreso) {
+    	bandejaDeEntrada.add(unEgreso);
+    }
+
 }

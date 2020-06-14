@@ -9,14 +9,13 @@ public class Presupuesto {
 
 	String detalle;
 	List<Item> items = new ArrayList<Item>();
-	
-	
-	public Presupuesto(String detalle, List<Item> items){
+
+	public Presupuesto(String detalle, List<Item> items) {
 		this.detalle = detalle;
 		this.items = items;
 	}
-	
-	List<Item> getListaItems(){
+
+	List<Item> getListaItems() {
 		return items;
 	}
 
