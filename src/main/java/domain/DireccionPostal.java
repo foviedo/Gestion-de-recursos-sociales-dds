@@ -1,27 +1,62 @@
 package domain;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-
-import javax.ws.rs.core.MediaType;
-
 public class DireccionPostal {
-	
-	String calle;
-	String altura;
-	String piso;
-	String departamento;
-	ClientResponse cliente;
-	
-	void pais() {
-		cliente =  Client.create()
-	       .resource("https://api.mercadolibre.com/")
-	       .path("classified_locations/countries")
-	       .accept(MediaType.APPLICATION_JSON) 
-	       .get(ClientResponse.class);
+	private String calle;
+	private String altura;
+	private String piso;
+	private String departamento;
+	private String codigoPostal;
+	private String pais;
+	private String provincia;
+	private String ciudad;
 
-		
+	public DireccionPostal(String calle,
+						   String altura,
+						   String piso,
+						   String departamento,
+						   String codigoPostal,
+						   String pais,
+						   String provincia,
+						   String ciudad) {
+		this.calle = calle;
+		this.altura = altura;
+		this.piso = piso;
+		this.departamento = departamento;
+		this.codigoPostal = codigoPostal;
+		this.pais = pais;
+		this.provincia = provincia;
+		this.ciudad= ciudad;
 	}
-	 
+
+	public String getCodigoPostal() {
+		return codigoPostal;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public String getAltura() {
+		return altura;
+	}
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
 }

@@ -38,7 +38,6 @@ public class Egreso {
 
 		Presupuesto unPresupuesto = new Presupuesto(detalle, listaDeItems);
 		presupuestos.add(unPresupuesto);
-
 	}
 
 	public double getMontoTotal() {
