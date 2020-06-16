@@ -1,12 +1,13 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
 	
     private String usuario;
     private byte[] password;
-    private List<Egreso> bandejaDeEntrada;
+    public List<Egreso> bandejaDeEntrada;
     
 
     public Usuario(String usuario, String password) {
@@ -14,6 +15,7 @@ public class Usuario {
         byte[] hash = generadorPassword.encriptarPassword(usuario, password);
         this.usuario = usuario;
         this.password = hash;
+        this.bandejaDeEntrada = new ArrayList<Egreso>();
     }
 
     public String getUsuario() {

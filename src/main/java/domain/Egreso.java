@@ -18,12 +18,14 @@ public class Egreso {
 	List<Item> listaDeItems = new ArrayList<Item>();
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
-			LocalDate fechaDeOperacion, List<Item> listaDeItems) {
+			LocalDate fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores) {
 		this.documentoComercial = documentoComercial;
 		this.medioDePago = medioDePago;
 		this.proveedor = proveedor;
 		this.fechaDeOperacion = fechaDeOperacion;
 		this.listaDeItems = listaDeItems;
+		this.revisores = listaDeRevisores;
+		this.estadoValidacion = EstadoEgreso.SIN_VALIDAR;
 	}
 
 	List<Item> getListaDeItems() {
@@ -34,7 +36,7 @@ public class Egreso {
 		return presupuestos;
 	}
 
-	void cargarPresupuesto(String detalle, List<Item> listaDeItems) { // Misma lista Egreso-Presupuesto?
+	void cargarPresupuesto(String detalle, List<Item> listaDeItems) { 
 
 		Presupuesto unPresupuesto = new Presupuesto(detalle, listaDeItems);
 		presupuestos.add(unPresupuesto);
@@ -52,10 +54,13 @@ public class Egreso {
 		estadoValidacion = unEstado;
 	}
 
-	void enviarResultadoACadaUsuario() {
+	synchronized void enviarResultadoACadaUsuario() {
 		revisores.forEach((unRevisor) -> {
 			unRevisor.agrerarResultado(this);
 		});
 	}
-
+	
+	synchronized void agregarRevisor(Usuario unUsuario) {
+		revisores.add(unUsuario);
+	}
 }

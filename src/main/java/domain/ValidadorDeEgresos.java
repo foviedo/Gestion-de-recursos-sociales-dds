@@ -10,6 +10,15 @@ public class ValidadorDeEgresos {
 
 	private static final ValidadorDeEgresos instance = new ValidadorDeEgresos();
 
+	
+	public ValidadorDeEgresos() {
+		Validacion validador1 = new ValidarCantidadPresupuestos();
+		Validacion validador2 = new ValidarCompraEnBaseAPresupuesto();
+		Validacion validador3 = new ValidarCriterioProveedor();
+		validaciones.add(validador1);
+		validaciones.add(validador2);
+		validaciones.add(validador3);
+	}
 	public static ValidadorDeEgresos getInstance() {
 		return instance;
 	}
@@ -19,6 +28,7 @@ public class ValidadorDeEgresos {
 		egresosPorValidar.forEach((unEgreso) -> {
 			this.validar(unEgreso);
 		});
+		egresosPorValidar.clear();
 
 	}
 
@@ -33,16 +43,15 @@ public class ValidadorDeEgresos {
 			unEgreso.setEstadoValidacion(EstadoEgreso.INVALIDO);
 		}
 
-		egresosPorValidar.remove(unEgreso);
 		unEgreso.enviarResultadoACadaUsuario();
 
 	}
 
-	List<Egreso> verMisResultados(Usuario unUsuario) {
+/*	synchronized List<Egreso> verMisResultados(Usuario unUsuario) {
 		List<Egreso> misEgresos = RepositorioEgresos.getTodosLosEgresos().stream()
 				.filter(unEgreso -> unEgreso.esDe(unUsuario)).collect(Collectors.toList());
 		return misEgresos;
 
 	}
-
+*/
 }

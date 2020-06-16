@@ -52,7 +52,7 @@ public class MercadoLibreTest {
         assertEquals("2do", direccionPostal.getDepartamento());
         assertEquals("5000", direccionPostal.getCodigoPostal());
         assertEquals("Argentina", direccionPostal.getPais());
-        assertEquals("Córdoba", direccionPostal.getProvincia());
+        assertEquals("Cordoba", direccionPostal.getProvincia());
         assertNull(direccionPostal.getCiudad());
     }
 
