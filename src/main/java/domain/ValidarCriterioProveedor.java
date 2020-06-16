@@ -6,6 +6,7 @@ public class ValidarCriterioProveedor implements Validacion {
 		double minimoPresupuesto = unEgreso.getPresupuestos().stream()
 				.mapToDouble(unPresupuesto -> unPresupuesto.total()).min().getAsDouble();
 		return minimoPresupuesto == unEgreso.getMontoTotal();
+		
 	}
 
 }

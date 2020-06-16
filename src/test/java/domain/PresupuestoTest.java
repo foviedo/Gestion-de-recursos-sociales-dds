@@ -23,13 +23,15 @@ public class PresupuestoTest {
 	Item item3;
 	Item item4;
 	Moneda unaMoneda;
-	Egreso egreso1;
+	Egreso egresoQueUsaLaMasBarata;
+	Egreso egresoQueUsaLaMasCara;
 	Documento unDocumento;
 	MedioDePago unMedioDePago;
 	DireccionPostal unaDireccionPostal;
 	Proveedor unProveedor;
 	LocalDate unaFecha;
 	List<Item> items1;
+	List<Item> items2;
 	Usuario usuario1;
 	List<Usuario> revisores1;
 	
@@ -47,19 +49,52 @@ public class PresupuestoTest {
 		unaFecha = LocalDate.of(1111,11,11);
 		items1 = new ArrayList<Item>();
 		items1.add(item1);
+		items1.add(item2);
+		items2 = new ArrayList<Item>();
+		items2.add(item3);
+		items2.add(item4);
 		usuario1 = new Usuario("user","VeryDificult!020");
 		revisores1 = new ArrayList<Usuario>();
 		revisores1.add(usuario1);
-		egreso1 = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items1, revisores1);
+		egresoQueUsaLaMasBarata = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items1, revisores1);
+		egresoQueUsaLaMasCara = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items2, revisores1);
 	}
 	
 	@Test
 	public void menosPresupuestosDeLosRequeridos() {
 		ValidadorDeEgresos miValidador = ValidadorDeEgresos.getInstance();
-		miValidador.egresosPorValidar.add(egreso1);
+		miValidador.egresosPorValidar.add(egresoQueUsaLaMasBarata);
 		miValidador.validarEgresoPendientes();
-		//assertEquals(EstadoEgreso.INVALIDO,egreso1.estadoValidacion);
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
+	}
+	
+	@Test
+	public void laCompraNoFueEnBaseAUnoDeLosPresupuestos() {
+		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle we", items2);
+		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle2 we", items2);
+		ValidadorDeEgresos miValidador = ValidadorDeEgresos.getInstance();
+		miValidador.egresosPorValidar.add(egresoQueUsaLaMasBarata);
+		miValidador.validarEgresoPendientes();
+		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
+	}
+	
+	@Test
+	public void laCompraNoFueLaMasBarata() {
+		egresoQueUsaLaMasCara.cargarPresupuesto("detalle we", items1);
+		egresoQueUsaLaMasCara.cargarPresupuesto("detalle2 we", items2);
+		ValidadorDeEgresos miValidador = ValidadorDeEgresos.getInstance();
+		miValidador.egresosPorValidar.add(egresoQueUsaLaMasCara);
+		miValidador.validarEgresoPendientes();
+		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
+	}
+	@Test
+	public void EgresoValido() {
+		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle we", items1);
+		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle2 we", items2);
+		ValidadorDeEgresos miValidador = ValidadorDeEgresos.getInstance();
+		miValidador.egresosPorValidar.add(egresoQueUsaLaMasBarata);
+		miValidador.validarEgresoPendientes();
+		assertEquals(EstadoEgreso.VALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
 
 }
