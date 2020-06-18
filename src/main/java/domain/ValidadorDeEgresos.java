@@ -47,11 +47,4 @@ public class ValidadorDeEgresos {
 
 	}
 
-/*	synchronized List<Egreso> verMisResultados(Usuario unUsuario) {
-		List<Egreso> misEgresos = RepositorioEgresos.getTodosLosEgresos().stream()
-				.filter(unEgreso -> unEgreso.esDe(unUsuario)).collect(Collectors.toList());
-		return misEgresos;
-
-	}
-*/
 }
