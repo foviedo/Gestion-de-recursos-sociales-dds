@@ -7,13 +7,8 @@ import javax.ws.rs.core.MediaType;
 public class MercadoLibreConnector {
     private static final String API_MERCADO_LIBRE = "https://api.mercadolibre.com";
 
-    public ClientResponse getData(String paisId, String codigoPostal) {
-        String path = String.format("countries/%s/zip_codes/%s", paisId, codigoPostal);
-        return this.makeRequest(path);
-    }
-
-    public ClientResponse getCurrencyId(String paisId) {
-        String path = String.format("countries/%s", paisId);
+    public ClientResponse getData(String codigoPostal) {
+        String path = String.format("countries/AR/zip_codes/%s", codigoPostal);
         return this.makeRequest(path);
     }
 
