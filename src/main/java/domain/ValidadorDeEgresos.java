@@ -34,7 +34,7 @@ public class ValidadorDeEgresos {
 
 	void validar(Egreso unEgreso) {
 
-		if (validaciones.stream().allMatch(validacion -> validacion.validar(unEgreso))) {
+		if (validaciones.stream().allMatch(validacion -> validacion.esValido(unEgreso))) {
 
 			unEgreso.setEstadoValidacion(EstadoEgreso.VALIDO);
 

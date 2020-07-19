@@ -88,7 +88,7 @@ public class PresupuestoTest {
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
 	@Test
-	public void EgresoValido() {
+	public void egresoValido() {
 		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle we", items1);
 		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle2 we", items2);
 		ValidadorDeEgresos miValidador = ValidadorDeEgresos.getInstance();
@@ -96,5 +96,7 @@ public class PresupuestoTest {
 		miValidador.validarEgresoPendientes();
 		assertEquals(EstadoEgreso.VALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
+	
+
 
 }
