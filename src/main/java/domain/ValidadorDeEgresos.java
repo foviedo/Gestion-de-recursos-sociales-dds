@@ -5,32 +5,25 @@ import java.util.stream.Collectors;
 
 public class ValidadorDeEgresos {
 
-	List<Egreso> egresosPorValidar = new ArrayList<Egreso>();
 	List<Validacion> validaciones = new ArrayList<Validacion>();
 
-	private static final ValidadorDeEgresos instance = new ValidadorDeEgresos();
-
 	
-	public ValidadorDeEgresos() {
+	public ValidadorDeEgresos(Validacion criterioEgreso) {
 		Validacion validador1 = new ValidarCantidadPresupuestos();
 		Validacion validador2 = new ValidarCompraEnBaseAPresupuesto();
-		Validacion validador3 = new ValidarCriterioProveedor();
 		validaciones.add(validador1);
 		validaciones.add(validador2);
-		validaciones.add(validador3);
-	}
-	public static ValidadorDeEgresos getInstance() {
-		return instance;
+		validaciones.add(criterioEgreso);
 	}
 
-	void validarEgresoPendientes() {
+	/*void validarEgresoPendientes() {
 
 		egresosPorValidar.forEach((unEgreso) -> {
 			this.validar(unEgreso);
 		});
 		egresosPorValidar.clear();
 
-	}
+	}*/
 
 	void validar(Egreso unEgreso) {
 

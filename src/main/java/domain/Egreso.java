@@ -9,17 +9,19 @@ public class Egreso {
 	MedioDePago medioDePago;
 	Proveedor proveedor;
 	LocalDate fechaDeOperacion;
-	Entidad destinatario;
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
 	List<Usuario> revisores;
 	EstadoEgreso estadoValidacion;
-	/*Criterio criterio*/
-
+	Validacion criterio;
+	ValidadorDeEgresos validador;
+	
+	List<String> etiquetas = new ArrayList<String>();
 	List<Item> listaDeItems = new ArrayList<Item>();
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
-			LocalDate fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores) {
+			LocalDate fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
+			Validacion criterio, List<String> etiquetas, Entidad destinatario) {
 		this.documentoComercial = documentoComercial;
 		this.medioDePago = medioDePago;
 		this.proveedor = proveedor;
@@ -27,8 +29,22 @@ public class Egreso {
 		this.listaDeItems = listaDeItems;
 		this.revisores = listaDeRevisores;
 		this.estadoValidacion = EstadoEgreso.SIN_VALIDAR;
+		this.criterio = criterio;
+		this.validador = new ValidadorDeEgresos(criterio);
+		if(etiquetas.isEmpty()) {
+			this.etiquetas.add("sin etiqueta");
+		} else {
+			this.etiquetas = etiquetas;
+		}
 	}
 
+	void agregarEtiqueta(String unaEtiqueta) {
+		if(etiquetas.contains("sin etiqueta")) {
+			etiquetas.remove(0);
+		}
+		etiquetas.add(unaEtiqueta);
+	}
+	
 	List<Item> getListaDeItems() {
 		return listaDeItems;
 	}
@@ -70,5 +86,11 @@ public class Egreso {
 	}
 	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
 		cantidadPresupuestosNecesarios = unaCant;
+	}
+	public void validarme() {
+		this.validador.validar(this);
+	}
+	public boolean estoySinValidar() {
+		return estadoValidacion == EstadoEgreso.SIN_VALIDAR;
 	}
 }
