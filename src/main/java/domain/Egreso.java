@@ -14,6 +14,7 @@ public class Egreso {
 	private static final Integer CANTIDAD_PRESUPUESTOS_NECESARIOS = 2;
 	List<Usuario> revisores;
 	EstadoEgreso estadoValidacion;
+	/*Criterio criterio*/
 
 	List<Item> listaDeItems = new ArrayList<Item>();
 
@@ -54,13 +55,13 @@ public class Egreso {
 		estadoValidacion = unEstado;
 	}
 
-	synchronized void enviarResultadoACadaUsuario() {
+	public void enviarResultadoACadaUsuario() {
 		revisores.forEach((unRevisor) -> {
 			unRevisor.agrerarResultado(this);
 		});
 	}
 	
-	synchronized void agregarRevisor(Usuario unUsuario) {
+	public void agregarRevisor(Usuario unUsuario) {
 		revisores.add(unUsuario);
 	}
 

@@ -2,5 +2,5 @@ package domain;
 
 public interface Validacion {
 
-	boolean validar(Egreso unEgreso);
+	boolean esValido(Egreso unEgreso);
 }
