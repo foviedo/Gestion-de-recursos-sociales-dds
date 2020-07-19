@@ -5,14 +5,14 @@ import domain.Moneda;
 import service.MercadoLibreService;
 
 public class ItemFactory {
-    private MercadoLibreService service;
+    private final MercadoLibreService mercadoLibreService;
 
-    public ItemFactory(MercadoLibreService service) {
-        this.service = service;
+    public ItemFactory(MercadoLibreService mercadoLibreService) {
+        this.mercadoLibreService = mercadoLibreService;
     }
 
-    public Item createItem(String descripcion, String paisId, double monto) {
-        Moneda moneda = service.getMoneda(paisId);
+    public Item createItem(String descripcion, double monto) {
+        Moneda moneda = mercadoLibreService.getMoneda();
         return new Item(descripcion, moneda, monto);
     }
 }
