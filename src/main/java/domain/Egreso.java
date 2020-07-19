@@ -11,7 +11,7 @@ public class Egreso {
 	LocalDate fechaDeOperacion;
 	Entidad destinatario;
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
-	private static final Integer CANTIDAD_PRESUPUESTOS_NECESARIOS = 2;
+	private static Integer cantidadPresupuestosNecesarios = 2;
 	List<Usuario> revisores;
 	EstadoEgreso estadoValidacion;
 
@@ -65,6 +65,9 @@ public class Egreso {
 	}
 
 	public Boolean tenesLosPresupuestosSuficientes() {
-		return CANTIDAD_PRESUPUESTOS_NECESARIOS == presupuestos.size();
+		return cantidadPresupuestosNecesarios == presupuestos.size();
+	}
+	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
+		cantidadPresupuestosNecesarios = unaCant;
 	}
 }
