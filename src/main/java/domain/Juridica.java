@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Juridica extends Entidad {
 	Categoria categoria;
@@ -11,7 +13,6 @@ public class Juridica extends Entidad {
 	String direccionPostal;
 	int codInscripcion;
 	List<Base> listaDeEntidadesBase = new ArrayList<Base>();
-	List<Egreso> egresos;
 	
 
 

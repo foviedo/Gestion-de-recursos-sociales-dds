@@ -21,7 +21,7 @@ public class Egreso {
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
 			LocalDate fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
-			Validacion criterio, List<String> etiquetas, Entidad destinatario) {
+			Validacion criterio, List<String> etiquetas) {
 		this.documentoComercial = documentoComercial;
 		this.medioDePago = medioDePago;
 		this.proveedor = proveedor;
@@ -92,5 +92,9 @@ public class Egreso {
 	}
 	public boolean estoySinValidar() {
 		return estadoValidacion == EstadoEgreso.SIN_VALIDAR;
+	}
+	
+	boolean contengoEtiqueta(String etiqueta) {
+		return etiquetas.contains(etiqueta);
 	}
 }
