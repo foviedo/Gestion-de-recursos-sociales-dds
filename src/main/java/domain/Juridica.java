@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Juridica extends Entidad {
-	Categoria categoria;
 	String razonSocial;
 	String nombreFicticio;
 	int cuit;
@@ -27,10 +26,9 @@ public class Juridica extends Entidad {
 		this.categoria= categoria;
 	}
 	
-	void agregarEgreso(Egreso unEgreso){
-		categoria.agregarEgreso(this,egreso);
-	}
-	void agregarEntidadBase(Entidad unaEntidad){
+
+	void agregarEntidadBase(Base unaEntidad){
 		categoria.agregarEntidadBase(this,unaEntidad);
+		listaDeEntidadesBase.add(unaEntidad);
 	}
 }
