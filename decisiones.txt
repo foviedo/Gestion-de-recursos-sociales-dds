@@ -46,3 +46,14 @@ obtener dicha información de la API de mercado libre.
 11- Finalmente, decidimos cambiar lo que hicimos entre los items 8 y 11, debido a que hacían ruido varias cosas, entre ellas: la implementación del tipoUsuario, y su uso es un pasamanos; el usuario debe poder conocer cuales fueron las validaciones de sus egresos sin tener que decirle al validador, "dame los resultados". Optamos por cada vez que un empleado valide egresos, los egresos se encarguen de notificarle a los usuarios que los revisan que se les ha validado egresos, a través de decirle al usuario que los sume a su bandeja de entrada.
 
 12- Por último, cambiamos muchas clases que no tenían comportamientos por enums.
+
+TERCERA ENTREGA
+
+1- Para las etiquetas, enums o strings? elegimos strings porque no podiamos definir cuales eran todos los enums posibles.
+
+2- Para los destinatarios, estos iban a formar parte de cada uno de los egresos, o cada entidad iba a conocer sus egresos? La razón por la que elegimos la primer opción, era, porque lo segundo no daba mucha ventaja sobre esto, y, hacerlo así nos permitía reutilizar el repositorio de egresos, hacer un filter por los que me pertenecían, y a partir de ellos hacer los reportes.
+2BIS- Cambiamos a que la entidad conozca los egresos para realizar menos pasos respecto a generar reportes de etiquetas y restringir las posibilidades de una entidad según las categorías a las que pertenezca.
+2BISBIS- 
+
+3- Decidimos cambiar la interfaz de Entidad para que sea una clase abstracta, con el fin de definir como funciona el método de generar reportes una vez, y que los distintos tipos de entidades simplemente reutilicen ese método
+
