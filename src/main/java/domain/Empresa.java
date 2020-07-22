@@ -6,8 +6,8 @@ public class Empresa extends Juridica {
 
 	TipoEmpresa unTipo;
 
-	Empresa(String razonSocial, String nombreFicticio, int cuit, String direccionPostal, int codInscripcion,List<Base> listaDeEntidades,Categoria unaCategoria, TipoEmpresa unTipo) {
-		super(razonSocial, nombreFicticio, cuit, direccionPostal, codInscripcion, listaDeEntidades,unaCategoria);
+	Empresa(String razonSocial, String nombreFicticio, int cuit, String direccionPostal, int codInscripcion,List<Base> listaDeEntidades, TipoEmpresa unTipo) {
+		super(razonSocial, nombreFicticio, cuit, direccionPostal, codInscripcion, listaDeEntidades);
 		this.unTipo = unTipo;
 	}
 	

@@ -94,7 +94,7 @@ public class Egreso {
 		return estadoValidacion == EstadoEgreso.SIN_VALIDAR;
 	}
 	
-	boolean contengoEtiqueta(String etiqueta) {
+	public boolean contieneEtiqueta(String etiqueta) {
 		return etiquetas.contains(etiqueta);
 	}
 }

@@ -11,7 +11,7 @@ public class Categoria {
 	}
 	void agregarEntidadBase(Entidad miEntidad, Entidad entidadAAgregar) {
 		funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(miEntidad,Operaciones.AGREGAR_ENTIDAD));
-		entidadAAgregar.categoria.funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(entidadAAgregar, Operaciones.ENTIDAD_SER_AGREGADO));
+		entidadAAgregar.getCategoria().funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(entidadAAgregar, Operaciones.ENTIDAD_SER_AGREGADO));
 	}
 	void agregarFuncionalidad(Funcionalidad unaFuncionalidad) {
 		funcionalidades.add(unaFuncionalidad);
