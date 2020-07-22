@@ -57,3 +57,5 @@ TERCERA ENTREGA
 
 3- Decidimos cambiar la interfaz de Entidad para que sea una clase abstracta, con el fin de definir como funciona el método de generar reportes una vez, y que los distintos tipos de entidades simplemente reutilicen ese método
 
+4- Exception o no exception al intentar agregar un egreso que despues no podamos? Pusimos un egreso, total en la presentación se puede hacer un try catch, y hay que comunicar de alguna forma que no se pudo agregar el egreso.
+
