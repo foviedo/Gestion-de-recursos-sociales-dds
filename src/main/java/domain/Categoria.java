@@ -9,10 +9,16 @@ public class Categoria {
 	void agregarEgreso(Entidad miEntidad) {
 		funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(miEntidad,Operaciones.AGREGAR_EGRESO));
 	}
-	void agregarEntidadBase(Entidad miEntidad, Entidad entidadAAgregar) {
+	void agregarEntidadBase(Entidad miEntidad) {
 		funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(miEntidad,Operaciones.AGREGAR_ENTIDAD));
-		entidadAAgregar.getCategoria().funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(entidadAAgregar, Operaciones.ENTIDAD_SER_AGREGADO));
 	}
+	
+	void serAgregadoAUnaJuridica(Entidad entidadAAgregar) {
+		if(entidadAAgregar.getCategoria() != null) {
+			entidadAAgregar.getCategoria().funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(entidadAAgregar, Operaciones.ENTIDAD_SER_AGREGADO));
+		}
+	}
+	
 	void agregarFuncionalidad(Funcionalidad unaFuncionalidad) {
 		funcionalidades.add(unaFuncionalidad);
 	}
@@ -23,3 +29,4 @@ public class Categoria {
 		funcionalidades.clear();
 	}
 }
+

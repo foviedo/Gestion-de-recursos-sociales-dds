@@ -1,10 +1,12 @@
 package domain;
+import java.util.Timer;
 
 public class Main {
 public static void main(String[] args) {
-		RepositorioEgresos.todosLosEgresos.forEach((unEgreso) -> {unEgreso.validarme();});
-		/* pruebas manuales */
-	
+		long tiempoEnMilisegundos = 10000;
+		Timer t = new Timer();
+		TareaAEjecutarse miTarea = new TareaAEjecutarse();
+	    t.scheduleAtFixedRate(miTarea, 0, tiempoEnMilisegundos);
 
 	}
 }

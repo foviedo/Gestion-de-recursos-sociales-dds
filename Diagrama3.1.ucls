@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="domain.NoPuedoSerAgregada" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/NoPuedoSerAgregada.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-551" y="199"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="domain.Reporte" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Reporte.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-477" y="366"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="domain.Juridica" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Juridica.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="398" y="648"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="domain.Item" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Item.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-553" y="1054"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="domain.Base" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Base.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="595" y="467"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="domain.Categoria" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Categoria.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="22" y="125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="domain.NoPuedoAgregarEntidadesBase" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/NoPuedoAgregarEntidadesBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-298" y="154"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="domain.Funcionalidad" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Funcionalidad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-677" y="49"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="domain.Empresa" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Empresa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="359" y="1041"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="domain.RepositorioEgresos" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/RepositorioEgresos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-253" y="357"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="domain.OSC" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/OSC.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="555" y="870"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="domain.MontoEgresosSuperado" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/MontoEgresosSuperado.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-749" y="307"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="13" language="java" name="domain.EstadoEgreso" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/EstadoEgreso.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="212" y="897"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="14" language="java" name="domain.Organizacion" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Organizacion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="354" y="129"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="15" language="java" name="domain.TipoEmpresa" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/TipoEmpresa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="599" y="1054"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="16" language="java" name="domain.Egreso" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Egreso.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-195" y="730"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="17" language="java" name="domain.Operaciones" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Operaciones.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="17" y="333"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="18" language="java" name="domain.Entidad" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Entidad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="331" y="352"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="domain.Moneda" project="2020-ju-ma-group-01" 
+    file="/2020-ju-ma-group-01/src/main/java/domain/Moneda.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-793" y="1062"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="20">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="21" name="listaDeEntidadesBase"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="23">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="24">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="25" name="funcionalidades"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <bendpoint x="-488" y="964"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="28" name="listaDeItems"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="30">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="31">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="32" name="egresos"/>      
+      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="35">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="36" name="egresos"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="39" name="estadoValidacion"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="42">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="43" name="unTipo"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="46" name="todosLosEgresos"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="49" name="entidades"/>      
+      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="52">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="53" name="moneda"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="56">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="57" name="categoria"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="59">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -32,4 +32,7 @@ public abstract class Entidad {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	public void setCantidadMaxEgresos(int unaCantidad) {
+		cantMaxDeEgresos = unaCantidad;
+	}
 }

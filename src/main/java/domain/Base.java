@@ -8,4 +8,9 @@ public class Base extends Entidad {
 		this.nombreFicticio = nombreFicticio;
 		this.descripcion = descripcion;
 	}
+	public void serAgregada() {
+		if(categoria != null) {
+			categoria.serAgregadoAUnaJuridica(this);
+		}
+	}
 }
