@@ -5,8 +5,8 @@ public class Main {
 public static void main(String[] args) {
 		long tiempoEnMilisegundos = 10000;
 		Timer t = new Timer();
-		TareaAEjecutarse miTarea = new TareaAEjecutarse();
-	    t.scheduleAtFixedRate(miTarea, 0, tiempoEnMilisegundos);
+		TareaValidarEgresos unaTareaQueValida = new TareaValidarEgresos();
+	    t.scheduleAtFixedRate(unaTareaQueValida, 0, tiempoEnMilisegundos);
 
 	}
 }
