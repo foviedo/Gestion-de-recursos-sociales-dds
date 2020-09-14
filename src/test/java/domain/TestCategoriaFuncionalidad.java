@@ -9,6 +9,9 @@ import exception.FuncionalidadException;
 
 import static org.mockito.Mockito.mock;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 
 public class TestCategoriaFuncionalidad {
 	Egreso unEgreso1;
@@ -27,13 +30,13 @@ public class TestCategoriaFuncionalidad {
 	public void setup() {
 		unEgreso1 = mock(Egreso.class);
 		unaEntidadJuridica = new Juridica("yo","tuvieja",27,"calle falsa 123",8);
-		categoriaSinRestricciones = new Categoria();
+		categoriaSinRestricciones = new Categoria(new ArrayList<Funcionalidad>(),"categoriaSinRestricciones");
 		unaEntidadBaseSinNada = new Base("mi nombre","no se que va aca");
-		categoriaConRestricciones= new Categoria();
+		categoriaConRestricciones= new Categoria(new ArrayList<Funcionalidad>(),"categoriaConRestricciones");
 		restriccion1 = new MontoEgresosSuperado(2);
 		restriccion2 = new NoPuedoAgregarEntidadesBase();
 		unaEntidadBaseRestringida = new Base("nombre","bro");
-		categoriaConRestriccionParaBase = new Categoria();
+		categoriaConRestriccionParaBase = new Categoria(new ArrayList<Funcionalidad>(),"categoriaConRestriccionParaBase");
 		restriccion3 = new NoPuedoSerAgregada();
 		categoriaConRestriccionParaBase.agregarFuncionalidad(restriccion3);
 		unaEntidadBaseRestringida.setCategoria(categoriaConRestriccionParaBase);

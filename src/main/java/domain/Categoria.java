@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Categoria {
 	List<Funcionalidad> funcionalidades = new ArrayList<>();
+	String nombre;
+	
+	public Categoria(List<Funcionalidad> listFunc, String nombre) {
+		this.nombre = nombre;
+		this.funcionalidades = listFunc;
+	}
 	
 	void agregarEgreso(Entidad miEntidad) {
 		funcionalidades.forEach(unaFuncionalidad -> unaFuncionalidad.valida(miEntidad,Operaciones.AGREGAR_EGRESO));
