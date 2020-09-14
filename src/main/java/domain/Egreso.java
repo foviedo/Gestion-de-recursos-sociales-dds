@@ -30,18 +30,16 @@ public class Egreso {
 		this.revisores = listaDeRevisores;
 		this.estadoValidacion = EstadoEgreso.SIN_VALIDAR;
 		this.criterio = criterio;
-		this.validador = new ValidadorDeEgresos(criterio);
-		if(etiquetas.isEmpty()) {
-			this.etiquetas.add("sin etiqueta");
-		} else {
-			this.etiquetas = etiquetas;
-		}
+		this.validador = new ValidadorDeEgresos(criterio);		
+		this.etiquetas = etiquetas;
+		
+	}
+	
+	List<String> getEtiquetas(){
+		return etiquetas;
 	}
 
 	void agregarEtiqueta(String unaEtiqueta) {
-		if(etiquetas.contains("sin etiqueta")) {
-			etiquetas.remove(0);
-		}
 		etiquetas.add(unaEtiqueta);
 	}
 	

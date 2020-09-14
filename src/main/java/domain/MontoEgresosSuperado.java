@@ -1,11 +1,16 @@
 package domain;
 
-import exception.EgresosMaximosException;
 
-public class MontoEgresosSuperado implements Funcionalidad {
+public class MontoEgresosSuperado extends Funcionalidad {
+	int limiteDeEgresos;
+	
+	public MontoEgresosSuperado(int cantidad) {
+		limiteDeEgresos = cantidad;
+	}
+	
 	public void valida(Entidad unaEntidad, Operaciones miOperacion) {
-		if(miOperacion == Operaciones.AGREGAR_EGRESO && unaEntidad.tengoLaCantidadMaximaDeEgresos()) {
-			throw new EgresosMaximosException("tenes la cantidad maxima de egresos");
+		if(unaEntidad.tengoLaCantidadMaximaDeEgresos(limiteDeEgresos)) {
+			this.validacionAbstraida(miOperacion, Operaciones.AGREGAR_EGRESO, "tenes la cantidad maxima de egresos");
 		}
 	}
 }
