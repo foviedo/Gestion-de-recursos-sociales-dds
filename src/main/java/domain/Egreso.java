@@ -22,6 +22,7 @@ public class Egreso{
 	LocalDate fechaDeOperacion;
 	
 	@OneToMany
+	@JoinColumn(name="id_egreso")
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
 	@ManyToMany
