@@ -62,3 +62,10 @@ TERCERA ENTREGA
 5- Las categorias fueron modeladas con un conjunto de funcionalidades cuya funcion es tirar una excepción si la categoria debe restringir la operación a realizar. En caso contrario, no hacen nada.
 
 6- La restriccion del monto de la entidad, podría ser tanto una particularidad definida por la entidad, o una particularidad relacionada a la funcionalidad. Sin embargo, decidimos mantenernos a la primero, porque el enunciado daba más en claro que era algo relacionado particularmente a la entidad, e ir por la segunda opción iba a implicar un acoplamiento mayor entre los egresos que tiene la entidad, y la funcionalidad.
+
+CUARTA ENTREGA
+
+1-  Presupuesto tendría una relación many to many con items? o sería one to many? Finalizamos decidiendo por hacerlo one to many debido a que no nos interesa persistir el producto en si.
+
+
+
