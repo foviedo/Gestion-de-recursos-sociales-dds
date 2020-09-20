@@ -1,6 +1,13 @@
 package domain;
 
+import javax.persistence.*;
+
+@Entity
 public class DireccionPostal {
+	
+	@Id
+	@GeneratedValue
+	private long Id;
 	private String calle;
 	private String altura;
 	private String piso;

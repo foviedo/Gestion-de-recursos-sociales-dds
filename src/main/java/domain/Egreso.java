@@ -3,16 +3,37 @@ package domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
-public class Egreso {
+
+//@Entity
+public class Egreso{
+
+	//@Id
+	//@GeneratedValue
+	//private long id;
+	
+	@OneToOne
 	Documento documentoComercial;
+	@ManyToOne
 	MedioDePago medioDePago;
+
+	@ManyToOne
 	Proveedor proveedor;
 	LocalDate fechaDeOperacion;
+	
+	@OneToMany
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
 	List<Usuario> revisores;
+	
+//	@Enumerated(EnumType.STRING)
 	EstadoEgreso estadoValidacion;
+	
 	Validacion criterio;
 	ValidadorDeEgresos validador;
 	

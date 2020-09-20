@@ -1,7 +1,17 @@
 package domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+
+@Entity
 public class Item {
+	
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private String descripcion;
+	@ManyToOne
 	private Moneda moneda;
 	private double monto;
 
