@@ -1,6 +1,11 @@
 package domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Moneda {
+	
+	@Id
     private String id;
     private String description;
     private String symbol;
