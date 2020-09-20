@@ -4,18 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.*;
-
-
-//@Entity
+@Entity
 public class Egreso{
 
-	//@Id
-	//@GeneratedValue
-	//private long id;
+	@Id
+	@GeneratedValue
+	private long id;
 	
 	@OneToOne
 	Documento documentoComercial;
@@ -29,15 +24,22 @@ public class Egreso{
 	@OneToMany
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
+	@ManyToMany
 	List<Usuario> revisores;
 	
-//	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	EstadoEgreso estadoValidacion;
 	
+	@Enumerated(EnumType.STRING)
 	Validacion criterio;
+	
+	@Transient
 	ValidadorDeEgresos validador;
 	
-	List<String> etiquetas = new ArrayList<String>();
+	@ElementCollection
+	List<String> etiquetas  = new ArrayList<String>();
+	@OneToMany
+	@JoinColumn(name="id_item")
 	List<Item> listaDeItems = new ArrayList<Item>();
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,

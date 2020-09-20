@@ -9,8 +9,8 @@ public class ValidadorDeEgresos {
 
 	
 	public ValidadorDeEgresos(Validacion criterioEgreso) {
-		Validacion validador1 = new ValidarCantidadPresupuestos();
-		Validacion validador2 = new ValidarCompraEnBaseAPresupuesto();
+		Validacion validador1 = Validacion.VALIDAR_CANTIDAD_PRESUPUESTOS;
+		Validacion validador2 = Validacion.VALIDAR_COMPRA_EN_BASE_A_PRESUPUESTO;
 		validaciones.add(validador1);
 		validaciones.add(validador2);
 		validaciones.add(criterioEgreso);

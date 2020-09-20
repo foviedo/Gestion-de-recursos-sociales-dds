@@ -2,11 +2,17 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.*;
+@Entity
 public class Usuario {
+	
+	@Id
+	@GeneratedValue
+	private long id;
 	
     private String usuario;
     private byte[] password;
+    @Transient
     public List<Egreso> bandejaDeEntrada;
     
 

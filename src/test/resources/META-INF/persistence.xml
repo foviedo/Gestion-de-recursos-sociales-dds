@@ -16,6 +16,8 @@
 		<class>domain.Moneda</class>
 		<class>domain.Item</class>
 		<class>domain.Presupuesto</class>
+		<class>domain.Usuario</class>
+		
 	
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

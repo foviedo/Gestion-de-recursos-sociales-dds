@@ -58,7 +58,7 @@ public class PresupuestoTest {
 		usuario1 = new Usuario("user","VeryDificult!020");
 		revisores1 = new ArrayList<Usuario>();
 		revisores1.add(usuario1);
-		criterioProveedores = new ValidarCriterioProveedor();
+		criterioProveedores = Validacion.VALIDAR_CRITERIO_PROVEEDOR;
 		egresoQueUsaLaMasBarata = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items1, revisores1,criterioProveedores, etiquetas);
 		egresoQueUsaLaMasCara = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items2, revisores1, criterioProveedores,etiquetas);
 	}

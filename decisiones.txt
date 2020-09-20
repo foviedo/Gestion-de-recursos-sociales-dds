@@ -67,5 +67,6 @@ CUARTA ENTREGA
 
 1-  Presupuesto tendría una relación many to many con items? o sería one to many? Finalizamos decidiendo por hacerlo one to many debido a que no nos interesa persistir el producto en si.
 
+2- Vale la pena persistir la lista de bandejaDeEntrada de usuarios, teniendo acceso a la misma información desde egresos? Optamos por que no, y con la annotation de @Transient podemos omitir persistirla.
 
 
