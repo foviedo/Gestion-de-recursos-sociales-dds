@@ -15,7 +15,9 @@ public class Moneda {
 		this.description = string;
 		this.symbol = string2;
 	}
-
+    public Moneda() {
+    	
+    }
 	public String getId() {
         return id;
     }

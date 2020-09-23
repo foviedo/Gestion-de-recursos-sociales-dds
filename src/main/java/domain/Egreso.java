@@ -20,7 +20,7 @@ public class Egreso{
 
 	@ManyToOne
 	Proveedor proveedor;
-	@Convert(converter = LocalDate.class)
+	//@Convert(converter = LocalDate.class)
 	LocalDate fechaDeOperacion;
 	
 	@OneToMany

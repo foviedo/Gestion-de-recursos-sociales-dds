@@ -27,7 +27,7 @@ public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
 		 itemsA = new ArrayList<Item>();
 		itemsA.add(item1);
 		itemsA.add(item2);
-		 unEgreso = new Egreso(null, null, null, fechaDeOperacion, itemsA, null, Validacion.VALIDAR_CRITERIO_PROVEEDOR, null); 
+		 unEgreso = new Egreso(null, null, null, fechaDeOperacion, null, null, Validacion.VALIDAR_CRITERIO_PROVEEDOR, null); 
 	}
 	
 	@SuppressWarnings("deprecation")
