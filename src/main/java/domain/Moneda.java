@@ -10,7 +10,13 @@ public class Moneda {
     private String description;
     private String symbol;
 
-    public String getId() {
+    public Moneda(String i, String string, String string2) {
+		this.id = i;
+		this.description = string;
+		this.symbol = string2;
+	}
+
+	public String getId() {
         return id;
     }
 
