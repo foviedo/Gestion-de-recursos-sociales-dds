@@ -2,13 +2,18 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "id_entidad_madre" )
 public class Juridica extends Entidad {
 	String razonSocial;
 	String nombreFicticio;
 	int cuit;
 	String direccionPostal;
 	int codInscripcion;
+	@OneToMany
+	@JoinColumn(name = "id_juridica")
 	List<Base> listaDeEntidadesBase = new ArrayList<Base>();
 
 	public Juridica(String razonSocial, String nombreFicticio, int cuit, String direccionPostal, int codInscripcion) {

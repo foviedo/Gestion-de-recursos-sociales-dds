@@ -1,6 +1,7 @@
 package domain;
+import javax.persistence.*;
 
-
+@Entity
 public class MontoEgresosSuperado extends Funcionalidad {
 	int limiteDeEgresos;
 	

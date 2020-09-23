@@ -17,8 +17,15 @@
 		<class>domain.Item</class>
 		<class>domain.Presupuesto</class>
 		<class>domain.Usuario</class>
-		
-	
+		<class>domain.Entidad</class>
+		<class>domain.Juridica</class>
+		<class>domain.Base</class>
+		<class>domain.Categoria</class>
+		<class>domain.Funcionalidad</class>
+		<class>domain.Organizacion</class>
+		<class>domain.MontoEgresosSuperados</class>
+		<class>domain.NoPuedoAgregarEntidadesBase</class>
+		<class>domain.NoPuedoSerAgregada</class>
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

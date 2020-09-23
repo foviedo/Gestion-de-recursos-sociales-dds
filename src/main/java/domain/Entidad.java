@@ -3,9 +3,20 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TipoDeEntidad")
 public abstract class Entidad {
+	@Id
+	@GeneratedValue
+	long id;
+	
+	@OneToMany
+	@JoinColumn(name = "id_Entidad")
 	protected List<Egreso> egresos = new ArrayList<>();
+	@ManyToOne
 	protected Categoria categoria;
 	
 	public Reporte generarReporte(String etiqueta) {
