@@ -13,6 +13,7 @@ public class Egreso{
 	private long id;
 	
 	@OneToOne
+	@JoinColumn(name = "id_documento")
 	Documento documentoComercial;
 	@ManyToOne
 	MedioDePago medioDePago;

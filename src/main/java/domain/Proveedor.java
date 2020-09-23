@@ -13,6 +13,7 @@ public class Proveedor {
 	int identificador;
 	
 	@OneToOne
+	@JoinColumn(name = "id_direccionPostal")
 	DireccionPostal direccionPostal;
 	
 	Proveedor(String nombreProveedor, int identificador, DireccionPostal direccionPostal){
