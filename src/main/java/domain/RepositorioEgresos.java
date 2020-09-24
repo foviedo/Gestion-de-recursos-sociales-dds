@@ -13,7 +13,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 public class RepositorioEgresos implements WithGlobalEntityManager {
 	static final RepositorioEgresos INSTANCE = new RepositorioEgresos();
-	List<Egreso> todosLosEgresos = new ArrayList<Egreso>();
+	//List<Egreso> todosLosEgresos = new ArrayList<Egreso>();
 	EntityTransaction transaction = entityManager().getTransaction();
 	List<Egreso> getTodosLosEgresos(){
 		return entityManager().createQuery("from Egreso",Egreso.class).getResultList();

@@ -18,7 +18,6 @@ public class Egreso{
 	Documento documentoComercial;
 	@ManyToOne(cascade=CascadeType.ALL)
 	MedioDePago medioDePago;
-
 	@ManyToOne(cascade=CascadeType.ALL)
 	Proveedor proveedor;
 

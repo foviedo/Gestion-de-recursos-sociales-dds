@@ -21,7 +21,7 @@ public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
 	@Before
 	public void setup() {
 		fechaDeOperacion = LocalDateTime.of(2020, 2, 2, 0, 0);
-		unaMoneda = new Moneda("33", "moneda normal", "$");
+		unaMoneda = new Moneda("34", "moneda normal", "$");
 		item1 = new Item("caja", unaMoneda, 140);
 		item2 = new Item("bolsa", unaMoneda, 170);
 		itemsA.add(item1);
