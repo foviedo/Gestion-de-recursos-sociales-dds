@@ -1,21 +1,14 @@
 package domain;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PresupuestoTest {
@@ -30,7 +23,7 @@ public class PresupuestoTest {
 	MedioDePago unMedioDePago;
 	DireccionPostal unaDireccionPostal;
 	Proveedor unProveedor;
-	Date unaFecha;
+	LocalDateTime unaFecha;
 	List<Item> items1;
 	List<Item> items2;
 	Usuario usuario1;
@@ -49,7 +42,7 @@ public class PresupuestoTest {
 		unMedioDePago = new MedioDePago(TipoMedioDePago.DINERO_EN_CUENTA,"127");
 		unaDireccionPostal = mock(DireccionPostal.class);
 		unProveedor = new Proveedor("unNombre",345,unaDireccionPostal);
-		unaFecha = Date.valueOf("1111-11-11");
+		unaFecha = LocalDateTime.of(2020, 2, 2, 0, 0);
 		items1 = new ArrayList<Item>();
 		items1.add(item1);
 		items1.add(item2);
@@ -68,8 +61,6 @@ public class PresupuestoTest {
 	public void menosPresupuestosDeLosRequeridos() {
 		egresoQueUsaLaMasBarata.validarme();
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
-		
-		
 	}
 	
 	@Test
@@ -95,7 +86,5 @@ public class PresupuestoTest {
 		egresoQueUsaLaMasBarata.validarme();
 		assertEquals(EstadoEgreso.VALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
-	
-
 
 }

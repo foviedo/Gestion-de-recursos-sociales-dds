@@ -1,11 +1,11 @@
 package domain;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import javax.persistence.*;
+
 @Entity
 public class Egreso{
 
@@ -22,9 +22,8 @@ public class Egreso{
 	@ManyToOne(cascade=CascadeType.ALL)
 	Proveedor proveedor;
 
-	//@Convert(converter = LocalDate.class)
-	@Column(columnDefinition = "DATETIME")
-	Date fechaDeOperacion;
+	@Convert(converter = LocalDateTimeConverter.class)
+	LocalDateTime fechaDeOperacion;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_egreso")
@@ -49,7 +48,7 @@ public class Egreso{
 	List<Item> listaDeItems = new ArrayList<Item>();
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
-			Date fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
+			LocalDateTime fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
 			Validacion criterio, List<String> etiquetas) {
 		this.documentoComercial = documentoComercial;
 		this.medioDePago = medioDePago;
