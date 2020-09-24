@@ -11,7 +11,7 @@ public class Item {
 	private long id;
 	
 	private String descripcion;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Moneda moneda;
 	private double monto;
 

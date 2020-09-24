@@ -10,6 +10,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class PresupuestoTest {
 	MedioDePago unMedioDePago;
 	DireccionPostal unaDireccionPostal;
 	Proveedor unProveedor;
-	LocalDate unaFecha;
+	Date unaFecha;
 	List<Item> items1;
 	List<Item> items2;
 	Usuario usuario1;
@@ -45,10 +46,10 @@ public class PresupuestoTest {
 		item3 = new Item("desc3",unaMoneda, 30);
 		item4 = new Item("desc4",unaMoneda, 40);
 		unDocumento = new Documento("factura",123);
-		unMedioDePago = new MedioDePago();
+		unMedioDePago = new MedioDePago(TipoMedioDePago.DINERO_EN_CUENTA,"127");
 		unaDireccionPostal = mock(DireccionPostal.class);
 		unProveedor = new Proveedor("unNombre",345,unaDireccionPostal);
-		unaFecha = LocalDate.of(1111,11,11);
+		unaFecha = Date.valueOf("1111-11-11");
 		items1 = new ArrayList<Item>();
 		items1.add(item1);
 		items1.add(item2);

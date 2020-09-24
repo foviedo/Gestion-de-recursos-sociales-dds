@@ -2,7 +2,8 @@ package domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.time.LocalDate;
+
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -24,7 +25,7 @@ public class ReporteTest {
         Proveedor proveedor = mock(Proveedor.class);
         Validacion validacion = mock(Validacion.class);
         List usuarios = mock(List.class);
-        LocalDate fechaDeOperacion = LocalDate.of(2020,1,1);
+        Date fechaDeOperacion = Date.valueOf("2020-1-1");
         Item itemA = new Item("itemA", mock(Moneda.class), 100.0);
         Item itemB = new Item("itemB", mock(Moneda.class), 200.0);
         Item itemC = new Item("itemC", mock(Moneda.class), 300.0);

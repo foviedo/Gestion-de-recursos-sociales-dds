@@ -12,7 +12,7 @@ public class Juridica extends Entidad {
 	int cuit;
 	String direccionPostal;
 	int codInscripcion;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_juridica")
 	List<Base> listaDeEntidadesBase = new ArrayList<Base>();
 	@Enumerated(EnumType.STRING)

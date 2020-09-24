@@ -1,5 +1,6 @@
 package domain;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,22 +13,24 @@ public class Egreso{
 	@GeneratedValue
 	private long id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_documento")
 	Documento documentoComercial;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	MedioDePago medioDePago;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	Proveedor proveedor;
+
 	//@Convert(converter = LocalDate.class)
-	LocalDate fechaDeOperacion;
+	@Column(columnDefinition = "DATETIME")
+	Date fechaDeOperacion;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_egreso")
 	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	List<Usuario> revisores;
 	
 	@Enumerated(EnumType.STRING)
@@ -41,12 +44,12 @@ public class Egreso{
 	
 	@ElementCollection
 	List<String> etiquetas  = new ArrayList<String>();
-	@OneToMany
-	@JoinColumn(name="id_item")
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_egreso")
 	List<Item> listaDeItems = new ArrayList<Item>();
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
-			LocalDate fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
+			Date fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
 			Validacion criterio, List<String> etiquetas) {
 		this.documentoComercial = documentoComercial;
 		this.medioDePago = medioDePago;

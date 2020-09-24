@@ -12,7 +12,7 @@ public class Proveedor {
 	String nombreProveedor;
 	int identificador;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_direccionPostal")
 	DireccionPostal direccionPostal;
 	

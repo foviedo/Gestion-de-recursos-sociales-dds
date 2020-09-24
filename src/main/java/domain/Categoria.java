@@ -10,7 +10,7 @@ public class Categoria {
 	@GeneratedValue
 	long id;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_categoria")
 	List<Funcionalidad> funcionalidades = new ArrayList<>();
 	String nombre;
