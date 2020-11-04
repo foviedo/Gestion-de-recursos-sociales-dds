@@ -23,9 +23,9 @@
 		<class>domain.Categoria</class>
 		<class>domain.funcionalidades.Funcionalidad</class>
 		<class>domain.Organizacion</class>
-		<class>domain.funcionalidad.MontoEgresosSuperados</class>
-		<class>domain.funcionalidad.NoPuedoAgregarEntidadesBase</class>
-		<class>domain.funcionalidad.NoPuedoSerAgregada</class>
+		<class>domain.funcionalidades.MontoEgresosSuperado</class>
+		<class>domain.funcionalidades.NoPuedoAgregarEntidadesBase</class>
+		<class>domain.funcionalidades.NoPuedoSerAgregada</class>
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

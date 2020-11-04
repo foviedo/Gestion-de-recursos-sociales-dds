@@ -1,6 +1,5 @@
 package domain;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 
 @Entity
