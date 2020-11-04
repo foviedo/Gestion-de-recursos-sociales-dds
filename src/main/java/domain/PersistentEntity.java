@@ -1,11 +1,13 @@
 package domain;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 
-//@MappedSuperclass
+@MappedSuperclass
 public abstract class PersistentEntity {
 
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private long id;
 }

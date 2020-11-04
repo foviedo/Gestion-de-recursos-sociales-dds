@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
+import domain.funcionalidades.Funcionalidad;
+
 @Entity
-public class Categoria {
-	@Id
-	@GeneratedValue
-	long id;
+public class Categoria extends PersistentEntity {
+
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_categoria")

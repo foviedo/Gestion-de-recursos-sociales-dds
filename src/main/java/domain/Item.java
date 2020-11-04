@@ -1,17 +1,13 @@
 package domain;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 
 @Entity
-public class Item {
+public class Item extends PersistentEntity {
 	
-	@Id
-	@GeneratedValue
-	private long id;
 	
 	private String descripcion;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Moneda moneda;
 	private double monto;
 

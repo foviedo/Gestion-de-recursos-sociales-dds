@@ -1,4 +1,4 @@
-package domain;
+package domain.password;
 
 import exception.GeneratorPasswordException;
 import javax.crypto.SecretKeyFactory;

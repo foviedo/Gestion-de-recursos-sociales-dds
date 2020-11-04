@@ -1,4 +1,6 @@
-package domain;
+package domain.validacionDeEgresos;
+
+import domain.Egreso;
 
 public enum Validacion {
 	VALIDAR_CANTIDAD_PRESUPUESTOS{

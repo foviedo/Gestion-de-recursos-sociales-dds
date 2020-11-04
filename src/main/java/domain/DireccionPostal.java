@@ -3,11 +3,9 @@ package domain;
 import javax.persistence.*;
 
 @Entity
-public class DireccionPostal {
+public class DireccionPostal extends PersistentEntity {
 	
-	@Id
-	@GeneratedValue
-	private long Id;
+
 	private String calle;
 	private String altura;
 	private String piso;

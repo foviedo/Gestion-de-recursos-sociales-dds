@@ -1,8 +1,10 @@
 package domain;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import junit.framework.Assert;
+
+import domain.validacionDeEgresos.Validacion;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
 	@Before
 	public void setup() {
 		fechaDeOperacion = LocalDateTime.of(2020, 2, 2, 0, 0);
-		unaMoneda = new Moneda("34", "moneda normal", "$");
+		unaMoneda = new Moneda("39", "moneda normal", "$");
 		item1 = new Item("caja", unaMoneda, 140);
 		item2 = new Item("bolsa", unaMoneda, 170);
 		itemsA.add(item1);
@@ -44,7 +46,6 @@ public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void persistirEgreso() {
 		RepositorioEgresos.getInstance().agregarEgreso(unEgreso);

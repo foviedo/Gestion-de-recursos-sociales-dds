@@ -3,15 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 @Entity
-public class Presupuesto {
+public class Presupuesto extends PersistentEntity {
 
-	@Id
-	@GeneratedValue
-	private long id;
-	
+
 	String detalle;
 	@OneToMany
 	@JoinColumn(name="id_presupuesto")
@@ -22,7 +18,7 @@ public class Presupuesto {
 		this.items = items;
 	}
 
-	List<Item> getListaItems() {
+	public List<Item> getListaItems() {
 		return items;
 	}
 

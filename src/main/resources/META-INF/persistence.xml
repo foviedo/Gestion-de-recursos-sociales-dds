@@ -8,9 +8,24 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-			<class>domain.Egreso</class>
-			<class>domain.Documento</class>
-			<class>domain.ClaseQueVoyABorrar</class>
+		<class>domain.Egreso</class>
+		<class>domain.Documento</class>
+		<class>domain.MedioDePago</class>
+		<class>domain.DireccionPostal</class>
+		<class>domain.Proveedor</class>
+		<class>domain.Moneda</class>
+		<class>domain.Item</class>
+		<class>domain.Presupuesto</class>
+		<class>domain.Usuario</class>
+		<class>domain.Entidad</class>
+		<class>domain.Juridica</class>
+		<class>domain.Base</class>
+		<class>domain.Categoria</class>
+		<class>domain.funcionalidades.Funcionalidad</class>
+		<class>domain.Organizacion</class>
+		<class>domain.funcionalidad.MontoEgresosSuperados</class>
+		<class>domain.funcionalidad.NoPuedoAgregarEntidadesBase</class>
+		<class>domain.funcionalidad.NoPuedoSerAgregada</class>
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

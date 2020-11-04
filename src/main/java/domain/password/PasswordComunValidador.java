@@ -1,4 +1,4 @@
-package domain;
+package domain.password;
 
 import exception.ReadFileException;
 import java.io.IOException;

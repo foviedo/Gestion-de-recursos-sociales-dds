@@ -1,8 +1,13 @@
-package domain;
+package domain.funcionalidades;
 import javax.persistence.*;
+
+import domain.Entidad;
+import domain.Operaciones;
 
 @Entity
 public class MontoEgresosSuperado extends Funcionalidad {
+	
+	@Column(name = "limiteEgresos")
 	int limiteDeEgresos;
 	
 	public MontoEgresosSuperado(int cantidad) {

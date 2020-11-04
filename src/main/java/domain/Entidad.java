@@ -8,10 +8,8 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TipoDeEntidad")
-public abstract class Entidad {
-	@Id
-	@GeneratedValue
-	long id;
+public abstract class Entidad extends PersistentEntity {
+
 	
 	@OneToMany
 	@JoinColumn(name = "id_Entidad")

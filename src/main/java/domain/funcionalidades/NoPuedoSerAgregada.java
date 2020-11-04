@@ -1,6 +1,9 @@
-package domain;
+package domain.funcionalidades;
 
 import javax.persistence.Entity;
+
+import domain.Entidad;
+import domain.Operaciones;
 
 @Entity
 public class NoPuedoSerAgregada extends Funcionalidad {

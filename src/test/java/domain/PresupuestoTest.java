@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import domain.validacionDeEgresos.Validacion;
+
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)

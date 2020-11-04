@@ -1,12 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Id;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -19,7 +15,7 @@ public class RepositorioEgresos implements WithGlobalEntityManager {
 		return entityManager().createQuery("from Egreso",Egreso.class).getResultList();
 	}
 	
-	List<Egreso> egresosSinValidar(){
+	public List<Egreso> egresosSinValidar(){
 		return entityManager().createQuery("from Egreso where estadoValidacion = 'SIN_VALIDAR'",Egreso.class).getResultList();
 		//return todosLosEgresos.stream().filter(Egreso::estoySinValidar).collect(Collectors.toList());
 	}

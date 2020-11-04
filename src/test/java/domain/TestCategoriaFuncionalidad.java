@@ -5,11 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.funcionalidades.Funcionalidad;
+import domain.funcionalidades.MontoEgresosSuperado;
+import domain.funcionalidades.NoPuedoAgregarEntidadesBase;
+import domain.funcionalidades.NoPuedoSerAgregada;
 import exception.FuncionalidadException;
 
 import static org.mockito.Mockito.mock;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 

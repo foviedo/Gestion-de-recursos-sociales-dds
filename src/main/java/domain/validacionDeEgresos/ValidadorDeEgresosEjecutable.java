@@ -1,4 +1,4 @@
-package domain;
+package domain.validacionDeEgresos;
 
 import java.util.Timer;
 

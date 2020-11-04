@@ -21,11 +21,11 @@
 		<class>domain.Juridica</class>
 		<class>domain.Base</class>
 		<class>domain.Categoria</class>
-		<class>domain.Funcionalidad</class>
+		<class>domain.funcionalidades.Funcionalidad</class>
 		<class>domain.Organizacion</class>
-		<class>domain.MontoEgresosSuperados</class>
-		<class>domain.NoPuedoAgregarEntidadesBase</class>
-		<class>domain.NoPuedoSerAgregada</class>
+		<class>domain.funcionalidad.MontoEgresosSuperados</class>
+		<class>domain.funcionalidad.NoPuedoAgregarEntidadesBase</class>
+		<class>domain.funcionalidad.NoPuedoSerAgregada</class>
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
@@ -46,7 +46,7 @@
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
-            <property name="hibernate.hbm2ddl.auto" value="update" /> 
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" /> 
         </properties>
           
     </persistence-unit> 

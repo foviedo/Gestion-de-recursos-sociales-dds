@@ -1,7 +1,9 @@
-package domain;
+package domain.validacionDeEgresos;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import domain.Egreso;
+import domain.EstadoEgreso;
 
 public class ValidadorDeEgresos {
 
@@ -25,7 +27,7 @@ public class ValidadorDeEgresos {
 
 	}*/
 
-	void validar(Egreso unEgreso) {
+	public void validar(Egreso unEgreso) {
 
 		if (validaciones.stream().allMatch(validacion -> validacion.esValido(unEgreso))) {
 

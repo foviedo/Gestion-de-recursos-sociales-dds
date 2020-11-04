@@ -2,6 +2,9 @@ package domain;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import domain.validacionDeEgresos.Validacion;
+
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +26,10 @@ public class ReporteTest {
         MedioDePago medioDePago = mock(MedioDePago.class);
         Proveedor proveedor = mock(Proveedor.class);
         Validacion validacion = mock(Validacion.class);
-        List usuarios = mock(List.class);
+        
+        @SuppressWarnings("unchecked")
+        List<Usuario> usuarios = mock(List.class);
+        
         LocalDateTime fechaDeOperacion = LocalDateTime.of(2020, 2, 2, 0, 0);
         Item itemA = new Item("itemA", mock(Moneda.class), 100.0);
         Item itemB = new Item("itemB", mock(Moneda.class), 200.0);

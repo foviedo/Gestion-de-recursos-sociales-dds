@@ -3,12 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
+import domain.password.GeneradorPassword;
 @Entity
-public class Usuario {
+public class Usuario extends PersistentEntity {
 	
-	@Id
-	@GeneratedValue
-	private long id;
 	
     private String usuario;
     private byte[] password;

@@ -3,16 +3,13 @@ package domain;
 import javax.persistence.*;
 
 @Entity
-public class Proveedor {
+public class Proveedor extends PersistentEntity {
 	
-	@Id
-	@GeneratedValue
-	private long id;
 	
 	String nombreProveedor;
 	int identificador;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id_direccionPostal")
 	DireccionPostal direccionPostal;
 	

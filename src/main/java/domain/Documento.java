@@ -4,10 +4,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 
 @Entity
-public class Documento {
-	@Id
-	@GeneratedValue
-	private long id;
+public class Documento extends PersistentEntity {
+
 	
 	String tipo;
 	int numeroDocumento;
