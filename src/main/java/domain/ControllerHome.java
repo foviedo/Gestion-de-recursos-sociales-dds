@@ -45,12 +45,6 @@ public class ControllerHome implements WithGlobalEntityManager{
 				"login.hbs");
 	}
 	
-
-	
-
-	
-	
-	
 	public static ModelAndView login (Request req, Response res) {
 		String nombre = req.queryParams("usuario");
 		String password = req.queryParams("password");
@@ -85,7 +79,6 @@ public class ControllerHome implements WithGlobalEntityManager{
 		return new ModelAndView(null, "home.hbs");
 	}
 	
-<<<<<<< Updated upstream
 	public static ModelAndView showEgreso(Request req,Response res) {
 		return new ModelAndView(
 				null, 
@@ -96,7 +89,6 @@ public class ControllerHome implements WithGlobalEntityManager{
 		System.out.println(req.queryParams("tipoMedioPago"));
 		return null;
 	}
-=======
 	public static ModelAndView elegirEntidadForm(Request req, Response res) {
 		return new ModelAndView(null, "cargar-entidad.hbs");
 	}
@@ -132,5 +124,4 @@ public class ControllerHome implements WithGlobalEntityManager{
 	public static ModelAndView fillFormJuridica(Request req, Response res) {
 		return new ModelAndView(null, "home.hbs");
 	}
->>>>>>> Stashed changes
 }
