@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../img/images.jpeg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+  }
+
+  .egreso-box label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+  }
+
+
+  .egreso-box input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .egreso-box input[type="text"], .login-box input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .egreso-box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #b80f22;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+  
+  .egreso-box input[type="submit"]:hover {
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+  }
+  
+  .egreso-box a {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgrey;
+  }
+  
+  .egreso-box a:hover {
+    color: #fff;
+  }

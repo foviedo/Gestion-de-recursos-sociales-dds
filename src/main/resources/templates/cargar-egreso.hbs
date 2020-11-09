@@ -1,0 +1,35 @@
+﻿<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Cargar Egreso</title>
+    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
+    </head>
+    <body>
+        <div class="egreso-title">
+            <h1>Welcome Home Ashen One!</h1>
+        </div>
+
+        <div class="egreso-box">
+          <h1>¿Qué operación desea realizar?</h1><br><br>
+          <form method="POST" name="egreso/">
+            <h2>Ingrese los datos de su Documento</h2>
+            <label for="documento_tipo">Tipo de Documento</label>
+            <input type="text" name="tipo_documento" placeholder="Tipo de Documento">
+            <label for="documento_numero">Numero de Documento</label>
+            <input type="text" placeholder="Numero de Documento">
+            <h2>Ingrese los datos del medio de pago a utilizar</h2>
+            <label for="metodoDePago-tipo">Tipo de medio de pago</label>
+            <select name="tipoMedioPago">
+                <option value="TARJETA_DE_CREDITO">Tarjeta de credito</option>
+                <option value="TARJETA_DE_DEBITO">Tarjeta de debito</option>
+                <option value="EFECTIVO">Efectivo</option>
+                <option value="DINERO_EN_CUENTA">Dinero en cuenta</option>
+                <option value="CAJERO_AUTOMATICO">Cajero automatico</option>
+              </select>
+            <label for="password">Identificador de medio de pago</label>
+            <input type="password" placeholder="Identificador">
+          </form>
+        </div>
+      </body>
+    </html>
+</html>
