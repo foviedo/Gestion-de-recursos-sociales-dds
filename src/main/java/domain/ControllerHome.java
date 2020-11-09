@@ -85,6 +85,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 		return new ModelAndView(null, "home.hbs");
 	}
 	
+<<<<<<< Updated upstream
 	public static ModelAndView showEgreso(Request req,Response res) {
 		return new ModelAndView(
 				null, 
@@ -95,4 +96,41 @@ public class ControllerHome implements WithGlobalEntityManager{
 		System.out.println(req.queryParams("tipoMedioPago"));
 		return null;
 	}
+=======
+	public static ModelAndView elegirEntidadForm(Request req, Response res) {
+		return new ModelAndView(null, "cargar-entidad.hbs");
+	}
+	
+	public static ModelAndView showFormJuridica(Request req, Response res) {
+		return new ModelAndView(null, "cargar-entidad-juridica.hbs");
+	}
+	
+	public static ModelAndView showFormBase(Request req, Response res) {
+		return new ModelAndView(null, "cargar-entidad-base.hbs");
+	}
+	
+	public static ModelAndView fillFormBase(Request req, Response res) {
+		String id_organizacion = req.queryParams("id_organizacion");
+		String nombreFicticio = req.queryParams("nombre_ficticio");
+		String descripcion = req.queryParams("descripcion");
+		String categoria;
+		String id_juridica;
+		int id_org = Integer.parseInt(id_organizacion);
+		int id_jurid;
+		if(req.queryParams("categoria")!= null) {
+			categoria = req.queryParams("categoria");
+		}
+		if(req.queryParams("id_juridica")!=null) {
+			id_juridica= req.queryParams("id_juridica_asociada");
+			id_jurid = Integer.parseInt(id_juridica);
+		}
+
+		Base unaBase = new Base(nombreFicticio, descripcion);
+		return null;
+	}
+	
+	public static ModelAndView fillFormJuridica(Request req, Response res) {
+		return new ModelAndView(null, "home.hbs");
+	}
+>>>>>>> Stashed changes
 }

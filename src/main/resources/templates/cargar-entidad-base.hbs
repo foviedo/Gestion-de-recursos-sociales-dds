@@ -1,0 +1,33 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Cargar Entidad Base</title>
+    <link rel="stylesheet" href="form-cargar-base/css/master.css">
+    </head>
+    <body>
+        <div class="base-title">
+            <h1>Welcome Home Ashen One!</h1>
+        </div>
+
+        <div class="base-box">
+          <h1>¿Qué operación desea realizar?</h1><br><br>
+          <form method="POST" name="entidad-base/">
+            <h2>Ingrese el ID de la organización</h2>
+            <label for="id_org">ID organización</label>
+            <input type="text" name="id_org" placeholder="ID organización">
+            <h2>Ingrese el nombre ficticio de la entidad y su descripción</h2>
+            <label for=nombre_ficticio">Nombre ficticio</label>
+            <input type="text" name="nombre_ficticio" placeholder="Nombre ficticio">
+            <label for="descripcion">Descripción</label>
+            <input type="descripcion" placeholder="Descripcion">
+            <h2>Ingrese la categoria de la entidad (Opcional)</h2>
+            <label for="categoria">Categoría</label>
+            <input type="text" name="categoria" placeholder="Categoría">
+            <h2>Ingrese el ID de la entidad juridica asociada (Opcional)</h2>
+            <label for="id_juridica">ID jurídica asociada</label>
+            <input type="id_juridica" placeholder="ID jurídica asociada"><br><br>
+            <input type="submit" value="Ingresar">
+          </form>
+        </div>
+      </body>
+    </html>
