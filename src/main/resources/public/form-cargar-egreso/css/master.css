@@ -6,13 +6,33 @@ body {
     font-family: sans-serif;
     height: 100vh;
   }
+.egreso-box {
+  width: 500px;
+  height: 800px;
+  background: #000;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+}
 
-  .egreso-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
-  }
+.egreso-title {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+}
+
+.egreso-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
 
 
   .egreso-box input {

@@ -10,14 +10,14 @@
         </div>
 
         <div class="egreso-box">
-          <h1>Complete el formulario con la información solicitada</h1><br>
+          <h1>¿Qué operación desea realizar?</h1><br><br>
           <form method="POST" name="egreso/">
-            <h2>Documento:</h2><br>
+            <h2>Ingrese los datos de su Documento</h2>
             <label for="documento_tipo">Tipo de Documento</label>
             <input type="text" name="tipo_documento" placeholder="Tipo de Documento">
             <label for="documento_numero">Numero de Documento</label>
-            <input type="text" placeholder="Numero de Documento"><br>
-            <h2>Medio de pago:</h2><br>
+            <input type="text" name="documento,numero" placeholder="Numero de Documento">
+            <h2>Ingrese los datos del medio de pago a utilizar</h2>
             <label for="metodoDePago-tipo">Tipo de medio de pago</label>
             <select name="tipoMedioPago">
                 <option value="TARJETA_DE_CREDITO">Tarjeta de credito</option>
@@ -25,10 +25,11 @@
                 <option value="EFECTIVO">Efectivo</option>
                 <option value="DINERO_EN_CUENTA">Dinero en cuenta</option>
                 <option value="CAJERO_AUTOMATICO">Cajero automatico</option>
-              </select><br><br>
-            <label for="documento_id">Identificador</label>
-            <input type="text" placeholder="Identificador">
-            <input type="submit" value="Confirmar">
+              </select>
+            <label for="medio_de_pago_identificador">Identificador de medio de pago</label>
+            <input type="text" name="identificadorMedioPago" placeholder="Identificador">
+            
+            <input type="submit" value="Ingresar">
           </form>
         </div>
       </body>

@@ -45,11 +45,9 @@ public class ControllerHome implements WithGlobalEntityManager{
 				"login.hbs");
 	}
 	
-	public static ModelAndView showEgreso(Request req,Response res) {
-		return new ModelAndView(
-				null, 
-				"cargar-egreso.hbs");
-	}
+
+	
+
 	
 	
 	
@@ -85,5 +83,16 @@ public class ControllerHome implements WithGlobalEntityManager{
 	
 	public static ModelAndView home(Request req, Response res){
 		return new ModelAndView(null, "home.hbs");
+	}
+	
+	public static ModelAndView showEgreso(Request req,Response res) {
+		return new ModelAndView(
+				null, 
+				"cargar-egreso.hbs");
+	}
+	
+	public static ModelAndView postEgreso(Request req,Response res) {
+		System.out.println(req.queryParams("tipoMedioPago"));
+		return null;
 	}
 }
