@@ -15,9 +15,6 @@ import com.google.common.base.Optional;
 import domain.password.GeneradorHashing;
 import domain.password.GeneradorPassword;
 import exception.GeneratorPasswordException;
-import pokemon.model.Captura;
-import pokemon.model.Usuario;
-import pokemon.repositories.UsuarioRepositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -93,7 +90,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 		return null;
 	}
 	public static ModelAndView verEntidades(Request req, Response res) {
-		return new ModelAndView(null, "mostrar-entidades.hbs");
+		return new ModelAndView(null, "ver-entidades.hbs");
 	}
 	
 	public static ModelAndView verJuridicas(Request req, Response res) {
@@ -103,15 +100,32 @@ public class ControllerHome implements WithGlobalEntityManager{
 	public static ModelAndView verBases(Request req, Response res) {
 
 		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();
-		entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion, c.nombre FROM Base b JOIN Entidad e ON"
-				+ " (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id");
-		
-		String apodo = req.queryParams("apodo");
-		
+	/*//FORMA 1 MULTIPLES CONSULTAS, BLOQUEAR LA DB
+		TypedQuery<Base> queryBases = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion, c.nombre FROM Base b JOIN Entidad e ON"
+				+ " (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Base.class);
+		List<Base> listaBases = queryBases.getResultList();
+		TypedQuery<Integer> queryIDs = entityManager.createQuery("SELECT e.id FROM Base b JOIN Entidad e ON" +
+		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
+		List<Integer> listaIds = queryIDs.getResultList();
+		TypedQuery<Integer> queryIDsOrg = entityManager.createQuery("SELECT e.id_organizacion FROM Base b JOIN Entidad e ON" +
+		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
+		List<Integer> listaIdsOrg = queryIDsOrg.getResultList();
+		TypedQuery<Integer> queryIDsJurid = entityManager.createQuery("SELECT b.id_juridica FROM Base b JOIN Entidad e ON" +
+		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
+		List<Integer> listaIdsJurid = queryIDsJurid.getResultList();
 		HashMap<String, Object> base = new HashMap<>();
-		base.put("apodo", apodo);
-		base.put("capturas", entidadesBase);
-		return new ModelAndView(base, "mostrar-base.hbs");
+		base.put("bases", listaBases);
+		base.put("Ids entidades", listaIds);
+		base.put("Ids organizaciones", listaIdsOrg);
+		base.put("Ids juridicas asociadas", listaIdsJurid);*/
+	//FORMA 2 UNA SOLA CONSULTA, NUEVA CLASE
+		TypedQuery<infoBase> queryTodoBases = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
+				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM base b INNER JOIN b.id_entidad_madre as e INNER JOIN e.categoria_id as c"
+				, infoBase.class);
+		List<infoBase> listaTodoBases = queryTodoBases.getResultList();
+		HashMap<String, Object> base2 = new HashMap<>();
+		base2.put("bases", listaTodoBases);
+		return new ModelAndView(base2,"mostrar-base.hbs");
 	}
 	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
 		return null;
