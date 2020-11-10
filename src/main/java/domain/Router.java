@@ -19,6 +19,8 @@ public class Router {
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
 		Spark.get("/entidades-juridicas", ControllerHome::verJuridicas, transformer);
 		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
-		Spark.put("/entidades/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.put("/entidades-bases/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer); 
+		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.get("/entidades-bases/:nombre_categoria", ControllerHome::buscarPorCategoria,transformer);
 	}
 }
