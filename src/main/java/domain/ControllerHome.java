@@ -15,6 +15,9 @@ import com.google.common.base.Optional;
 import domain.password.GeneradorHashing;
 import domain.password.GeneradorPassword;
 import exception.GeneratorPasswordException;
+import pokemon.model.Captura;
+import pokemon.model.Usuario;
+import pokemon.repositories.UsuarioRepositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -89,39 +92,28 @@ public class ControllerHome implements WithGlobalEntityManager{
 		System.out.println(req.queryParams("tipoMedioPago"));
 		return null;
 	}
-	public static ModelAndView elegirEntidadForm(Request req, Response res) {
-		return new ModelAndView(null, "cargar-entidad.hbs");
+	public static ModelAndView verEntidades(Request req, Response res) {
+		return new ModelAndView(null, "mostrar-entidades.hbs");
 	}
 	
-	public static ModelAndView showFormJuridica(Request req, Response res) {
-		return new ModelAndView(null, "cargar-entidad-juridica.hbs");
+	public static ModelAndView verJuridicas(Request req, Response res) {
+		return new ModelAndView(null, "mostrar-juridicas.hbs");
 	}
 	
-	public static ModelAndView showFormBase(Request req, Response res) {
-		return new ModelAndView(null, "cargar-entidad-base.hbs");
-	}
-	
-	public static ModelAndView fillFormBase(Request req, Response res) {
-		String id_organizacion = req.queryParams("id_organizacion");
-		String nombreFicticio = req.queryParams("nombre_ficticio");
-		String descripcion = req.queryParams("descripcion");
-		String categoria;
-		String id_juridica;
-		int id_org = Integer.parseInt(id_organizacion);
-		int id_jurid;
-		if(req.queryParams("categoria")!= null) {
-			categoria = req.queryParams("categoria");
-		}
-		if(req.queryParams("id_juridica")!=null) {
-			id_juridica= req.queryParams("id_juridica_asociada");
-			id_jurid = Integer.parseInt(id_juridica);
-		}
+	public static ModelAndView verBases(Request req, Response res) {
 
-		Base unaBase = new Base(nombreFicticio, descripcion);
-		return null;
+		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();
+		entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion, c.nombre FROM Base b JOIN Entidad e ON"
+				+ " (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id");
+		
+		String apodo = req.queryParams("apodo");
+		
+		HashMap<String, Object> base = new HashMap<>();
+		base.put("apodo", apodo);
+		base.put("capturas", entidadesBase);
+		return new ModelAndView(base, "mostrar-base.hbs");
 	}
-	
-	public static ModelAndView fillFormJuridica(Request req, Response res) {
-		return new ModelAndView(null, "home.hbs");
+	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
+		return null;
 	}
 }

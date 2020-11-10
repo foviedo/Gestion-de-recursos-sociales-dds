@@ -16,10 +16,9 @@ public class Router {
 		Spark.post("/login", ControllerHome::login, transformer);
 		Spark.get("/egreso", ControllerHome::showEgreso, transformer);
 		Spark.post("/egreso", ControllerHome::postEgreso, transformer);
-		Spark.get("entidad", ControllerHome::elegirEntidadForm, transformer);
-		Spark.get("entidad-juridica", ControllerHome::showFormJuridica, transformer);
-		Spark.get("entidad-base", ControllerHome::showFormBase, transformer);
-		Spark.post("entidad-juridica", ControllerHome::fillFormJuridica,transformer);
-		Spark.post("entidad-base", ControllerHome::fillFormBase, transformer);
+		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
+		Spark.get("/entidades-juridicas", ControllerHome::verJuridicas, transformer);
+		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
+		Spark.put("/entidades/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 	}
 }

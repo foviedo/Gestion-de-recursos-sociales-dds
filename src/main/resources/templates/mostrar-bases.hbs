@@ -1,0 +1,24 @@
+<html>
+	<body>
+		
+		<table>
+			<tr>
+				<th> ID organización </th>
+				<th> Nombre ficticio </th>
+				<th> Descripcion </th>
+				<th> ID juridica asociada </th>
+				<th> Categoria </th>
+			</tr>
+			{{#each base}}
+			<tr>
+				<td> {{ id_org }} </td>
+				<td> {{ nombre }} </td>
+				<td> {{ desc }} </td>
+				<td> {{ id_jur }} </td>
+				<td> {{ categoria }} </td>
+			</tr>
+			{{/each}}
+		</table>
+		
+	</body>
+</html>
