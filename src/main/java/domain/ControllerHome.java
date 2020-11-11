@@ -147,7 +147,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 		base.put("Ids juridicas asociadas", listaIdsJurid);*/
 	//FORMA 2 UNA SOLA CONSULTA, NUEVA CLASE
 		TypedQuery<infoBase> queryTodoBases = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
-				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM base b INNER JOIN b.id_entidad_madre as e INNER JOIN e.categoria_id as c"
+				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM Base b INNER JOIN b.id_entidad_madre as e INNER JOIN e.categoria_id as c"
 				, infoBase.class);
 		List<infoBase> listaTodoBases = queryTodoBases.getResultList();
 		HashMap<String, Object> base2 = new HashMap<>();
@@ -161,7 +161,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 		String filtro = req.queryParams("nombre_categoria");
 		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();	
 		TypedQuery<infoBase> queryBasesQueCumplen = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
-				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM base b INNER JOIN b.id_entidad_madre as e INNER JOIN"
+				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM Base b INNER JOIN b.id_entidad_madre as e INNER JOIN"
 				+ " e.categoria_id as c with c.nombre LIKE :nombre_categoria",infoBase.class);
 		queryBasesQueCumplen.setParameter("nombre_categoria",filtro);
 		List<infoBase> basesQueCumplen = queryBasesQueCumplen.getResultList();
