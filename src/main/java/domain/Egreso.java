@@ -42,7 +42,7 @@ public class Egreso extends PersistentEntity{
 	
 	@ElementCollection
 	List<String> etiquetas  = new ArrayList<String>();
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="id_egreso")
 	List<Item> listaDeItems = new ArrayList<Item>();
 
@@ -87,6 +87,7 @@ public class Egreso extends PersistentEntity{
 	public double getMontoTotal() {
 		return listaDeItems.stream().mapToDouble(item -> item.getMonto()).sum();
 	}
+	
 
 	boolean esDe(Usuario unUsuario) {
 		return revisores.contains(unUsuario);

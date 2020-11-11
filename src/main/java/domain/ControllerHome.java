@@ -1,5 +1,8 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +17,7 @@ import com.google.common.base.Optional;
 
 import domain.password.GeneradorHashing;
 import domain.password.GeneradorPassword;
+import domain.validacionDeEgresos.Validacion;
 import exception.GeneratorPasswordException;
 import spark.ModelAndView;
 import spark.Request;
@@ -86,9 +90,32 @@ public class ControllerHome implements WithGlobalEntityManager{
 	}
 	
 	public static ModelAndView postEgreso(Request req,Response res) {
-		System.out.println(req.queryParams("tipoMedioPago"));
-		return null;
+		Documento unDocumento = new Documento(req.queryParams("tipo_documento"),Integer.parseInt(req.queryParams("numero_documento")));
+		MedioDePago unMedio = new MedioDePago(TipoMedioDePago.valueOf(req.queryParams("tipoMedioPago")), req.queryParams("identificadorMedioPago"));
+		DireccionPostal unaDireccion = new DireccionPostal(req.queryParams("calleProveedor"),req.queryParams("alturaProveedor"),req.queryParams("pisoProveedor"),req.queryParams("departamentoProveedor"),req.queryParams("cpProveedor"),req.queryParams("paisProveedor"),req.queryParams("provinciaProveedor"),req.queryParams("ciudadProveedor"));
+		Proveedor unProveedor = new Proveedor(req.queryParams("nombreProveedor"),Integer.parseInt(req.queryParams("identificadorProveedor")),unaDireccion);
+		DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate ld = LocalDate.parse(req.queryParams("fechaOperacion"), dateformatter);
+		Egreso unEgreso = new Egreso(unDocumento,unMedio,unProveedor,ld.atStartOfDay(),new ArrayList<Item>(),new ArrayList<Usuario>(),Validacion.valueOf(req.queryParams("criterioValidacion")),new ArrayList<String>());
+		RepositorioEgresos.getInstance().agregarEgreso(unEgreso);
+		//res.redirect("/idEgreso");
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id",unEgreso.getId());
+		return new ModelAndView(map, "mostrar-egreso-id.hbs");	//TODO: hacer validaciones varias
+		}
+	
+	public static ModelAndView showEgresoId(Request req,Response res) {
+		return new ModelAndView(
+				null, 
+				"mostrar-egreso-id.hbs");
 	}
+	
+	public static ModelAndView cargarItem(Request req,Response res) {
+		return new ModelAndView(
+				null, 
+				"cargar-item.hbs");
+	}
+	
 	public static ModelAndView verEntidades(Request req, Response res) {
 		return new ModelAndView(null, "ver-entidades.hbs");
 	}
@@ -132,7 +159,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 	}
 	public static ModelAndView buscarPorCategoria(Request req, Response res) {
 		String filtro = req.queryParams("nombre_categoria");
-		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();
+		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();	
 		TypedQuery<infoBase> queryBasesQueCumplen = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
 				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM base b INNER JOIN b.id_entidad_madre as e INNER JOIN"
 				+ " e.categoria_id as c with c.nombre LIKE :nombre_categoria",infoBase.class);

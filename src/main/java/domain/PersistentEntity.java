@@ -10,4 +10,8 @@ public abstract class PersistentEntity {
 	@Id
 	@GeneratedValue
 	private long id;
+
+	public long getId() {
+		return id;
+	}
 }
