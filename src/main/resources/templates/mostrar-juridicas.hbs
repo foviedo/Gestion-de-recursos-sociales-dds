@@ -1,4 +1,9 @@
 <html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
 	<body>
 		<form action = /entidades-juridicas/ method = "get">
 			<input type = "textbox" size = "50" name = "etiqueta" placeholder = "Etiqueta..."/>
@@ -23,9 +28,37 @@
 				<th> {{ codInscripcion }} </th>
 				<td> {{ tipoEntidadJuridica }} </td>
 				<td> {{ categoria.nombre }} </td>
+				<td>
+                    <select id="categorias{{this.id}}">
+                        {{#each categorias}}
+                            <option value={{this.id}}>{{this.nombre}}</option>
+                        {{/each}}
+                    </select>
+				<td>
+				<td><button type="button" class="btn btn-primary btn-lg btn-block" id={{this.id}}>Modificar</button></td>
 			</tr>
 			{{/each}}
 		</table>
-		
+
+		<script>
+		    $('button').on('click', function() {
+
+                var entidadId = this.id;
+                var categoriaId =$( "#categorias" + entidadId).val();
+
+                $.ajax({
+                    url: 'http://localhost:9000/entidades-juridicas/' + entidadId + '/categoria/' + categoriaId,
+                    type:'PATCH',
+                    data: {},
+                    success: function(result) {
+                        alert("Se ha modificado correctamente la categoría");
+                        $("body").html(result);
+                    },
+                    error: function (error) {
+                        alert("no ok");
+                    }
+            });
+            });
+		</script>
 	</body>
 </html>
