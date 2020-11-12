@@ -220,17 +220,31 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public String verBases(Request req, Response res){
+		Categoria cat1 = new Categoria(null,"el gallo canta");
+		Categoria cat2 = new Categoria(null,"son las 6 de la mañana");
+		Juridica juridica2 = new Juridica("elpeponete","jujueno",10,"naga",4);
+		Juridica juridica1 = new Juridica("juanardo","leonardo",3,"gnoll",15);
+		juridica2.setCategoria(cat1);
+		juridica1.setCategoria(cat2);
+		juridica1.setTipoEntidadJuridica(TipoJuridica.OSC);
+		juridica2.setTipoEntidadJuridica(TipoJuridica.MICRO);
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = em.getTransaction();
-		Base base1 = new Base("ycomoescell","que pasara cuando te absorba a ti");
-		Base base2 = new Base("entidadBaseGenerica88","descripcionGenerica89");
-		Categoria cat3 = new Categoria(null,"monotributista");
-		Categoria cat4 = new Categoria(null, "multitributista");
+		Base base1 = new Base("ycomoescellardium","que pasara cuando te absorba a ti");
+		Base base2 = new Base("entidadBaseGenerica8800","descripcionGenerica89");
+		Categoria cat3 = new Categoria(null,"monotributistalium");
+		Categoria cat4 = new Categoria(null, "multitributistalium");
 		base1.setCategoria(cat3);
 		base2.setCategoria(cat4);
+		base1.setJuridicaAsociada(juridica1);
+		base2.setJuridicaAsociada(juridica2);
 		transaccion.begin();
+		em.persist(cat1);
+		em.persist(cat2);
 		em.persist(cat3);
 		em.persist(cat4);
+		em.persist(juridica1);
+		em.persist(juridica2);
 		em.persist(base1);
 		em.persist(base2);
 		transaccion.commit();

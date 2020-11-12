@@ -12,9 +12,6 @@ public class Juridica extends Entidad {
 	int cuit;
 	String direccionPostal;
 	int codInscripcion;
-	@OneToMany(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "id_juridica")
-	List<Base> listaDeEntidadesBase = new ArrayList<Base>();
 	@Enumerated(EnumType.STRING)
 	TipoJuridica tipoEntidadJuridica;
 
@@ -33,15 +30,6 @@ public class Juridica extends Entidad {
 		this.tipoEntidadJuridica = tipo;
 	}
 
-	void agregarEntidadBase(Base unaEntidad){
-		if (categoria != null) {
-			categoria.agregarEntidadBase(this);
-
-		}
-		unaEntidad.serAgregada();
-		listaDeEntidadesBase.add(unaEntidad);
-	}
-	
 	public String getRazonSocial() {
 		return razonSocial;
 	}
@@ -72,12 +60,7 @@ public class Juridica extends Entidad {
 	public void setCodInscripcion(int codInscripcion) {
 		this.codInscripcion = codInscripcion;
 	}
-	public List<Base> getListaDeEntidadesBase() {
-		return listaDeEntidadesBase;
-	}
-	public void setListaDeEntidadesBase(List<Base> listaDeEntidadesBase) {
-		this.listaDeEntidadesBase = listaDeEntidadesBase;
-	}
+
 	public TipoJuridica getTipoEntidadJuridica() {
 		return tipoEntidadJuridica;
 	}

@@ -5,6 +5,9 @@ import javax.persistence.*;
 public class Base extends Entidad {
 	String nombreFicticio;
 	String descripcion;
+	@ManyToOne
+	Juridica juridicaAsociada;
+	
 	Base(String nombreFicticio, String descripcion) {
 		this.nombreFicticio = nombreFicticio;
 		this.descripcion = descripcion;
@@ -18,7 +21,14 @@ public class Base extends Entidad {
 	public Base(){
 		
 	}
-	
+
+	public Juridica getJuridicaAsociada() {
+		return juridicaAsociada;
+	}
+	public void setJuridicaAsociada(Juridica juridicaAsociada) {
+		this.juridicaAsociada = juridicaAsociada;
+	}
+
 	public String getNombreFicticio() {
 		return nombreFicticio;
 	}

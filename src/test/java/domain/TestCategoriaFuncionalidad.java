@@ -52,12 +52,7 @@ public class TestCategoriaFuncionalidad {
 		unaEntidadJuridica.agregarEgreso(unEgreso1);
 		assertEquals(1,unaEntidadJuridica.egresos.size());
 	}
-	@Test
-	public void agregarBaseACatVacia() {
-		unaEntidadJuridica.setCategoria(categoriaSinRestricciones);
-		unaEntidadJuridica.agregarEntidadBase(unaEntidadBaseSinNada);
-		assertEquals(1,unaEntidadJuridica.listaDeEntidadesBase.size());
-	}
+
 	@Test
 	public void agregarDosEgresoAlQueTieneRestriccion1() {
 		categoriaConRestricciones.agregarFuncionalidad(restriccion1);
@@ -74,17 +69,7 @@ public class TestCategoriaFuncionalidad {
 		unaEntidadJuridica.agregarEgreso(unEgreso1);
 		unaEntidadJuridica.agregarEgreso(unEgreso1);
 	}
-	@Test(expected = FuncionalidadException.class)
-	public void agregarEntidadBaseSaleMal() {
-		categoriaConRestricciones.agregarFuncionalidad(restriccion2);
-		unaEntidadJuridica.setCategoria(categoriaConRestricciones);
-		unaEntidadJuridica.agregarEntidadBase(unaEntidadBaseSinNada);
-	}
-	@Test(expected = FuncionalidadException.class)
-	public void agregarBaseRestringida() {
-		unaEntidadJuridica.agregarEntidadBase(unaEntidadBaseRestringida);
-	}
-	
+
 	
 
 }
