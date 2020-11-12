@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import domain.validacionDeEgresos.Validacion;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -234,38 +232,13 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return new ModelAndView(null, "ver-entidades.hbs");
 	}
 	
-	public String verJuridicas(Request req, Response res) {
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		EntityTransaction transaccion = em.getTransaction();
-		Juridica juridica1 = new Juridica ("hola","halo",3,"pinia",5);
-		juridica1.setTipoEntidadJuridica(TipoJuridica.TRAMO1);
-		Categoria cat1 = new Categoria(null,"buen dia");
-		Categoria cat2 = new Categoria(null,"aprobame el parcial xfa");
-		Juridica juridica2 = new Juridica("elpepe","juju",10,"murloc",4);
-		juridica2.setTipoEntidadJuridica(TipoJuridica.PEQUENIA);
-		transaccion.begin();
-		em.persist(cat1);
-		em.persist(cat2);
-		juridica1.setCategoria(cat1);
-		juridica2.setCategoria(cat2);
-		em.persist(juridica1);
-		em.persist(juridica2);
-		transaccion.commit();
-		String filtro = req.queryParams("nombre_categoria");
-		TypedQuery<Juridica> queryJuridicasFiltradas;
-		if(filtro == null || filtro == ""){
-			queryJuridicasFiltradas = em.createQuery("FROM Juridica j" ,Juridica.class);
-		}else
-		{
-		queryJuridicasFiltradas = em.createQuery("FROM Juridica j WHERE j.categoria.nombre LIKE :nombre_categoria" ,Juridica.class);
-		queryJuridicasFiltradas.setParameter("nombre_categoria",filtro);
-		}
-		List<Juridica> listaTodoJuridicas = queryJuridicasFiltradas.getResultList();
+	public static ModelAndView verJuridicas(Request req, Response res) {
+		List<Juridica> listaTodoJuridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
 		HashMap<String, Object> juridicas = new HashMap<>();
 		juridicas.put("juridicas", listaTodoJuridicas);
-		ModelAndView modelo = new ModelAndView(juridicas,"mostrar-juridicas.hbs");
-		return new HandlebarsTemplateEngine().render(modelo);
-	}
+		juridicas.put("categorias", RepositorioCategorias.getInstance().getCategorias());
+		return new ModelAndView(juridicas,"mostrar-juridicas.hbs");
+
 	
 	public String verBases(Request req, Response res){
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
@@ -298,8 +271,11 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		return null;
+		Long entidadJuridicaId = Long.parseLong(req.params(":entidadJuridicaId"));
+		Long categoriaId = Long.parseLong(req.params(":categoriaId"));
+		RepositorioEntidadJuridica.getInstance().modificarCategoria(entidadJuridicaId, categoriaId);
+		HashMap<String, Object> viewModel = new HashMap<>();
+		return new ModelAndView(viewModel,"home.hbs");
 	}
 }
 
