@@ -7,9 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class PasswordComunValidador implements ValidadorPassword {
+public class PasswordComunValidador implements Validador {
     @Override
-    public Boolean esValido(String nombreUsuario, String password) {
+    public boolean esValido(String nombreUsuario, String password) {
         Path path = Paths.get("src/main/resources/utils/10k-most-common.txt");
         Stream<String> stream;
         try {

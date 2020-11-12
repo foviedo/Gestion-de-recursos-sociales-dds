@@ -4,15 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
-
 import domain.validacionDeEgresos.Validacion;
 import domain.validacionDeEgresos.ValidadorDeEgresos;
-
 import javax.persistence.*;
 
 @Entity
 public class Egreso extends PersistentEntity{
-
 	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id_documento")
 	Documento documentoComercial;
@@ -20,31 +17,25 @@ public class Egreso extends PersistentEntity{
 	MedioDePago medioDePago;
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	Proveedor proveedor;
-
 	@Convert(converter = LocalDateTimeConverter.class)
 	LocalDateTime fechaDeOperacion;
-	
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="id_egreso")
-	List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
+	List<Presupuesto> presupuestos = new ArrayList<>();
 	private static Integer cantidadPresupuestosNecesarios = 2;
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	List<Usuario> revisores;
-	
 	@Enumerated(EnumType.STRING)
 	EstadoEgreso estadoValidacion;
-	
 	@Enumerated(EnumType.STRING)
 	Validacion criterio;
-	
 	@Transient
 	ValidadorDeEgresos validador;
-	
 	@ElementCollection
-	List<String> etiquetas  = new ArrayList<String>();
+	List<String> etiquetas;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_egreso")
-	List<Item> listaDeItems = new ArrayList<Item>();
+	List<Item> listaDeItems;
 
 	public Egreso(Documento documentoComercial, MedioDePago medioDePago, Proveedor proveedor,
 			LocalDateTime fechaDeOperacion, List<Item> listaDeItems, List<Usuario> listaDeRevisores,
@@ -59,7 +50,6 @@ public class Egreso extends PersistentEntity{
 		this.criterio = criterio;
 		this.validador = new ValidadorDeEgresos(criterio);		
 		this.etiquetas = etiquetas;
-		
 	}
 	
 	List<String> getEtiquetas(){
@@ -97,8 +87,8 @@ public class Egreso extends PersistentEntity{
 	}
 
 	public void enviarResultadoACadaUsuario() {
-		revisores.forEach((unRevisor) -> {
-			unRevisor.agrerarResultado(this);
+		revisores.forEach(unRevisor -> {
+			unRevisor.agregarResultado(this);
 		});
 	}
 	

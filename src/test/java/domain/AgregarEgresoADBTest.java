@@ -1,25 +1,26 @@
 package domain;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-
 import domain.validacionDeEgresos.Validacion;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
-	 Egreso unEgreso;
-	 Item item1;
-	 Item item2;
-	 LocalDateTime fechaDeOperacion;
-	 List<Item> itemsA = new ArrayList<Item>();
-	 Moneda unaMoneda;
-	 int i = 1;
-	 int j = 1;
-	 Documento unDocumento;
-	 MedioDePago unMedioDePago;
+public class AgregarEgresoADBTest implements WithGlobalEntityManager {
+    private Egreso unEgreso;
+    private Item item1;
+    private Item item2;
+    private LocalDateTime fechaDeOperacion;
+    private List<Item> itemsA = new ArrayList<Item>();
+    private Moneda unaMoneda;
+    private int i = 1;
+    private int j = 1;
+    private Documento unDocumento;
+    private MedioDePago unMedioDePago;
+
 	@Before
 	public void setup() {
 		fechaDeOperacion = LocalDateTime.of(2020, 2, 2, 0, 0);
@@ -43,14 +44,12 @@ public class AgregarEgresoADBTest implements  WithGlobalEntityManager{
 		unMedioDePago = new MedioDePago(TipoMedioDePago.DINERO_EN_CUENTA, "214");
 		unEgreso = new Egreso(unDocumento, unMedioDePago, proveedor, fechaDeOperacion, itemsA, usuarios, Validacion.VALIDAR_CRITERIO_PROVEEDOR, etiquetas);
 		unEgreso.cargarPresupuesto("presupuesto", itemsA);
-		
 	}
-	
+
 	@Test
 	public void persistirEgreso() {
 		RepositorioEgresos.getInstance().agregarEgreso(unEgreso);
 		Assert.assertEquals(i, j);
 	}
-
 }
 
