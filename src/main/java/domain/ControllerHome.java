@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import domain.validacionDeEgresos.Validacion;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -232,13 +233,14 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return new ModelAndView(null, "ver-entidades.hbs");
 	}
 	
-	public static ModelAndView verJuridicas(Request req, Response res) {
+	public String verJuridicas(Request req, Response res) {
 		List<Juridica> listaTodoJuridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
 		HashMap<String, Object> juridicas = new HashMap<>();
 		juridicas.put("juridicas", listaTodoJuridicas);
 		juridicas.put("categorias", RepositorioCategorias.getInstance().getCategorias());
-		return new ModelAndView(juridicas,"mostrar-juridicas.hbs");
-
+		ModelAndView modelo = new ModelAndView(juridicas,"mostrar-juridicas.hbs");
+		return new HandlebarsTemplateEngine().render(modelo);
+	}
 	
 	public String verBases(Request req, Response res){
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
