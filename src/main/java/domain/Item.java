@@ -16,6 +16,9 @@ public class Item extends PersistentEntity {
 		this.moneda = moneda;
 		this.monto = monto;
 	}
+	public Item() {
+		
+	}
 
 	public double getMonto() {
 		return monto;

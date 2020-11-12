@@ -51,6 +51,10 @@ public class Egreso extends PersistentEntity {
 		this.validador = new ValidadorDeEgresos(criterio);		
 		this.etiquetas = etiquetas;
 	}
+	public Egreso() {
+		//no se si hay que instanciar el validador
+	};
+	
 	
 	List<String> getEtiquetas(){
 		return etiquetas;
@@ -76,6 +80,22 @@ public class Egreso extends PersistentEntity {
 
 	public double getMontoTotal() {
 		return listaDeItems.stream().mapToDouble(item -> item.getMonto()).sum();
+	}
+	
+	public Documento getDocumentoComercial() {
+		return documentoComercial;
+	}
+	
+	public MedioDePago getMedioDePago() {
+		return medioDePago;
+	}
+	
+	public EstadoEgreso getEstadoValidacion() {
+		return estadoValidacion;
+	}
+	
+	public Proveedor getProveedor() {
+		return proveedor;
 	}
 
 	boolean esDe(Usuario unUsuario) {

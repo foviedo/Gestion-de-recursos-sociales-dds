@@ -13,4 +13,15 @@ public class Documento extends PersistentEntity {
 		this.tipo = tipo;
 		this.numeroDocumento = numero;
 	}
+	public Documento() {
+		
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	
+	public int getNumeroDocumento() {
+		return numeroDocumento;
+	}
 }

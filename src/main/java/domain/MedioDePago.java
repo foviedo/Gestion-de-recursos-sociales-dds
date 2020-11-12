@@ -9,10 +9,21 @@ public class MedioDePago extends PersistentEntity {
 		this.tipo = tipo;
 		this.identificador = string;
 	}
-
+	public MedioDePago() {
+		
+	}
+	
 	
 	@Enumerated(EnumType.STRING)
 	TipoMedioDePago tipo;
 	String identificador;
+	
+	public TipoMedioDePago getTipo() {
+		return tipo;
+	}
+	
+	public String getIdentificador() {
+		return identificador;
+	}
 
 }

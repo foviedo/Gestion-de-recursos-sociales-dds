@@ -9,9 +9,5 @@ public class Server {
 		DebugScreen.enableDebugScreen();
 		Spark.port(9000);
 		Router.configure();
-		Usuario admin = new Usuario();
-		admin.setUsuario("admin");
-		admin.setPassword("VeryDificult!020");
-		RepositorioUsuarios.getInstance().guardarUsuario(admin);
 	}
 }

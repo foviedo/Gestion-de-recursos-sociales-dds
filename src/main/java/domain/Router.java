@@ -15,8 +15,8 @@ public class Router {
 		Spark.post("/login", ControllerHome::login, transformer);
 		Spark.get("/egreso", ControllerHome::showEgreso, transformer);
 		Spark.post("/egreso", ControllerHome::postEgreso, transformer);
-		Spark.get("/egresoId", ControllerHome::showEgresoId, transformer);
-		Spark.get("/item", ControllerHome::cargarItem, transformer);
+		Spark.get("/egresos", ControllerHome::showEgresos, transformer);
+		Spark.get("/egresos/:id/item", ControllerHome::agregarItemAlEgreso,transformer);
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
 		Spark.get("/entidades-juridicas", ControllerHome::verJuridicas, transformer);
 		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
@@ -24,7 +24,7 @@ public class Router {
 		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 		Spark.get("/entidades-bases/:nombre_categoria", ControllerHome::buscarPorCategoria,transformer);
 
-		Spark.before((req, res) -> {
+		/*Spark.before((req, res) -> {
 			if (req.pathInfo().equals("/login")) {
 				return;
 			}
@@ -32,6 +32,6 @@ public class Router {
 			if (SessionService.getSessionId(req) == null) {
 				res.redirect("/login");
 			}
-		});
+		});*/
 	}
 }

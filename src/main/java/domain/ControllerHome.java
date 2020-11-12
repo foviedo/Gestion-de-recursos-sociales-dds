@@ -85,19 +85,25 @@ public class ControllerHome implements WithGlobalEntityManager {
 		//res.redirect("/idEgreso");
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("id",unEgreso.getId());
-		return new ModelAndView(map, "mostrar-egreso-id.hbs");	//TODO: hacer validaciones varias
+		res.redirect("/");
+		return null;
+	//TODO: hacer validaciones varias
 		}
 	
-	public static ModelAndView showEgresoId(Request req,Response res) {
-		return new ModelAndView(
-				null, 
-				"mostrar-egreso-id.hbs");
+
+	
+	public static ModelAndView showEgresos(Request req,Response res) {
+		List<Egreso> todosLosEgresos = RepositorioEgresos.getInstance().getTodosLosEgresos();
+		HashMap<String, Object> elMap = new HashMap<>();
+		elMap.put("todosLosEgresos", todosLosEgresos);
+		return new ModelAndView(elMap, "mostrar-egresos.hbs");
 	}
 	
-	public static ModelAndView cargarItem(Request req,Response res) {
-		return new ModelAndView(
-				null, 
-				"cargar-item.hbs");
+	public static ModelAndView agregarItemAlEgreso(Request req,Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		return new ModelAndView(elMap, "cargar-item.hbs");
 	}
 	
 	public static ModelAndView verEntidades(Request req, Response res) {
