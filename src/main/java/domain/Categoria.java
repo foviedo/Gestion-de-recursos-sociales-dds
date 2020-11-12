@@ -15,6 +15,7 @@ public class Categoria extends PersistentEntity {
 	List<Funcionalidad> funcionalidades = new ArrayList<>();
 	String nombre;
 	
+	public Categoria() {}
 	public Categoria(List<Funcionalidad> listFunc, String nombre) {
 		this.nombre = nombre;
 		this.funcionalidades = listFunc;
@@ -41,6 +42,18 @@ public class Categoria extends PersistentEntity {
 	}
 	void limpiarFuncionalidades() {
 		funcionalidades.clear();
+	}
+	public List<Funcionalidad> getFuncionalidades() {
+		return funcionalidades;
+	}
+	public void setFuncionalidades(List<Funcionalidad> funcionalidades) {
+		this.funcionalidades = funcionalidades;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }
 

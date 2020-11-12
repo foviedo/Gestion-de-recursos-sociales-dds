@@ -1,19 +1,29 @@
 package domain;
 
 public class infoJuridica {
-
-	String razon_social;
+	String razonSocial;
 	int cuit;
-	String nombre_ficticio;
-	String tipo_entidad_juridica;
+	String nombreFicticio;
+	String direccionPostal;
+	String tipoEntidadJuridica;
+	int id;
+	int id_organizacion;
 	String categoria;
-	int id_entidad;
+
 	
-public String getRazon_social() {
-		return razon_social;
+	public String getDireccionPostal() {
+		return direccionPostal;
 	}
-	public void setRazon_social(String razon_social) {
-		this.razon_social = razon_social;
+	public void setDireccionPostal(String direccionPostal) {
+		this.direccionPostal = direccionPostal;
+	}
+
+	
+	public String getRazonSocial() {
+		return razonSocial;
+	}
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
 	}
 	public int getCuit() {
 		return cuit;
@@ -21,17 +31,17 @@ public String getRazon_social() {
 	public void setCuit(int cuit) {
 		this.cuit = cuit;
 	}
-	public String getNombre_ficticio() {
-		return nombre_ficticio;
+	public String getNombreFicticio() {
+		return nombreFicticio;
 	}
-	public void setNombre_ficticio(String nombre_ficticio) {
-		this.nombre_ficticio = nombre_ficticio;
+	public void setNombreFicticio(String nombreFicticio) {
+		this.nombreFicticio = nombreFicticio;
 	}
-	public String getTipo_entidad_juridica() {
-		return tipo_entidad_juridica;
+	public String getTipoEntidadJuridica() {
+		return tipoEntidadJuridica;
 	}
-	public void setTipo_entidad_juridica(String tipo_entidad_juridica) {
-		this.tipo_entidad_juridica = tipo_entidad_juridica;
+	public void setTipoEntidadJuridica(String tipoEntidadJuridica) {
+		this.tipoEntidadJuridica = tipoEntidadJuridica;
 	}
 	public String getCategoria() {
 		return categoria;
@@ -39,10 +49,10 @@ public String getRazon_social() {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public int getId_entidad() {
-		return id_entidad;
+	public int getId() {
+		return id;
 	}
-	public void setId_entidad(int id_entidad) {
-		this.id_entidad = id_entidad;
+	public void setId(int id) {
+		this.id = id;
 	}
 }
