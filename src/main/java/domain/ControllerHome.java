@@ -105,7 +105,79 @@ public class ControllerHome implements WithGlobalEntityManager {
 		String id = req.params("id");
 		HashMap<String,Object> elMap = new HashMap<>();
 		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("items", unEgreso.getListaDeItems());
 		return new ModelAndView(elMap, "cargar-item.hbs");
+	}
+	
+	public static ModelAndView postAgregarItemAlEgreso(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Moneda moneda =em.find(Moneda.class, req.queryParams("id_moneda"));
+		if(moneda == null) {
+			moneda = new Moneda(req.queryParams("id_moneda"),req.queryParams("descripcion_moneda"),req.queryParams("simbolo_moneda"));
+		}
+		Item item = new Item(req.queryParams("descripcion_item"),moneda,Double.parseDouble(req.queryParams("costo_item")));
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarItem(item);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
+	public static ModelAndView verPresupuestos(Request req, Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("presupuestos", unEgreso.getPresupuestos());
+		return new ModelAndView(elMap, "ver-presupuestos.hbs");
+	}
+	
+	public static ModelAndView cargarPresupuesto(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Presupuesto unPresupuesto = new Presupuesto(req.queryParams("detalle_presupuesto"), new ArrayList<Item>());
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarPresupuesto(unPresupuesto);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unPresupuesto);
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
+	public static ModelAndView agregarItemAlPresupuesto(Request req,Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Presupuesto unPresupuesto = em.find(Presupuesto.class, Long.parseLong(id));
+		elMap.put("items", unPresupuesto.getListaItems());
+		return new ModelAndView(elMap, "cargar-item-presupuesto.hbs");
+	}
+	
+	public static ModelAndView postAgregarItemAlPresupuesto(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Moneda moneda =em.find(Moneda.class, req.queryParams("id_moneda"));
+		if(moneda == null) {
+			moneda = new Moneda(req.queryParams("id_moneda"),req.queryParams("descripcion_moneda"),req.queryParams("simbolo_moneda"));
+		}
+		Item item = new Item(req.queryParams("descripcion_item"),moneda,Double.parseDouble(req.queryParams("costo_item")));
+		Presupuesto unPresupuesto = em.find(Presupuesto.class, Long.parseLong(req.params("id")));
+		unPresupuesto.agregarItem(item);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(item);
+		em.persist(unPresupuesto);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
 	}
 	
 	public static ModelAndView verEntidades(Request req, Response res) {

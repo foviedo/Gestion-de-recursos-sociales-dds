@@ -1,6 +1,6 @@
 <html>
     <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Cargar Item</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Monstrar egresos</title>
     <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
     </head>
     <body>
@@ -8,7 +8,7 @@
             <h1>Welcome Home Ashen One!</h1>
         </div>
 
-        <div class="egreso-box">
+        <div class="lista-egreso-box">
                   <h1>Lista de egresos</h1>
     
           		<table>
@@ -19,8 +19,10 @@
 				<th> Id Medio </th>
 				<th> Nombre proveedor </th>
 				<th> Identificador proveedor </th>
-				<th> Estado Validacion </th>
-				<th> Agregar Item </th>
+				<th> Estado validacion </th>
+				<th> Ver items </th>
+				<th> Ver presupuestos </th>
+				
 			</tr>
 			{{#each todosLosEgresos}}
 			<tr>
@@ -32,6 +34,8 @@
 				<td> {{ proveedor.identificador }} </td>
 				<td> {{ estadoValidacion}} </td>
 				<td> <a href="/egresos/{{ id }}/item">Agregar item</a> </td>
+				<td> <a href="/egresos/{{ id }}/presupuesto">Ver presupuestos</a> </td>
+				
 			</tr>
 			{{/each}}
 			</table>

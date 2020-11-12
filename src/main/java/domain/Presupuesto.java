@@ -24,6 +24,14 @@ public class Presupuesto extends PersistentEntity {
 	public List<Item> getListaItems() {
 		return items;
 	}
+	
+	void agregarItem(Item unItem) {
+		items.add(unItem);
+	}
+	
+	public String getDetalle() {
+		return detalle;
+	}
 
 	public double total() {
 		return items.stream().mapToDouble(unItem -> unItem.getMonto()).sum();

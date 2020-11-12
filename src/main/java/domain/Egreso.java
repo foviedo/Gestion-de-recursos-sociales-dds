@@ -59,6 +59,7 @@ public class Egreso extends PersistentEntity {
 	List<String> getEtiquetas(){
 		return etiquetas;
 	}
+	
 
 	void agregarEtiqueta(String unaEtiqueta) {
 		etiquetas.add(unaEtiqueta);
@@ -75,6 +76,10 @@ public class Egreso extends PersistentEntity {
 	void cargarPresupuesto(String detalle, List<Item> listaDeItems) { 
 
 		Presupuesto unPresupuesto = new Presupuesto(detalle, listaDeItems);
+		presupuestos.add(unPresupuesto);
+	}
+	
+	void agregarPresupuesto(Presupuesto unPresupuesto) {
 		presupuestos.add(unPresupuesto);
 	}
 
@@ -131,5 +136,9 @@ public class Egreso extends PersistentEntity {
 	
 	public boolean contieneEtiqueta(String etiqueta) {
 		return etiquetas.contains(etiqueta);
+	}
+	
+	void agregarItem(Item unItem) {
+		listaDeItems.add(unItem);
 	}
 }
