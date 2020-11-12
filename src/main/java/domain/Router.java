@@ -22,9 +22,8 @@ public class Router {
 		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
 		Spark.put("/entidades-bases/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer); 
 		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-		Spark.get("/entidades-bases/:nombre_categoria", ControllerHome::buscarPorCategoria,transformer);
-
-		Spark.before((req, res) -> {
+		Spark.get("/entidades-juridicas/?nombre_categoria=buen+dia", ControllerHome::verJuridicas,transformer);
+		/*Spark.before((req, res) -> {
 			if (req.pathInfo().equals("/login")) {
 				return;
 			}
@@ -32,6 +31,6 @@ public class Router {
 			if (SessionService.getSessionId(req) == null) {
 				res.redirect("/login");
 			}
-		});
+		});*/
 	}
 }
