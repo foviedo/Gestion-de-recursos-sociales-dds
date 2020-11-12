@@ -1,32 +1,24 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
-import domain.password.GeneradorPassword;
 @Entity
 public class Usuario extends PersistentEntity {
-	
-	
     private String usuario;
-    private String passwordShippuden;
-    private byte[] password;
+    private String password;
     @Transient
     public List<Egreso> bandejaDeEntrada;
-    
 
     public Usuario(String usuario, String password) {
-        GeneradorPassword generadorPassword = new GeneradorPassword();
-        byte[] hash = generadorPassword.encriptarPassword(usuario, password);
-        this.passwordShippuden = password;
         this.usuario = usuario;
-        this.password = hash;
-        this.bandejaDeEntrada = new ArrayList<Egreso>();
+        this.password = password;
+        this.bandejaDeEntrada = new ArrayList<>();
     }
-    public Usuario() {
-    	
-    };
+
+    public Usuario() {}
 
     public String getUsuario() {
         return usuario;
@@ -36,24 +28,24 @@ public class Usuario extends PersistentEntity {
         this.usuario = usuario;
     }
 
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
-    
-    public String getPassword2() {
-    	return passwordShippuden;
-    }
 
-    public void setPassword(byte[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     
-    public void setPassword2(String password2) {
-        this.passwordShippuden = password2;
-    }
-    
-    void agrerarResultado(Egreso unEgreso) {
+    void agregarResultado(Egreso unEgreso) {
     	bandejaDeEntrada.add(unEgreso);
     }
 
+    public boolean validarLogin(String usuario, String password) {
+        if (StringUtils.isNotEmpty(usuario) && StringUtils.isNotEmpty(password)) {
+            String passwordDesencriptado = AESEncryptionDecryption.decrypt(this.password);
+            return usuario.equals(this.usuario) && password.equals(passwordDesencriptado);
+        } else {
+            return false;
+        }
+    }
 }

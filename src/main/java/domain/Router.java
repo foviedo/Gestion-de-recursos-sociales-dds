@@ -1,11 +1,9 @@
 package domain;
 
-import domain.ControllerHome;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
-
 	public static void configure() {
 		HandlebarsTemplateEngine transformer = 
 				new HandlebarsTemplateEngine();
@@ -24,5 +22,15 @@ public class Router {
 		Spark.put("/entidades-bases/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer); 
 		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 		Spark.get("/entidades-bases/:nombre_categoria", ControllerHome::buscarPorCategoria,transformer);
+
+		Spark.before((req, res) -> {
+			if (req.pathInfo().equals("/login")) {
+				return;
+			}
+
+			if (SessionService.getSessionId(req) == null) {
+				res.redirect("/login");
+			}
+		});
 	}
 }

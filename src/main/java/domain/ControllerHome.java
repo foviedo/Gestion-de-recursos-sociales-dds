@@ -5,25 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
+import domain.validacionDeEgresos.Validacion;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-
-import com.google.common.base.Optional;
-
-import domain.password.GeneradorHashing;
-import domain.password.GeneradorPassword;
-import domain.validacionDeEgresos.Validacion;
-import exception.GeneratorPasswordException;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import java.util.Optional;
 
-public class ControllerHome implements WithGlobalEntityManager{
+public class ControllerHome implements WithGlobalEntityManager {
 	public static ModelAndView index(Request req, Response res) {
 		
 /*		Usuario user = UsuarioRepositorio.get().findAny();
@@ -50,33 +42,25 @@ public class ControllerHome implements WithGlobalEntityManager{
 	}
 	
 	public static ModelAndView login (Request req, Response res) {
-		String nombre = req.queryParams("usuario");
+		String user = req.queryParams("usuario");
 		String password = req.queryParams("password");
-		res.cookie("usuario_login", nombre);
+		res.cookie("usuario_login", user);
 		try {
-			byte[] passwordEncriptado = new GeneradorPassword().encriptarPassword(nombre, password);
-			EntityManager entityManager=PerThreadEntityManagers.getEntityManager();
-			TypedQuery<Usuario> unQuery = entityManager.createQuery("from Usuario u WHERE u.usuario=:nombre",Usuario.class);
-			unQuery.setParameter("nombre",nombre);
-			List<Usuario> unaLista = unQuery.getResultList();
-			if(unaLista.isEmpty()) {
+			Optional<Usuario> usuario = RepositorioUsuarios.getInstance().getUsuario(user);
+			if (usuario.isPresent() && usuario.get().validarLogin(user, password)) {
+				req.session(true);
+				SessionService.setSessionId(req, usuario.get().getId());
+				res.redirect("/");
+			} else {
 				res.redirect("/login");
 			}
-			System.out.println(unaLista.get(0).getUsuario());
-			System.out.println(password);
-			System.out.println(unaLista.get(0).getPassword2());
 
-
-			if(!(password.equals(unaLista.get(0).getPassword2()))) {
-				res.redirect("/login");
-			}
-			res.redirect("/");
 			return null;
-		} catch(GeneratorPasswordException exception) {
+		} catch(Exception exception) {
 			res.redirect("/login");
 		}
-		return null;
 
+		return null;
 	}
 	
 	public static ModelAndView home(Request req, Response res){
@@ -96,7 +80,7 @@ public class ControllerHome implements WithGlobalEntityManager{
 		Proveedor unProveedor = new Proveedor(req.queryParams("nombreProveedor"),Integer.parseInt(req.queryParams("identificadorProveedor")),unaDireccion);
 		DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate ld = LocalDate.parse(req.queryParams("fechaOperacion"), dateformatter);
-		Egreso unEgreso = new Egreso(unDocumento,unMedio,unProveedor,ld.atStartOfDay(),new ArrayList<Item>(),new ArrayList<Usuario>(),Validacion.valueOf(req.queryParams("criterioValidacion")),new ArrayList<String>());
+		Egreso unEgreso = new Egreso(unDocumento,unMedio,unProveedor,ld.atStartOfDay(),new ArrayList<Item>(),new ArrayList<Usuario>(), Validacion.valueOf(req.queryParams("criterioValidacion")),new ArrayList<String>());
 		RepositorioEgresos.getInstance().agregarEgreso(unEgreso);
 		//res.redirect("/idEgreso");
 		HashMap<String, Object> map = new HashMap<>();

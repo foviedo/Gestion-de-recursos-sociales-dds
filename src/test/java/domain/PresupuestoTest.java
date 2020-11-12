@@ -8,32 +8,30 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import domain.validacionDeEgresos.Validacion;
-
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PresupuestoTest {
-	Item item1;
-	Item item2;
-	Item item3;
-	Item item4;
-	Moneda unaMoneda;
-	Egreso egresoQueUsaLaMasBarata;
-	Egreso egresoQueUsaLaMasCara;
-	Documento unDocumento;
-	MedioDePago unMedioDePago;
-	DireccionPostal unaDireccionPostal;
-	Proveedor unProveedor;
-	LocalDateTime unaFecha;
-	List<Item> items1;
-	List<Item> items2;
-	Usuario usuario1;
-	List<Usuario> revisores1;
-	Validacion criterioProveedores;
-	List<String> etiquetas = new ArrayList<>();
-	
+	private Item item1;
+	private Item item2;
+	private Item item3;
+	private Item item4;
+	private Moneda unaMoneda;
+	private Egreso egresoQueUsaLaMasBarata;
+	private Egreso egresoQueUsaLaMasCara;
+	private Documento unDocumento;
+	private MedioDePago unMedioDePago;
+	private DireccionPostal unaDireccionPostal;
+	private Proveedor unProveedor;
+	private LocalDateTime unaFecha;
+	private List<Item> items1;
+	private List<Item> items2;
+	private Usuario usuario1;
+	private List<Usuario> revisores1;
+	private Validacion criterioProveedores;
+	private List<String> etiquetas = new ArrayList<>();
+
 	@Before
 	public void setup() {
 		unaMoneda = new Moneda();
@@ -59,13 +57,13 @@ public class PresupuestoTest {
 		egresoQueUsaLaMasBarata = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items1, revisores1,criterioProveedores, etiquetas);
 		egresoQueUsaLaMasCara = new Egreso(unDocumento, unMedioDePago, unProveedor, unaFecha, items2, revisores1, criterioProveedores,etiquetas);
 	}
-	
+
 	@Test
 	public void menosPresupuestosDeLosRequeridos() {
 		egresoQueUsaLaMasBarata.validarme();
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
-	
+
 	@Test
 	public void laCompraNoFueEnBaseAUnoDeLosPresupuestos() {
 		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle we", items2);
@@ -73,7 +71,7 @@ public class PresupuestoTest {
 		egresoQueUsaLaMasBarata.validarme();
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
-	
+
 	@Test
 	public void laCompraNoFueLaMasBarata() {
 		egresoQueUsaLaMasCara.cargarPresupuesto("detalle we", items1);
@@ -81,7 +79,7 @@ public class PresupuestoTest {
 		egresoQueUsaLaMasCara.validarme();
 		assertEquals(EstadoEgreso.INVALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
-	
+
 	@Test
 	public void egresoValido() {
 		egresoQueUsaLaMasBarata.cargarPresupuesto("detalle we", items1);
@@ -89,5 +87,4 @@ public class PresupuestoTest {
 		egresoQueUsaLaMasBarata.validarme();
 		assertEquals(EstadoEgreso.VALIDO,usuario1.bandejaDeEntrada.get(0).estadoValidacion);
 	}
-
 }
