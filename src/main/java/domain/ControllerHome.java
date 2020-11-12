@@ -154,6 +154,28 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return null;
 	}
 	
+	public static ModelAndView verEtiquetas(Request req, Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("etiquetas", unEgreso.getEtiquetas());
+		return new ModelAndView(elMap, "ver-etiquetas.hbs");
+	}
+	
+	public static ModelAndView cargarEtiqueta(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarEtiqueta(req.queryParams("etiqueta"));
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
 	public static ModelAndView agregarItemAlPresupuesto(Request req,Response res) {
 		String id = req.params("id");
 		HashMap<String,Object> elMap = new HashMap<>();

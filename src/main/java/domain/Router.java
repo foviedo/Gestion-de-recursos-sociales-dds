@@ -20,6 +20,8 @@ public class Router {
 		Spark.post("/egresos/:id/item", ControllerHome::postAgregarItemAlEgreso,transformer);
 		Spark.get("/egresos/:id/presupuesto", ControllerHome::verPresupuestos,transformer);
 		Spark.post("/egresos/:id/presupuesto", ControllerHome::cargarPresupuesto,transformer);
+		Spark.get("/egresos/:id/etiquetas", ControllerHome::verEtiquetas,transformer);
+		Spark.post("/egresos/:id/etiquetas", ControllerHome::cargarEtiqueta,transformer);
 		Spark.get("/presupuesto/:id/item", ControllerHome::agregarItemAlPresupuesto,transformer);
 		Spark.post("/presupuesto/:id/item", ControllerHome::postAgregarItemAlPresupuesto,transformer);
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);

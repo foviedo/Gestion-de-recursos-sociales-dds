@@ -22,6 +22,7 @@
 				<th> Estado validacion </th>
 				<th> Ver items </th>
 				<th> Ver presupuestos </th>
+				<th> Ver etiquetas </th>
 				
 			</tr>
 			{{#each todosLosEgresos}}
@@ -33,8 +34,10 @@
 				<td> {{ proveedor.nombreProveedor }} </td>
 				<td> {{ proveedor.identificador }} </td>
 				<td> {{ estadoValidacion}} </td>
-				<td> <a href="/egresos/{{ id }}/item">Agregar item</a> </td>
+				<td> <a href="/egresos/{{ id }}/item">Ver items</a> </td>
 				<td> <a href="/egresos/{{ id }}/presupuesto">Ver presupuestos</a> </td>
+				<td> <a href="/egresos/{{ id }}/etiquetas">Ver etiquetas</a> </td>
+				
 				
 			</tr>
 			{{/each}}
