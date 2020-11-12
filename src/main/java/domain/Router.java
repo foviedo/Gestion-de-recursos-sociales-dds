@@ -2,6 +2,7 @@ package domain;
 
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import static spark.Spark.after;
 
 public class Router {
 	public static void configure() {

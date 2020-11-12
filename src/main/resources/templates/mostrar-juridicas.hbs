@@ -1,0 +1,28 @@
+<html>
+	<body>
+		
+		<table>
+			<tr>
+				<th> ID </th>
+				<th> ID organización </th>
+				<th> Nombre ficticio </th>
+				<th> Razon social </th>
+				<th> CUIT </th>
+				<th> Tipo de entidad juridica </th>
+				<th> Categoria </th>
+			</tr>
+			{{#each juridicas}}
+			<tr>
+				<td> {{ id_entidad }} </td>
+				<td> {{ id_organizacion }} </td>
+				<td> {{ nombre_ficticio }} </td>
+				<td> {{ razon_social }} </td>
+				<td> {{ cuit }} </td>
+				<td> {{ tipo_entidad_juridica }} </td>
+				<td> {{ categoria }} </td>
+			</tr>
+			{{/each}}
+		</table>
+		
+	</body>
+</html>

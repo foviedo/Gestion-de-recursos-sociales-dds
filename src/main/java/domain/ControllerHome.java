@@ -105,7 +105,14 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public static ModelAndView verJuridicas(Request req, Response res) {
-		return new ModelAndView(null, "mostrar-juridicas.hbs");
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		TypedQuery<infoJuridica> queryTodoJuridicas = em.createQuery("SELECT j.razonSocial, j.cuit, j.nombreFicticio, j.direccionPostal, j.tipoEntidadJuridica,"
+				+ " e.id, c.nombre FROM Juridica j INNER JOIN j.id as e INNER JOIN e.categoria as c"
+				, infoJuridica.class);
+		List<infoJuridica> listaTodoJuridicas = queryTodoJuridicas.getResultList();
+		HashMap<String, Object> juridicas = new HashMap<>();
+		juridicas.put("juridicas", listaTodoJuridicas);
+		return new ModelAndView(juridicas,"mostrar-juridicas.hbs");
 	}
 	
 	public static ModelAndView verBases(Request req, Response res) {
@@ -139,6 +146,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return new ModelAndView(base2,"mostrar-base.hbs");
 	}
 	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		return null;
 	}
 	public static ModelAndView buscarPorCategoria(Request req, Response res) {
@@ -151,6 +159,6 @@ public class ControllerHome implements WithGlobalEntityManager {
 		List<infoBase> basesQueCumplen = queryBasesQueCumplen.getResultList();
 		HashMap<String, Object> bases = new HashMap<>();
 		bases.put("bases", basesQueCumplen);
-		return new ModelAndView(bases, "mostrar-base.hbs");
+		return new ModelAndView(bases, "mostrar-bases.hbs");
 	}
 }
