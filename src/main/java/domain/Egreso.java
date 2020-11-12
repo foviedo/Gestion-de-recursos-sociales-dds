@@ -9,7 +9,7 @@ import domain.validacionDeEgresos.ValidadorDeEgresos;
 import javax.persistence.*;
 
 @Entity
-public class Egreso extends PersistentEntity{
+public class Egreso extends PersistentEntity {
 	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id_documento")
 	Documento documentoComercial;
@@ -33,7 +33,7 @@ public class Egreso extends PersistentEntity{
 	ValidadorDeEgresos validador;
 	@ElementCollection
 	List<String> etiquetas;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="id_egreso")
 	List<Item> listaDeItems;
 

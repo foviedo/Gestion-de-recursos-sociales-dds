@@ -14,6 +14,8 @@ public class Router {
 		Spark.post("/login", ControllerHome::login, transformer);
 		Spark.get("/egreso", ControllerHome::showEgreso, transformer);
 		Spark.post("/egreso", ControllerHome::postEgreso, transformer);
+		Spark.get("/egresoId", ControllerHome::showEgresoId, transformer);
+		Spark.get("/item", ControllerHome::cargarItem, transformer);
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
 		Spark.get("/entidades-juridicas", ControllerHome::verJuridicas, transformer);
 		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
