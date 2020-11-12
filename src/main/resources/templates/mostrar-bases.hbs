@@ -1,13 +1,16 @@
 <html>
+	    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Mostrar bases</title>
+  		  <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
+ 	   </head>
 	<body>
-		<form action = /entidades-bases/?nombre_categoria=cajita method = "get">
-			<input type = "textbox" size = "50" name = "etiqueta" placeholder = "Etiqueta..."/>
-			<input type = "submit" name = "buscar etiqueta"/>
+		<form action = "/entidades-bases" method = "get">
+		<input type = "textbox" size = "50" name = "nombre_categoria" placeholder = "Categoria..."/ required>
+		<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
 		<table>
 			<tr>
 				<th> ID </th>
-				<th> ID organización </th>
 				<th> Nombre ficticio </th>
 				<th> Descripcion </th>
 				<th> ID juridica asociada </th>
@@ -16,11 +19,10 @@
 			{{#each bases}}
 			<tr>
 				<td> {{ id }} </td>
-				<td> {{ id_organizacion }} </td>
 				<td> {{ nombreFicticio }} </td>
 				<td> {{ descripcion }} </td>
 				<td> {{ id_juridica }} </td>
-				<td> {{ nombre }} </td>
+				<td> {{ categoria.nombre }} </td>
 			</tr>
 			{{/each}}
 		</table>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Monstrar etiquetas</title>
+    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
+    </head>
+    <body>
+        <div class="egreso-title">
+            <h1>Welcome Home Ashen One!</h1>
+        </div>
+
+        <div class="lista-egreso-box">
+                  <h1>Lista de etiquetas</h1>
+    
+          		<table>
+			<tr>
+				<th> nombre </th>
+				
+			</tr>
+			{{#each etiquetas}}
+			<tr>
+				<td> {{ this }} </td>
+				
+			</tr>
+			{{/each}}
+			</table>
+			<h2>Cargar nueva etiqueta </h1>
+          <form method="POST" name="egresos/{{ id }}/etiqueta">
+                        <h2>Etiqueta:</h2>
+            <label for="etiqueta">Etiqueta</label>
+            <input type="text" name="etiqueta" placeholder="Etiqueta">
+
+                 <input type="submit" value="Confirmar"> <br>
+          </form>
+        </div>
+      </body>
+    </html>
+</html>

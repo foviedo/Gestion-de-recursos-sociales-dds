@@ -5,7 +5,6 @@ import javax.persistence.*;
 public class Base extends Entidad {
 	String nombreFicticio;
 	String descripcion;
-
 	Base(String nombreFicticio, String descripcion) {
 		this.nombreFicticio = nombreFicticio;
 		this.descripcion = descripcion;
@@ -14,5 +13,22 @@ public class Base extends Entidad {
 		if(categoria != null) {
 			categoria.serAgregadoAUnaJuridica(this);
 		}
+	}
+	
+	public Base(){
+		
+	}
+	
+	public String getNombreFicticio() {
+		return nombreFicticio;
+	}
+	public void setNombreFicticio(String nombreFicticio) {
+		this.nombreFicticio = nombreFicticio;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 }

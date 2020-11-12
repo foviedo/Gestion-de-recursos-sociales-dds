@@ -32,6 +32,7 @@ public class DireccionPostal extends PersistentEntity {
 		this.provincia = provincia;
 		this.ciudad= ciudad;
 	}
+	public DireccionPostal() {};
 
 	public String getCodigoPostal() {
 		return codigoPostal;

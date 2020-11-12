@@ -18,4 +18,15 @@ public class Proveedor extends PersistentEntity {
 		this.identificador = identificador;
 		this.direccionPostal = direccionPostal;
 	}
+	public Proveedor() {
+		
+	}
+	
+	public String getNombreProveedor() {
+		return nombreProveedor;
+	}
+	
+	public int getIdentificador() {
+		return identificador;
+	}
 }

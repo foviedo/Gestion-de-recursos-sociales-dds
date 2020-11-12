@@ -5,9 +5,23 @@ body {
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
+color: #fff;
   }
 .egreso-box {
   width: 800px;
+  height: 2000px;
+  background: #000;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 500px 30px;
+}
+
+.lista-egreso-box {
+  width: 1000px;
   height: 2000px;
   background: #000;
   color: #fff;
@@ -76,3 +90,7 @@ body {
   .egreso-box a:hover {
     color: #fff;
   }
+
+
+
+

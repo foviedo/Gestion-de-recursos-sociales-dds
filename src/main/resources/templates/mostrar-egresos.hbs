@@ -1,0 +1,52 @@
+<html>
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Monstrar egresos</title>
+    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
+    </head>
+    <body>
+        <div class="egreso-title">
+            <h1>Welcome Home Ashen One!</h1>
+        </div>
+
+        <div class="lista-egreso-box">
+                  <h1>Lista de egresos</h1>
+    
+          		<table>
+			<tr>
+				<th> Tipo Documento </th>
+				<th> Nro Documento </th>
+				<th> Medio de pago </th>
+				<th> Id Medio </th>
+				<th> Nombre proveedor </th>
+				<th> Identificador proveedor </th>
+				<th> Estado validacion </th>
+				<th> Ver items </th>
+				<th> Ver presupuestos </th>
+				<th> Ver etiquetas </th>
+				
+			</tr>
+			{{#each todosLosEgresos}}
+			<tr>
+				<td> {{ documentoComercial.tipo }} </td>
+				<td> {{ documentoComercial.numeroDocumento }} </td>
+				<td> {{ medioDePago.tipo }} </td>
+				<td> {{ medioDePago.identificador }} </td>
+				<td> {{ proveedor.nombreProveedor }} </td>
+				<td> {{ proveedor.identificador }} </td>
+				<td> {{ estadoValidacion}} </td>
+				<td> <a href="/egresos/{{ id }}/item">Ver items</a> </td>
+				<td> <a href="/egresos/{{ id }}/presupuesto">Ver presupuestos</a> </td>
+				<td> <a href="/egresos/{{ id }}/etiquetas">Ver etiquetas</a> </td>
+				
+				
+			</tr>
+			{{/each}}
+			</table>
+			
+          <form method="POST" name="item/">
+            
+          </form>
+        </div>
+      </body>
+    </html>
+</html>

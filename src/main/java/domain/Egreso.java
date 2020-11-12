@@ -51,10 +51,15 @@ public class Egreso extends PersistentEntity {
 		this.validador = new ValidadorDeEgresos(criterio);		
 		this.etiquetas = etiquetas;
 	}
+	public Egreso() {
+		//no se si hay que instanciar el validador
+	};
+	
 	
 	List<String> getEtiquetas(){
 		return etiquetas;
 	}
+	
 
 	void agregarEtiqueta(String unaEtiqueta) {
 		etiquetas.add(unaEtiqueta);
@@ -73,9 +78,29 @@ public class Egreso extends PersistentEntity {
 		Presupuesto unPresupuesto = new Presupuesto(detalle, listaDeItems);
 		presupuestos.add(unPresupuesto);
 	}
+	
+	void agregarPresupuesto(Presupuesto unPresupuesto) {
+		presupuestos.add(unPresupuesto);
+	}
 
 	public double getMontoTotal() {
 		return listaDeItems.stream().mapToDouble(item -> item.getMonto()).sum();
+	}
+	
+	public Documento getDocumentoComercial() {
+		return documentoComercial;
+	}
+	
+	public MedioDePago getMedioDePago() {
+		return medioDePago;
+	}
+	
+	public EstadoEgreso getEstadoValidacion() {
+		return estadoValidacion;
+	}
+	
+	public Proveedor getProveedor() {
+		return proveedor;
 	}
 
 	boolean esDe(Usuario unUsuario) {
@@ -111,5 +136,9 @@ public class Egreso extends PersistentEntity {
 	
 	public boolean contieneEtiqueta(String etiqueta) {
 		return etiquetas.contains(etiqueta);
+	}
+	
+	void agregarItem(Item unItem) {
+		listaDeItems.add(unItem);
 	}
 }

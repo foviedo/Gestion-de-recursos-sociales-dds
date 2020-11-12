@@ -17,9 +17,20 @@ public class Presupuesto extends PersistentEntity {
 		this.detalle = detalle;
 		this.items = items;
 	}
+	public Presupuesto() {
+		
+	}
 
 	public List<Item> getListaItems() {
 		return items;
+	}
+	
+	void agregarItem(Item unItem) {
+		items.add(unItem);
+	}
+	
+	public String getDetalle() {
+		return detalle;
 	}
 
 	public double total() {

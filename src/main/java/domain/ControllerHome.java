@@ -14,6 +14,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import java.util.Optional;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+import spark.TemplateEngine;
 
 public class ControllerHome implements WithGlobalEntityManager {
 	public static ModelAndView index(Request req, Response res) {
@@ -63,6 +65,32 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return null;
 	}
 	
+	public static ModelAndView registro(Request req, Response res){
+		return new ModelAndView(null, "registro.hbs");
+	}
+	
+	public static ModelAndView postRegistro (Request req, Response res) {
+		String user = req.queryParams("usuario");
+		String password = req.queryParams("password");
+		try {
+			Optional<Usuario> usuario = RepositorioUsuarios.getInstance().getUsuario(user);
+			if (usuario.isPresent() ) {
+				req.session(true);
+				res.redirect("/registro");
+			} else {
+				Usuario unUser = new Usuario(user,password);
+				RepositorioUsuarios.getInstance().guardarUsuario(unUser);
+				res.redirect("/login");
+			}
+
+			return null;
+		} catch(Exception exception) {
+			res.redirect("/registro");
+		}
+
+		return null;
+	}
+	
 	public static ModelAndView home(Request req, Response res){
 		return new ModelAndView(null, "home.hbs");
 	}
@@ -85,19 +113,119 @@ public class ControllerHome implements WithGlobalEntityManager {
 		//res.redirect("/idEgreso");
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("id",unEgreso.getId());
-		return new ModelAndView(map, "mostrar-egreso-id.hbs");	//TODO: hacer validaciones varias
+		res.redirect("/");
+		return null;
+	//TODO: hacer validaciones varias
 		}
 	
-	public static ModelAndView showEgresoId(Request req,Response res) {
-		return new ModelAndView(
-				null, 
-				"mostrar-egreso-id.hbs");
+
+	
+	public static ModelAndView showEgresos(Request req,Response res) {
+		List<Egreso> todosLosEgresos = RepositorioEgresos.getInstance().getTodosLosEgresos();
+		HashMap<String, Object> elMap = new HashMap<>();
+		elMap.put("todosLosEgresos", todosLosEgresos);
+		return new ModelAndView(elMap, "mostrar-egresos.hbs");
 	}
 	
-	public static ModelAndView cargarItem(Request req,Response res) {
-		return new ModelAndView(
-				null, 
-				"cargar-item.hbs");
+	public static ModelAndView agregarItemAlEgreso(Request req,Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("items", unEgreso.getListaDeItems());
+		return new ModelAndView(elMap, "cargar-item.hbs");
+	}
+	
+	public static ModelAndView postAgregarItemAlEgreso(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Moneda moneda =em.find(Moneda.class, req.queryParams("id_moneda"));
+		if(moneda == null) {
+			moneda = new Moneda(req.queryParams("id_moneda"),req.queryParams("descripcion_moneda"),req.queryParams("simbolo_moneda"));
+		}
+		Item item = new Item(req.queryParams("descripcion_item"),moneda,Double.parseDouble(req.queryParams("costo_item")));
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarItem(item);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
+	public static ModelAndView verPresupuestos(Request req, Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("presupuestos", unEgreso.getPresupuestos());
+		return new ModelAndView(elMap, "ver-presupuestos.hbs");
+	}
+	
+	public static ModelAndView cargarPresupuesto(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Presupuesto unPresupuesto = new Presupuesto(req.queryParams("detalle_presupuesto"), new ArrayList<Item>());
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarPresupuesto(unPresupuesto);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unPresupuesto);
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
+	public static ModelAndView verEtiquetas(Request req, Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(id));
+		elMap.put("etiquetas", unEgreso.getEtiquetas());
+		return new ModelAndView(elMap, "ver-etiquetas.hbs");
+	}
+	
+	public static ModelAndView cargarEtiqueta(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Egreso unEgreso = em.find(Egreso.class, Long.parseLong(req.params("id")));
+		unEgreso.agregarEtiqueta(req.queryParams("etiqueta"));
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(unEgreso);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
+	}
+	
+	public static ModelAndView agregarItemAlPresupuesto(Request req,Response res) {
+		String id = req.params("id");
+		HashMap<String,Object> elMap = new HashMap<>();
+		elMap.put("id", id);
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Presupuesto unPresupuesto = em.find(Presupuesto.class, Long.parseLong(id));
+		elMap.put("items", unPresupuesto.getListaItems());
+		return new ModelAndView(elMap, "cargar-item-presupuesto.hbs");
+	}
+	
+	public static ModelAndView postAgregarItemAlPresupuesto(Request req,Response res) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Moneda moneda =em.find(Moneda.class, req.queryParams("id_moneda"));
+		if(moneda == null) {
+			moneda = new Moneda(req.queryParams("id_moneda"),req.queryParams("descripcion_moneda"),req.queryParams("simbolo_moneda"));
+		}
+		Item item = new Item(req.queryParams("descripcion_item"),moneda,Double.parseDouble(req.queryParams("costo_item")));
+		Presupuesto unPresupuesto = em.find(Presupuesto.class, Long.parseLong(req.params("id")));
+		unPresupuesto.agregarItem(item);
+		EntityTransaction transaccion = em.getTransaction();
+		transaccion.begin();
+		em.persist(item);
+		em.persist(unPresupuesto);
+		transaccion.commit();
+		res.redirect("/");
+		return null;
 	}
 	
 	public static ModelAndView verEntidades(Request req, Response res) {
@@ -110,38 +238,38 @@ public class ControllerHome implements WithGlobalEntityManager {
 		juridicas.put("juridicas", listaTodoJuridicas);
 		juridicas.put("categorias", RepositorioCategorias.getInstance().getCategorias());
 		return new ModelAndView(juridicas,"mostrar-juridicas.hbs");
+
+	
+	public String verBases(Request req, Response res){
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		EntityTransaction transaccion = em.getTransaction();
+		Base base1 = new Base("ycomoescell","que pasara cuando te absorba a ti");
+		Base base2 = new Base("entidadBaseGenerica88","descripcionGenerica89");
+		Categoria cat3 = new Categoria(null,"monotributista");
+		Categoria cat4 = new Categoria(null, "multitributista");
+		base1.setCategoria(cat3);
+		base2.setCategoria(cat4);
+		transaccion.begin();
+		em.persist(cat3);
+		em.persist(cat4);
+		em.persist(base1);
+		em.persist(base2);
+		transaccion.commit();
+		String filtro = req.queryParams("nombre_categoria");
+		TypedQuery<Base> queryBasesFiltradas;
+		if(filtro == null || filtro == ""){
+			queryBasesFiltradas = em.createQuery("FROM Base b" ,Base.class);
+		}else{
+		queryBasesFiltradas = em.createQuery("FROM Base b WHERE b.categoria.nombre LIKE :nombre_categoria" ,Base.class);
+		queryBasesFiltradas.setParameter("nombre_categoria",filtro);
+		}
+		List<Base> listaTodoJuridicas = queryBasesFiltradas.getResultList();
+		HashMap<String, Object> bases = new HashMap<>();
+		bases.put("bases", listaTodoJuridicas);
+		ModelAndView modelo = new ModelAndView(bases,"mostrar-bases.hbs");
+		return new HandlebarsTemplateEngine().render(modelo);
 	}
 	
-	public static ModelAndView verBases(Request req, Response res) {
-
-		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();
-	/*//FORMA 1 MULTIPLES CONSULTAS, BLOQUEAR LA DB
-		TypedQuery<Base> queryBases = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion, c.nombre FROM Base b JOIN Entidad e ON"
-				+ " (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Base.class);
-		List<Base> listaBases = queryBases.getResultList();
-		TypedQuery<Integer> queryIDs = entityManager.createQuery("SELECT e.id FROM Base b JOIN Entidad e ON" +
-		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
-		List<Integer> listaIds = queryIDs.getResultList();
-		TypedQuery<Integer> queryIDsOrg = entityManager.createQuery("SELECT e.id_organizacion FROM Base b JOIN Entidad e ON" +
-		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
-		List<Integer> listaIdsOrg = queryIDsOrg.getResultList();
-		TypedQuery<Integer> queryIDsJurid = entityManager.createQuery("SELECT b.id_juridica FROM Base b JOIN Entidad e ON" +
-		" (e.id = b.id_entidad_madre) JOIN Categoria c ON (c.id = e.categoria_id)", Integer.class);
-		List<Integer> listaIdsJurid = queryIDsJurid.getResultList();
-		HashMap<String, Object> base = new HashMap<>();
-		base.put("bases", listaBases);
-		base.put("Ids entidades", listaIds);
-		base.put("Ids organizaciones", listaIdsOrg);
-		base.put("Ids juridicas asociadas", listaIdsJurid);*/
-	//FORMA 2 UNA SOLA CONSULTA, NUEVA CLASE
-		TypedQuery<infoBase> queryTodoBases = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
-				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM Base b INNER JOIN b.id_entidad_madre as e INNER JOIN e.categoria_id as c"
-				, infoBase.class);
-		List<infoBase> listaTodoBases = queryTodoBases.getResultList();
-		HashMap<String, Object> base2 = new HashMap<>();
-		base2.put("bases", listaTodoBases);
-		return new ModelAndView(base2,"mostrar-base.hbs");
-	}
 	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
 		Long entidadJuridicaId = Long.parseLong(req.params(":entidadJuridicaId"));
 		Long categoriaId = Long.parseLong(req.params(":categoriaId"));
@@ -149,16 +277,5 @@ public class ControllerHome implements WithGlobalEntityManager {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		return new ModelAndView(viewModel,"home.hbs");
 	}
-	public static ModelAndView buscarPorCategoria(Request req, Response res) {
-		String filtro = req.queryParams("nombre_categoria");
-		EntityManager entityManager=PerThreadEntityManagers.getEntityManager();	
-		TypedQuery<infoBase> queryBasesQueCumplen = entityManager.createQuery("SELECT b.nombreFicticio, b.descripcion,"
-				+ " c.nombre, e.id, e.id_organizacion, b.id_juridica FROM Base b INNER JOIN b.id_entidad_madre as e INNER JOIN"
-				+ " e.categoria_id as c with c.nombre LIKE :nombre_categoria",infoBase.class);
-		queryBasesQueCumplen.setParameter("nombre_categoria",filtro);
-		List<infoBase> basesQueCumplen = queryBasesQueCumplen.getResultList();
-		HashMap<String, Object> bases = new HashMap<>();
-		bases.put("bases", basesQueCumplen);
-		return new ModelAndView(bases, "mostrar-bases.hbs");
-	}
 }
+
