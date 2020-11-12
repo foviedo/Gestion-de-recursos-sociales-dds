@@ -16,6 +16,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import java.util.Optional;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+import spark.TemplateEngine;
 
 public class ControllerHome implements WithGlobalEntityManager {
 	public static ModelAndView index(Request req, Response res) {
@@ -184,7 +186,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return new ModelAndView(null, "ver-entidades.hbs");
 	}
 	
-	public static ModelAndView verJuridicas(Request req, Response res) {
+	public String verJuridicas(Request req, Response res) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = em.getTransaction();
 		Juridica juridica1 = new Juridica ("hola","halo",3,"pinia",5);
@@ -207,16 +209,17 @@ public class ControllerHome implements WithGlobalEntityManager {
 			queryJuridicasFiltradas = em.createQuery("FROM Juridica j" ,Juridica.class);
 		}else
 		{
-		queryJuridicasFiltradas = em.createQuery("FROM Juridica j WHERE j.categoria.nombre LIKE %:nombre_categoria%" ,Juridica.class);
+		queryJuridicasFiltradas = em.createQuery("FROM Juridica j WHERE j.categoria.nombre LIKE :nombre_categoria" ,Juridica.class);
 		queryJuridicasFiltradas.setParameter("nombre_categoria",filtro);
 		}
 		List<Juridica> listaTodoJuridicas = queryJuridicasFiltradas.getResultList();
 		HashMap<String, Object> juridicas = new HashMap<>();
 		juridicas.put("juridicas", listaTodoJuridicas);
-		return new ModelAndView(juridicas,"mostrar-juridicas.hbs");
+		ModelAndView modelo = new ModelAndView(juridicas,"mostrar-juridicas.hbs");
+		return new HandlebarsTemplateEngine().render(modelo);
 	}
 	
-	public static ModelAndView verBases(Request req, Response res) {
+	public String verBases(Request req, Response res){
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = em.getTransaction();
 		Base base1 = new Base("ycomoescell","que pasara cuando te absorba a ti");
@@ -236,13 +239,14 @@ public class ControllerHome implements WithGlobalEntityManager {
 		if(filtro == null || filtro == ""){
 			queryBasesFiltradas = em.createQuery("FROM Base b" ,Base.class);
 		}else{
-		queryBasesFiltradas = em.createQuery("FROM Base b WHERE b.categoria.nombre LIKE %:nombre_categoria%" ,Base.class);
+		queryBasesFiltradas = em.createQuery("FROM Base b WHERE b.categoria.nombre LIKE :nombre_categoria" ,Base.class);
 		queryBasesFiltradas.setParameter("nombre_categoria",filtro);
 		}
 		List<Base> listaTodoJuridicas = queryBasesFiltradas.getResultList();
 		HashMap<String, Object> bases = new HashMap<>();
 		bases.put("bases", listaTodoJuridicas);
-		return new ModelAndView(bases,"mostrar-bases.hbs");
+		ModelAndView modelo = new ModelAndView(bases,"mostrar-bases.hbs");
+		return new HandlebarsTemplateEngine().render(modelo);
 	}
 	
 	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {

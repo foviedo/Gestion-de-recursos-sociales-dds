@@ -23,11 +23,11 @@ public class Router {
 		Spark.get("/presupuesto/:id/item", ControllerHome::agregarItemAlPresupuesto,transformer);
 		Spark.post("/presupuesto/:id/item", ControllerHome::postAgregarItemAlPresupuesto,transformer);
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
-		Spark.get("/entidades-juridicas", ControllerHome::verJuridicas, transformer);
-		Spark.get("/entidades-bases", ControllerHome::verBases, transformer);
 		Spark.put("/entidades-bases/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer); 
 		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-
+		ControllerHome unController = new ControllerHome();
+		Spark.get("entidades-juridicas", unController::verJuridicas);
+		Spark.get("entidades-bases", unController::verBases);
 		/*Spark.before((req, res) -> {
 			if (req.pathInfo().equals("/login")) {
 				return;
