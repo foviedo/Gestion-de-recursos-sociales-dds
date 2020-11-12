@@ -11,7 +11,7 @@ public class Server {
 		Router.configure();
 		Usuario admin = new Usuario();
 		admin.setUsuario("admin");
-		admin.setPassword("123");
+		admin.setPassword("VeryDificult!020");
 		RepositorioUsuarios.getInstance().guardarUsuario(admin);
 	}
 }
