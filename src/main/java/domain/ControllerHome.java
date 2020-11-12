@@ -67,6 +67,32 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return null;
 	}
 	
+	public static ModelAndView registro(Request req, Response res){
+		return new ModelAndView(null, "registro.hbs");
+	}
+	
+	public static ModelAndView postRegistro (Request req, Response res) {
+		String user = req.queryParams("usuario");
+		String password = req.queryParams("password");
+		try {
+			Optional<Usuario> usuario = RepositorioUsuarios.getInstance().getUsuario(user);
+			if (usuario.isPresent() ) {
+				req.session(true);
+				res.redirect("/registro");
+			} else {
+				Usuario unUser = new Usuario(user,password);
+				RepositorioUsuarios.getInstance().guardarUsuario(unUser);
+				res.redirect("/login");
+			}
+
+			return null;
+		} catch(Exception exception) {
+			res.redirect("/registro");
+		}
+
+		return null;
+	}
+	
 	public static ModelAndView home(Request req, Response res){
 		return new ModelAndView(null, "home.hbs");
 	}
