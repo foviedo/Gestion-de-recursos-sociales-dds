@@ -1,18 +1,40 @@
-<html>
-    <head>
-    <meta charset="utf-8">
+{{# partial "titulo" }}
     <title>Ver entidades</title>
-    <link rel="stylesheet" href="form-cargar-entidad/css/master.css">
-    </head>
-    <body>
-        <div class="entidad-title">
-            <h1>Welcome Home Ashen One!</h1>
-        </div>
-        <div class="home-box">
-          <h1>¿Qué operación desea realizar?</h1><br><br><br><br><br><br>
-            <a href="/entidades-juridicas" target="_blank" class="boton_1">Mostrar entidades jurídica</a><br><br><br><br><br><br>
-            <a href="/entidades-bases" target="_blank" class="boton_1">Mostrar entidades bases</a><br><br><br><br><br><br>
-        </div>
-      </body>
-    </html>
-</html>
+{{/partial}}
+
+{{# partial "contenido" }}
+<form class="form-inline" method="GET" action="/entidades">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Categoria..." aria-label="categoria" name="categoria">
+</form>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Nombre ficticio</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Tipo de entidad</th>
+				<th scope="col"> Detalles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each juridicas}}
+				<tr>
+					<td> {{ nombreFicticio }} </td>
+					<td> {{ categoria.nombre }} </td>
+					<td> Juridica </td>
+					<td><a href="/entidades-juridicas/{{ id }}" style="color:#0000EE;">Ver</a></td>
+				</tr>
+			{{/each}}
+			{{#each bases}}
+				<tr>
+					<td> {{ nombreFicticio }} </td>
+					<td> {{ categoria.nombre }} </td>
+					<td> Base </td>
+					<td><a href="/entidades-bases/{{ id }}" style="color:#0000EE;"> Ver </a></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+{{/partial}}
+
+{{> layout.hbs }}

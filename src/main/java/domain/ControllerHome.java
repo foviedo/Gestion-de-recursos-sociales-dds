@@ -15,6 +15,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.TemplateEngine;
 
@@ -233,7 +235,20 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public static ModelAndView verEntidades(Request req, Response res) {
-		return new ModelAndView(null, "ver-entidades.hbs");
+		String categoria = req.queryParams("categoria");
+		List<Juridica> juridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
+		List<Base> bases = RepositorioEntidadBase.getInstance().getBase();
+		if(categoria != null) {
+			if(!categoria.isEmpty()){	
+				juridicas = juridicas.stream().filter((x) -> x.getCategoria().getNombre().equals(categoria)).collect(Collectors.toList());
+				bases = bases.stream().filter((x)-> x.getCategoria().getNombre().equals(categoria)).collect(Collectors.toList());
+				System.out.println("TODO MAL");
+			}
+		}
+		HashMap<String, Object> entidades = new HashMap<>();
+		entidades.put("juridicas",juridicas);
+		entidades.put("bases", bases);
+		return new ModelAndView(entidades, "ver-entidades.hbs");
 	}
 	
 	public String verJuridicas(Request req, Response res) {

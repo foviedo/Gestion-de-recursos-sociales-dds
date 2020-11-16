@@ -20,11 +20,11 @@ public class RepositorioEntidadJuridica extends AbstractPersistenceTest implemen
     public void init() {
         EntityManager em = PerThreadEntityManagers.getEntityManager();
         EntityTransaction transaccion = em.getTransaction();
-        Juridica juridica1 = new Juridica ("hola","halo",3,"pinia",5);
+        Juridica juridica1 = new Juridica ("Arcos Dorados","McDonaritsu",3,"avenida",5);
         juridica1.setTipoEntidadJuridica(TipoJuridica.TRAMO1);
-        Categoria cat1 = new Categoria(null,"ONG");
-        Categoria cat2 = new Categoria(null,"Judiciales");
-        Juridica juridica2 = new Juridica("elpepe","juju",10,"murloc",4);
+        Categoria cat1 = new Categoria(null,"Restaurante");
+        Categoria cat2 = new Categoria(null,"RTS");
+        Juridica juridica2 = new Juridica("El sillon de escarcha","Warcraft III",10,"murloc",4);
         juridica2.setTipoEntidadJuridica(TipoJuridica.PEQUENIA);
         transaccion.begin();
         em.persist(cat1);
@@ -47,8 +47,6 @@ public class RepositorioEntidadJuridica extends AbstractPersistenceTest implemen
     }
 
     public List<Juridica> getJuridicas() {
-        return entityManager()
-                .createQuery("from Juridica")
-                .getResultList();
+        return entityManager().createQuery("from Juridica").getResultList();
     }
 }
