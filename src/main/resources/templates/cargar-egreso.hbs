@@ -1,58 +1,54 @@
-<html>
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Cargar Egreso</title>
-    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
-    </head>
-    <body>
-        <div class="egreso-title">
-            <h1>Welcome Home Ashen One!</h1>
-        </div>
 
-        <div class="egreso-box">
-          <h1>Complete el formulario con la información solicitada</h1>
+{{# partial "titulo" }}
+    <title>Cargar Egreso</title>
+{{/partial}}
+{{# partial "contenido"}}
+          <h1 class="bienvenida">Complete el formulario con la información solicitada</h1>
+          <div class="form-group">
+          
           <form method="POST" name="egreso/">
             <h2>Documento:</h2>
             <label for="documento_tipo">Tipo de Documento</label>
-            <input type="text" name="tipo_documento" placeholder="Tipo de Documento">
+            <input type="text" name="tipo_documento" placeholder="Tipo de Documento" class ="form-control">
             <label for="documento_numero">Numero de Documento</label>
-            <input type="text" name="numero_documento" placeholder="Numero de Documento"><br>
+            <input type="text" name="numero_documento" placeholder="Numero de Documento" class ="form-control"><br>
             <h2>Medio de pago:</h2>
             <label for="metodoDePago-tipo">Tipo de medio de pago</label>
-            <select name="tipoMedioPago">
+            <select name="tipoMedioPago" class= "form-control">
                 <option value="TARJETA_DE_CREDITO">Tarjeta de credito</option>
                 <option value="TARJETA_DE_DEBITO">Tarjeta de debito</option>
                 <option value="EFECTIVO">Efectivo</option>
                 <option value="DINERO_EN_CUENTA">Dinero en cuenta</option>
                 <option value="CAJERO_AUTOMATICO">Cajero automatico</option>
-              </select><br><br>
+              </select><br>
             <label for="documento_id">Identificador</label>
-            <input type="text" name="identificadorMedioPago" placeholder="Identificador"> <br>
+            <input type="text" name="identificadorMedioPago" placeholder="Identificador" class ="form-control"> <br>
             <h2>Proveedor:</h2>
             <label for="nombre_proveedor">Nombre del proveedor</label>
-            <input type="text" name="nombreProveedor" placeholder="Nombre del proveedor"> <br>
+            <input type="text" name="nombreProveedor" placeholder="Nombre del proveedor" class ="form-control"> <br>
             <label for="identificador_proveedor">Identificador del proveedor</label>
-            <input type="text" name="identificadorProveedor" placeholder="Identificador del proveedor"> <br>
+            <input type="text" name="identificadorProveedor" placeholder="Identificador del proveedor" class ="form-control"> <br>
             
                         <label for="calle_proveedor">Calle del proveedor</label>
-            <input type="text" name="calleProveedor" placeholder="Calle del proveedor"> <br>
+            <input type="text" name="calleProveedor" placeholder="Calle del proveedor" class ="form-control"> <br>
                         <label for="altura_proveedor">Altura del proveedor</label>
-            <input type="text" name="alturaProveedor" placeholder="Altura del proveedor"> <br>
+            <input type="text" name="alturaProveedor" placeholder="Altura del proveedor" class ="form-control"> <br>
                         <label for="piso_proveedor">Piso del proveedor</label>
-            <input type="text" name="pisoProveedor" placeholder="Piso del proveedor"> <br>
+            <input type="text" name="pisoProveedor" placeholder="Piso del proveedor" class ="form-control"> <br>
                         <label for="departamento_proveedor">Departamento del proveedor</label>
-            <input type="text" name="departamentoProveedor" placeholder="Departamento del proveedor"> <br>
+            <input type="text" name="departamentoProveedor" placeholder="Departamento del proveedor" class ="form-control"> <br>
                         <label for="cp_proveedor">C&oacutedigo postal del proveedor</label>
-            <input type="text" name="cpProveedor" placeholder="Codigo Postal del proveedor"> <br>
+            <input type="text" name="cpProveedor" placeholder="Codigo Postal del proveedor" class ="form-control"> <br>
                         <label for="pais_proveedor">Pais del proveedor</label>
-            <input type="text" name="paisProveedor" placeholder="Pais del proveedorrrr"> <br>
+            <input type="text" name="paisProveedor" placeholder="Pais del proveedor" class ="form-control"> <br>
                         <label for="provincia_proveedor">Provincia del proveedor</label>
-            <input type="text" name="provinciaProveedor" placeholder="Provincia del proveedor"> <br>
+            <input type="text" name="provinciaProveedor" placeholder="Provincia del proveedor" class ="form-control"> <br>
                         <label for="ciudad_proveedor">Ciudad del proveedor</label>
-            <input type="text" name="ciudadProveedor" placeholder="Ciudad del proveedor"> <br>
+            <input type="text" name="ciudadProveedor" placeholder="Ciudad del proveedor" class ="form-control"> <br>
                                     <label for="fecha_operacion">Fecha de Operaci&oacuten:</label>
-                                    <input type="date" name="fechaOperacion"> <br>
+                                    <input type="date" name="fechaOperacion" class ="form-control"> <br>
        <label for="criterio_validacion">Criterio de validaci&oacuten:</label>
-                                                <select name="criterioValidacion">
+                                                <select name="criterioValidacion" class="form control">
                 <option value="VALIDAR_CANTIDAD_PRESUPUESTOS">Cantidad m&iacutenima de presupuestos</option>
                 <option value="VALIDAR_COMPRA_EN_BASE_A_PRESUPUESTO">Compra en base a un presupuesto</option>
                 <option value="VALIDAR_CRITERIO_PROVEEDOR">Presupuesto m&iacutenimo</option>
@@ -61,6 +57,5 @@
             
           </form>
         </div>
-      </body>
-    </html>
-</html>
+{{/partial}}
+{{> layout.hbs }}
