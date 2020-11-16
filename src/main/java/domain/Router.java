@@ -32,5 +32,16 @@ public class Router {
 		ControllerHome unController = new ControllerHome();
 		Spark.get("entidades-juridicas", unController::verJuridicas);
 		Spark.get("entidades-bases", unController::verBases);
+		
+		/*Spark.before((req, res) -> {
+            if (req.pathInfo().equals("/login")) {
+                return;
+            }
+            if (SessionService.getSessionId(req) == null) {
+                res.redirect("/login");
+            }
+        });*/
 	}
+	
+	
 }

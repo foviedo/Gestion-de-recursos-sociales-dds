@@ -117,6 +117,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		res.redirect("/");
 		return null;
 	//TODO: hacer validaciones varias
+		//TODO: pasar por body esta informacion, no por query params. Lucas consulta por otra manera de hacerlo
 		}
 	
 
@@ -153,8 +154,10 @@ public class ControllerHome implements WithGlobalEntityManager {
 		transaccion.commit();
 		res.redirect("/");
 		return null;
-	}
-	
+	} //TODO: hacer un logout
+	//TODO: ponerle boostrap a la tabla de ver egresos
+	//TODO: hacer andar el css de los que tienen .../:id/...
+	//TODO: que el registro pueda accederse pq me redirige a login
 	public static ModelAndView verPresupuestos(Request req, Response res) {
 		String id = req.params("id");
 		HashMap<String,Object> elMap = new HashMap<>();
