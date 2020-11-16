@@ -49,5 +49,4 @@ public abstract class Entidad extends PersistentEntity {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
 }

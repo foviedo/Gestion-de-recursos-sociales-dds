@@ -84,5 +84,4 @@ public class Juridica extends Entidad {
 	public void setTipoEntidadJuridica(TipoJuridica tipoEntidadJuridica) {
 		this.tipoEntidadJuridica = tipoEntidadJuridica;
 	}
-	
 }
