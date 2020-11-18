@@ -8,7 +8,7 @@ public class Router {
 		HandlebarsTemplateEngine transformer = 
 				new HandlebarsTemplateEngine();
 		Spark.staticFiles.location("/public");
-		
+		//RepositorioOrganizaciones.getInstance().init();
 		//RepositorioEntidadJuridica.getInstance().init();
 		//RepositorioEntidadBase.getInstance().init();
 		Spark.get("/", ControllerHome::index, transformer);		
@@ -28,8 +28,8 @@ public class Router {
 		Spark.get("/presupuesto/:id/item", ControllerHome::agregarItemAlPresupuesto,transformer);
 		Spark.post("/presupuesto/:id/item", ControllerHome::postAgregarItemAlPresupuesto,transformer);
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
-		//Spark.get("/entidades-juridicas/:id_entidad", ControllerHome::verJuridicas, transformer);
-		Spark.get("/entidades-bases/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.get("/entidades-juridicas/:id_entidad", ControllerHome::verUnaJuridica, transformer);
+		Spark.get("/entidades-bases/:id_entidad", ControllerHome::verUnaBase,transformer);
 		Spark.patch("/entidades-juridicas/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 		Spark.patch("/entidades-bases/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);

@@ -1,5 +1,6 @@
 package domain;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -252,12 +253,61 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public String verJuridicas(Request req, Response res) {
-		List<Juridica> listaTodoJuridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
+		List<Juridica> listaJuridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
 		HashMap<String, Object> juridicas = new HashMap<>();
-		juridicas.put("juridicas", listaTodoJuridicas);
+		juridicas.put("juridicas", listaJuridicas);
 		juridicas.put("categorias", RepositorioCategorias.getInstance().getCategorias());
 		ModelAndView modelo = new ModelAndView(juridicas,"mostrar-juridicas.hbs");
 		return new HandlebarsTemplateEngine().render(modelo);
+	}
+	
+	public static ModelAndView verUnaJuridica(Request req, Response res) {
+		Long entidadJuridicaId = Long.parseLong(req.params(":id_entidad"));
+		Optional<String> existeEntidad = null;
+		Juridica entidadAMostrar = RepositorioEntidadJuridica.getInstance().getJuridica(entidadJuridicaId);
+		if(entidadAMostrar == null) {
+			if(RepositorioEntidadBase.getInstance().getBase(entidadJuridicaId) != null) {
+				res.redirect("/entidades-bases/"+RepositorioEntidadBase.getInstance().getBase(entidadJuridicaId).getId().toString());
+			}
+		}else{
+			existeEntidad = Optional.of("Existe la entidad juridica");
+		}
+		HashMap<String, Object> juridica = new HashMap<>();
+		long organizacion = RepositorioOrganizaciones.getInstance().getOrganizacion(entidadJuridicaId);
+		juridica.put("nombreFicticio",entidadAMostrar.getNombreFicticio());
+		juridica.put("razonSocial", entidadAMostrar.getRazonSocial());
+		juridica.put("cuit", entidadAMostrar.getCuit());
+		juridica.put("codInscripcion", entidadAMostrar.getCodInscripcion());
+		juridica.put("existeEntidad", existeEntidad.isPresent());
+		juridica.put("idOrg", organizacion);
+		juridica.put("tipoEntidadJuridica", entidadAMostrar.getTipoEntidadJuridica());
+		juridica.put("categoria", entidadAMostrar.getCategoria());
+		return new ModelAndView(juridica,"ver-juridica.hbs");
+	}
+	
+	public static ModelAndView verUnaBase(Request req, Response res) {
+		Long entidadBaseId = Long.parseLong(req.params(":id_entidad"));
+		Optional<String> existeEntidad = null;
+		Base entidadAMostrar = RepositorioEntidadBase.getInstance().getBase(entidadBaseId);
+		if(entidadAMostrar == null) {
+			if(RepositorioEntidadJuridica.getInstance().getJuridica(entidadBaseId) != null) {
+				res.redirect("/entidades-juridicas/"+RepositorioEntidadJuridica.getInstance().getJuridica(entidadBaseId).getId().toString());
+			}
+		}else {
+			existeEntidad = Optional.of("Existe la entidad base");
+		}
+		HashMap<String, Object> base = new HashMap<>();
+		long organizacion = RepositorioOrganizaciones.getInstance().getOrganizacion(entidadBaseId);
+		long juridicaId = RepositorioEntidadBase.getInstance().getJuridica(entidadBaseId);
+		Juridica juridicaAsociada = RepositorioEntidadJuridica.getInstance().getJuridica(juridicaId);
+		base.put("categoria",entidadAMostrar.getCategoria());
+		base.put("descripcion",entidadAMostrar.getDescripcion());
+		base.put("nombreFicticio",entidadAMostrar.getNombreFicticio());
+		base.put("nombreJuridica", juridicaAsociada.getNombreFicticio());
+		base.put("existeEntidad", existeEntidad.isPresent());
+		base.put("idOrg",organizacion);
+		base.put("idJuridica", juridicaAsociada.getId());
+		return new ModelAndView(base,"ver-base.hbs");
 	}
 	
 	public String verBases(Request req, Response res){
