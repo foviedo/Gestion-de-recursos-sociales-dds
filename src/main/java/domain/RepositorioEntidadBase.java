@@ -1,9 +1,11 @@
 package domain;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -40,4 +42,15 @@ public class RepositorioEntidadBase extends AbstractPersistenceTest implements W
 	    public List<Base> getBase() {
 	    	return entityManager().createQuery("from Base").getResultList();
 	    }
+
+		public Base getBase(long entidadBaseId) {
+			return entityManager().find(Base.class, entidadBaseId);
+		}
+
+		public long getJuridica(Long entidadBaseId) {
+			Query query = entityManager().createNativeQuery("SELECT id_juridica FROM base WHERE id_entidad_madre = :idBase");
+			query.setParameter("idBase", entidadBaseId);
+			BigInteger id = (BigInteger) query.getSingleResult();
+			return id.longValue();
+		}
 }

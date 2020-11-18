@@ -1,0 +1,30 @@
+{{# partial "titulo" }}
+    <title>{{ nombreFicticio }}</title>
+{{/partial}}
+
+{{# partial "contenido" }}
+	
+		<table class="table table-hover">
+			<thead class = "thead-dark">
+				<tr>
+					<th scope="col">Razon social</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Tipo de jurídica</th>
+					<th scope="col"> Cuit</th>
+					<th scope="col"> ID organizacion </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> {{ razonSocial }} </td>
+					<td> {{ categoria.nombre }} </td>
+					<td> {{ tipoEntidadJuridica }} </td>
+					<td> {{ cuit }} </td>
+					<td> {{ idOrg }} </td>
+				</tr>
+			</tbody>
+		</table>
+
+{{/partial}}
+
+{{> layout.hbs }}

@@ -5,6 +5,8 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+
+import java.math.BigInteger;
 import java.util.List;
 
 public class RepositorioEntidadJuridica extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -49,4 +51,8 @@ public class RepositorioEntidadJuridica extends AbstractPersistenceTest implemen
     public List<Juridica> getJuridicas() {
         return entityManager().createQuery("from Juridica").getResultList();
     }
+
+	public Juridica getJuridica(long juridicaId) {
+		return entityManager().find(Juridica.class, juridicaId);
+	}
 }
