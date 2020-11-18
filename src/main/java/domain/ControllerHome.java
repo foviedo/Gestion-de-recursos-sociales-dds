@@ -294,6 +294,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		juridica.put("idOrg", organizacion);
 		juridica.put("tipoEntidadJuridica", entidadAMostrar.getTipoEntidadJuridica());
 		juridica.put("categoria", entidadAMostrar.getCategoria());
+		juridica.put("direccionPostal", entidadAMostrar.getDireccionPostal());
 		return new ModelAndView(juridica,"ver-juridica.hbs");
 	}
 	
