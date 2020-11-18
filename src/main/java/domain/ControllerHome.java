@@ -66,7 +66,13 @@ public class ControllerHome implements WithGlobalEntityManager {
 
 		return null;
 	}
-	
+
+	public static ModelAndView logout(Request req, Response res){
+		SessionService.removeSessionId(req);
+		res.redirect("/login");
+		return null;
+	}
+
 	public static ModelAndView registro(Request req, Response res){
 		return new ModelAndView(null, "registro.hbs");
 	}
