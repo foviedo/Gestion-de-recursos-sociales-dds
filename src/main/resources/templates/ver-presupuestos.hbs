@@ -1,39 +1,32 @@
-<html>
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Monstrar egresos</title>
-    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
-    </head>
-    <body>
-        <div class="egreso-title">
-            <h1>Welcome Home Ashen One!</h1>
-        </div>
 
-        <div class="lista-egreso-box">
-                  <h1>Lista de egresos</h1>
+{{# partial "titulo" }}
+    <title>Presupuestos del egreso {{id}}</title>
+{{/partial}}
+{{# partial "contenido"}}
+        <div>
+                  <h1 class = "bienvenida">Lista de presupuestos</h1>
     
-          		<table>
+          		<table class="table table-hover">
 			<tr>
-				<th> detalle </th>
-				<th> Ver items </th>
+				<th scope="col"> detalle </th>
+				<th scope="col"> Ver items </th>
 				
 			</tr>
 			{{#each presupuestos}}
 			<tr>
 				<td> {{ detalle }} </td>
-				<td> <a href="/presupuesto/{{ id }}/item">Ver items</a> </td>
+				<td> <a href="/presupuesto/{{ id }}/item" class="btn btn-primary">Ver items</a> </td>
 				
 			</tr>
 			{{/each}}
 			</table>
 			<h2>Cargar nuevo presupuesto </h1>
           <form method="POST" name="egresos/{{ id }}/presupuesto">
-                        <h2>Item:</h2>
             <label for="detalle_presupuesto">Detalle del presupuesto</label>
-            <input type="text" name="detalle_presupuesto" placeholder="Detalle del presupuesto">
+            <input type="text" name="detalle_presupuesto" placeholder="Detalle del presupuesto" class ="form-control">
 
                  <input type="submit" value="Confirmar"> <br>
           </form>
         </div>
-      </body>
-    </html>
-</html>
+{{/partial}}
+{{> layout.hbs }}

@@ -1,19 +1,14 @@
-<html>
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Monstrar etiquetas</title>
-    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
-    </head>
-    <body>
-        <div class="egreso-title">
-            <h1>Welcome Home Ashen One!</h1>
-        </div>
 
-        <div class="lista-egreso-box">
-                  <h1>Lista de etiquetas</h1>
+{{# partial "titulo" }}
+    <title>Ver etiquetas del egreso {{id}}</title>
+{{/partial}}
+{{# partial "contenido"}}
+        <div>
+                  <h1 class="bienvenida">Lista de etiquetas</h1>
     
-          		<table>
+          		<table class= "table table-hover">
 			<tr>
-				<th> nombre </th>
+				<th scope="col"> nombre </th>
 				
 			</tr>
 			{{#each etiquetas}}
@@ -23,15 +18,13 @@
 			</tr>
 			{{/each}}
 			</table>
-			<h2>Cargar nueva etiqueta </h1>
+			<h2>Cargar nueva etiqueta </h2>
           <form method="POST" name="egresos/{{ id }}/etiqueta">
-                        <h2>Etiqueta:</h2>
             <label for="etiqueta">Etiqueta</label>
-            <input type="text" name="etiqueta" placeholder="Etiqueta">
+            <input type="text" name="etiqueta" placeholder="Etiqueta" class ="form-control">
 
                  <input type="submit" value="Confirmar"> <br>
           </form>
         </div>
-      </body>
-    </html>
-</html>
+{{/partial}}
+{{> layout.hbs }}

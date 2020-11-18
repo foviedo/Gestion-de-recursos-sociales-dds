@@ -1,21 +1,16 @@
-<html>
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    <title>Cargar Item</title>
-    <link rel="stylesheet" href="form-cargar-egreso/css/master.css">
-    </head>
-    <body>
-        <div class="egreso-title">
-            <h1>Welcome Home Ashen One!</h1>
-        </div>
 
-        <div class="egreso-box">
-                                  <h1>Lista de items</h1>
+{{# partial "titulo" }}
+    <title>Items de presupuesto {{id}}</title>
+{{/partial}}
+{{# partial "contenido"}}
+        <div>
+                                  <h1 class="bienvenida">Lista de items</h1>
     
-          		<table>
+          		<table  class= "table table-hover">
 			<tr>
-								<th> descripcion </th>
-								<th> monto </th>
-												<th> moneda </th>
+								<th scope="col"> descripcion </th>
+								<th scope="col"> monto </th>
+												<th scope="col"> moneda </th>
 								
 				
 				
@@ -35,21 +30,19 @@
           <form method="POST" name="presupuestos/{{id}}/item">
             <h2>Item:</h2>
             <label for="descripcion_item">Descripcion del item</label>
-            <input type="text" name="descripcion_item" placeholder="Descripcion del item">
+            <input type="text" name="descripcion_item" placeholder="Descripcion del item" class ="form-control">
             <label for="costo_item">Costo del item</label>
-            <input type="text" name="costo_item" placeholder="Costo del item"><br>
+            <input type="text" name="costo_item" placeholder="Costo del item" class ="form-control"><br>
             <h2>Moneda:</h2>
                  <label for="id_moneda">Id de monenda</label>
-            <input type="text" name="id_moneda" placeholder="Id de Moneda">
+            <input type="text" name="id_moneda" placeholder="Id de Moneda" class ="form-control">
                             <label for="descripcion_moneda">Descripcion de monenda</label>
-            <input type="text" name="descripcion_moneda" placeholder="Descripcion de Moneda">
+            <input type="text" name="descripcion_moneda" placeholder="Descripcion de Moneda" class ="form-control">
                        <label for="simbolo_moneda">Simbolo de monenda</label>
-            <input type="text" name="simbolo_moneda" placeholder="Simbolo de Moneda">
-            <input style="visibility:hidden" type="text" name="id" value = {{ id }}><br>
+            <input type="text" name="simbolo_moneda" placeholder="Simbolo de Moneda" class ="form-control">
                  <input type="submit" value="Confirmar"> <br>
             
           </form>
         </div>
-      </body>
-    </html>
-</html>
+{{/partial}}
+{{> layout.hbs }}
