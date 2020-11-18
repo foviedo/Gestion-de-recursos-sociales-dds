@@ -1,23 +1,58 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Formulario de ingreso</title>
-    <link rel="stylesheet" href="form-ingreso/css/master.css">
-  </head>
-  <body>
-
-    <div class="login-box">
-      <img src="form-ingreso\img\download.jpg" class="avatar" alt="Avatar Image">
-      <h1>Registrarse en el sistema</h1>
-      <form method="POST" action="/registro">
-        <!-- USERNAME INPUT -->
-        <label for="username">Nombre de usuario</label>
-        <input type="text" name = "usuario" placeholder="Ingrese su nombre de Usuario">
-        <!-- PASSWORD INPUT -->
-        <label for="password">Contraseña</label>
-        <input type="password" name = "password" placeholder="Ingrese su Contraseña">
-        <input type="submit" value="Registrarse">
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="mensaje">
     </div>
-  </body>
+    <form id="form" name="form" class="px-4 py-3">
+        <h1><span class="badge badge-secondary col-lg-6">Registrarse en el sistema</span></h1>
+        <div class="form-group col-lg-6">
+            <label for="exampleDropdownFormEmail1">Nombre de usuario</label>
+            <input type="text" class="form-control" id="usuario" name="usuario" required>
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="exampleDropdownFormEmail1">Constraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="exampleDropdownFormEmail1">Confirmar contraseña</label>
+            <input type="password" class="form-control" id="passwordConfirm" required>
+        </div>
+        <button type="button" id="button" class="btn btn-primary col-lg-6">Registrarse</button>
+    </form>
+</div>
+
+<script>
+    $("#button").on("click", function() {
+        if($("#password").val()!=$("#passwordConfirm").val()) {
+            alert("Passwords do not match");
+            return false;
+        }
+
+        var usuario = $('#usuario').val();
+        var password = $('#password').val();
+
+        var data = {'usuario': usuario, 'password': password};
+
+        $.ajax({
+            url: '/registro',
+            type:'POST',
+            data: data,
+            success: function(result) {
+                $("#mensaje").html(result);
+            },
+            error: function (error) {
+                alert("Se ha producido un error inesperado, intente más tarde");
+            }
+        });
+    })
+</script>
+
+</body>
 </html>

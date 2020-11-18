@@ -1,24 +1,23 @@
 package domain;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import domain.validacionDeEgresos.Validacion;
+import exception.PasswordInvalidoException;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 import spark.template.handlebars.HandlebarsTemplateEngine;
-import spark.TemplateEngine;
 
 public class ControllerHome implements WithGlobalEntityManager {
 	public static ModelAndView index(Request req, Response res) {
@@ -73,25 +72,32 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public static ModelAndView postRegistro (Request req, Response res) {
-		String user = req.queryParams("usuario");
-		String password = req.queryParams("password");
+		List<NameValuePair> pairs = URLEncodedUtils.parse(req.body(), Charset.defaultCharset());
+
 		try {
-			Optional<Usuario> usuario = RepositorioUsuarios.getInstance().getUsuario(user);
+			Optional<Usuario> usuario = RepositorioUsuarios.getInstance().getUsuario(pairs.get(0).getValue());
 			if (usuario.isPresent() ) {
-				req.session(true);
-				res.redirect("/registro");
+				Map<String, Object> model = new HashMap<>();
+				model.put("message", "El usuario que intenta agregar ya existe, pruebe de nuevo con un usuario distinto");
+				model.put("icon", "&#10060");
+				return new ModelAndView(model, "mensaje.hbs");
 			} else {
-				Usuario unUser = new Usuario(user,password);
-				RepositorioUsuarios.getInstance().guardarUsuario(unUser);
-				res.redirect("/login");
+				Usuario nuevoUsuario = new Usuario(pairs.get(0).getValue(), pairs.get(1).getValue());
+				RepositorioUsuarios.getInstance().guardarUsuario(nuevoUsuario);
+				Map<String, Object> model = new HashMap<>();
+				model.put("message", "Usted se ha registrado correctamente");
+				model.put("icon", "&#9989");
+				return new ModelAndView(model, "mensaje.hbs");
 			}
-
-			return null;
-		} catch(Exception exception) {
-			res.redirect("/registro");
+		} catch(PasswordInvalidoException e) {
+			Map<String, Object> model = new HashMap<>();
+			model.put("message", "La contraseña que acaba de ingresar no es segura, pruebe ingresando otra");
+			model.put("icon", "&#10060");
+			return new ModelAndView(model, "mensaje.hbs");
+		} catch (Exception exception) {
+			res.status(500);
+			return new ModelAndView(null, "");
 		}
-
-		return null;
 	}
 	
 	public static ModelAndView home(Request req, Response res){
