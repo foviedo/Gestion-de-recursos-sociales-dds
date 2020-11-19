@@ -236,19 +236,30 @@ public class ControllerHome implements WithGlobalEntityManager {
 	}
 	
 	public static ModelAndView verEntidades(Request req, Response res) {
+		System.out.println("aaaa");
 		String categoria = req.queryParams("categoria");
 		List<Juridica> juridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
 		List<Base> bases = RepositorioEntidadBase.getInstance().getBase();
+		System.out.println("aaaa");
+
 		if(categoria != null) {
+			System.out.println("aaaa1");
+
 			if(!categoria.isEmpty()){	
+				System.out.println("aaaa1");
+
 				juridicas = juridicas.stream().filter((x) -> x.getCategoria().getNombre().equals(categoria)).collect(Collectors.toList());
 				bases = bases.stream().filter((x)-> x.getCategoria().getNombre().equals(categoria)).collect(Collectors.toList());
 				System.out.println("TODO MAL");
 			}
 		}
+		System.out.println("aaaa2");
+
 		HashMap<String, Object> entidades = new HashMap<>();
 		entidades.put("juridicas",juridicas);
 		entidades.put("bases", bases);
+		System.out.println("aaaa2");
+
 		return new ModelAndView(entidades, "ver-entidades.hbs");
 	}
 	

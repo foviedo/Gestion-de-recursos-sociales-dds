@@ -12,7 +12,7 @@ public class Router {
 		HandlebarsTemplateEngine transformer = 
 				new HandlebarsTemplateEngine();
 		Spark.staticFiles.location("/public");
-		//RepositorioOrganizaciones.getInstance().init();
+		RepositorioOrganizaciones.getInstance().init();
 		Spark.get("/", ControllerHome::index, transformer);		
 		Spark.get("/login", ControllerHome::show, transformer);
 		Spark.post("/login", ControllerHome::login, transformer);
@@ -43,9 +43,14 @@ public class Router {
 			if (req.pathInfo().equals("/login")) {
 				return;
 			}
-			if (SessionService.getSessionId(req) == null) {
-				res.redirect("/login");
+			if (req.pathInfo().equals("/registro")) {
+				return;
+			} else {
+				if (SessionService.getSessionId(req) == null) {
+					res.redirect("/login");
+				}
 			}
+
 		});
 	}
 }
