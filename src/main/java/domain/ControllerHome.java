@@ -264,25 +264,16 @@ public class ControllerHome implements WithGlobalEntityManager {
 		return new ModelAndView(entidades, "ver-entidades.hbs");
 	}
 	
-	public String verJuridicas(Request req, Response res) {
-		List<Juridica> listaJuridicas = RepositorioEntidadJuridica.getInstance().getJuridicas();
-		HashMap<String, Object> juridicas = new HashMap<>();
-		juridicas.put("juridicas", listaJuridicas);
-		juridicas.put("categorias", RepositorioCategorias.getInstance().getCategorias());
-		ModelAndView modelo = new ModelAndView(juridicas,"mostrar-juridicas.hbs");
-		return new HandlebarsTemplateEngine().render(modelo);
-	}
-	
 	public static ModelAndView verUnaJuridica(Request req, Response res) {
 		Long entidadJuridicaId = Long.parseLong(req.params(":id_entidad"));
-		Optional<String> existeEntidad = null;
 		Juridica entidadAMostrar = RepositorioEntidadJuridica.getInstance().getJuridica(entidadJuridicaId);
 		if(entidadAMostrar == null) {
 			if(RepositorioEntidadBase.getInstance().getBase(entidadJuridicaId) != null) {
 				res.redirect("/entidades-bases/"+RepositorioEntidadBase.getInstance().getBase(entidadJuridicaId).getId().toString());
 			}
-		}else{
-			existeEntidad = Optional.of("Existe la entidad juridica");
+			else{
+				return ControllerHome.devolverErrorEntidad();
+			}
 		}
 		HashMap<String, Object> juridica = new HashMap<>();
 		long organizacion = RepositorioOrganizaciones.getInstance().getOrganizacion(entidadJuridicaId);
@@ -290,7 +281,6 @@ public class ControllerHome implements WithGlobalEntityManager {
 		juridica.put("razonSocial", entidadAMostrar.getRazonSocial());
 		juridica.put("cuit", entidadAMostrar.getCuit());
 		juridica.put("codInscripcion", entidadAMostrar.getCodInscripcion());
-		juridica.put("existeEntidad", existeEntidad.isPresent());
 		juridica.put("idOrg", organizacion);
 		juridica.put("tipoEntidadJuridica", entidadAMostrar.getTipoEntidadJuridica());
 		juridica.put("categoria", entidadAMostrar.getCategoria());
@@ -300,14 +290,13 @@ public class ControllerHome implements WithGlobalEntityManager {
 	
 	public static ModelAndView verUnaBase(Request req, Response res) {
 		Long entidadBaseId = Long.parseLong(req.params(":id_entidad"));
-		Optional<String> existeEntidad = null;
 		Base entidadAMostrar = RepositorioEntidadBase.getInstance().getBase(entidadBaseId);
 		if(entidadAMostrar == null) {
 			if(RepositorioEntidadJuridica.getInstance().getJuridica(entidadBaseId) != null) {
 				res.redirect("/entidades-juridicas/"+RepositorioEntidadJuridica.getInstance().getJuridica(entidadBaseId).getId().toString());
+			}else{
+				return ControllerHome.devolverErrorEntidad();
 			}
-		}else {
-			existeEntidad = Optional.of("Existe la entidad base");
 		}
 		HashMap<String, Object> base = new HashMap<>();
 		long organizacion = RepositorioOrganizaciones.getInstance().getOrganizacion(entidadBaseId);
@@ -317,48 +306,40 @@ public class ControllerHome implements WithGlobalEntityManager {
 		base.put("descripcion",entidadAMostrar.getDescripcion());
 		base.put("nombreFicticio",entidadAMostrar.getNombreFicticio());
 		base.put("nombreJuridica", juridicaAsociada.getNombreFicticio());
-		base.put("existeEntidad", existeEntidad.isPresent());
 		base.put("idOrg",organizacion);
 		base.put("idJuridica", juridicaAsociada.getId());
 		return new ModelAndView(base,"ver-base.hbs");
 	}
 	
-	public String verBases(Request req, Response res){
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		EntityTransaction transaccion = em.getTransaction();
-		Base base1 = new Base("ycomoescell","que pasara cuando te absorba a ti");
-		Base base2 = new Base("entidadBaseGenerica88","descripcionGenerica89");
-		Categoria cat3 = new Categoria(null,"monotributista");
-		Categoria cat4 = new Categoria(null, "multitributista");
-		base1.setCategoria(cat3);
-		base2.setCategoria(cat4);
-		transaccion.begin();
-		em.persist(cat3);
-		em.persist(cat4);
-		em.persist(base1);
-		em.persist(base2);
-		transaccion.commit();
-		String filtro = req.queryParams("nombre_categoria");
-		TypedQuery<Base> queryBasesFiltradas;
-		if(filtro == null || filtro == ""){
-			queryBasesFiltradas = em.createQuery("FROM Base b" ,Base.class);
-		}else{
-		queryBasesFiltradas = em.createQuery("FROM Base b WHERE b.categoria.nombre LIKE :nombre_categoria" ,Base.class);
-		queryBasesFiltradas.setParameter("nombre_categoria",filtro);
-		}
-		List<Base> listaTodoJuridicas = queryBasesFiltradas.getResultList();
-		HashMap<String, Object> bases = new HashMap<>();
-		bases.put("bases", listaTodoJuridicas);
-		ModelAndView modelo = new ModelAndView(bases,"mostrar-bases.hbs");
-		return new HandlebarsTemplateEngine().render(modelo);
+	private static ModelAndView devolverErrorEntidad() {
+		return new ModelAndView(null,"entidad-erronea.hbs");
 	}
 	
-	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
+	public static ModelAndView cambiarCategoriaDeEntidad1(Request req, Response res) {
 		Long entidadJuridicaId = Long.parseLong(req.params(":entidadJuridicaId"));
 		Long categoriaId = Long.parseLong(req.params(":categoriaId"));
 		RepositorioEntidadJuridica.getInstance().modificarCategoria(entidadJuridicaId, categoriaId);
 		HashMap<String, Object> viewModel = new HashMap<>();
 		return new ModelAndView(viewModel,"home.hbs");
+	}
+	
+	public static ModelAndView cambiarCategoriaDeEntidad(Request req, Response res) {
+		Long entidadId = Long.parseLong(req.params(":entidadId"));
+		Long categoriaId = Long.parseLong(req.params(":categoriaId"));
+		if(RepositorioEntidadBase.getInstance().getBase(entidadId) != null) {
+			RepositorioEntidadBase.getInstance().modificarCategoria(entidadId, categoriaId);
+			res.redirect("/entidades-bases/"+entidadId.toString());
+		}
+		if(RepositorioEntidadJuridica.getInstance().getJuridica(entidadId) != null) {
+			RepositorioEntidadJuridica.getInstance().modificarCategoria(entidadId, categoriaId);
+			res.redirect("/entidades-juridicas/"+entidadId.toString());
+		}
+		else {
+			return ControllerHome.devolverErrorEntidad();
+		}
+		
+		return null;
+		
 	}
 }
 

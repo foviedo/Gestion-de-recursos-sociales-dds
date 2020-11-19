@@ -53,4 +53,13 @@ public class RepositorioEntidadBase extends AbstractPersistenceTest implements W
 			BigInteger id = (BigInteger) query.getSingleResult();
 			return id.longValue();
 		}
+
+		public void modificarCategoria(Long entidadBaseId, Long categoriaId) {
+		    Base base = entityManager().find(Base.class, entidadBaseId);
+		    Categoria categoria = entityManager().find(Categoria.class, categoriaId);
+		    base.setCategoria(categoria);
+		    withTransaction(() -> {
+		    entityManager().persist(base);
+		    });
+		}
 }

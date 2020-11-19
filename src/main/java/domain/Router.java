@@ -31,9 +31,8 @@ public class Router {
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
 		Spark.get("/entidades-juridicas/:id_entidad", ControllerHome::verUnaJuridica, transformer);
 		Spark.get("/entidades-bases/:id_entidad", ControllerHome::verUnaBase,transformer);
-		Spark.patch("/entidades-juridicas/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-		Spark.patch("/entidades-bases/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-		Spark.put("/entidades-juridicas/:id_entidad", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.post("/entidades-juridicas/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.post("/entidades-bases/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
 		ControllerHome unController = new ControllerHome();
 		/*Spark.before((req, res) -> {
 			if (req.pathInfo().equals("/login")) {
