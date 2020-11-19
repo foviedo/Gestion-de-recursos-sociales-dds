@@ -3,7 +3,6 @@ import javax.persistence.*;
 @Entity
 @PrimaryKeyJoinColumn(name = "id_entidad_madre" )
 public class Base extends Entidad {
-	String nombreFicticio;
 	String descripcion;
 	Base(String nombreFicticio, String descripcion) {
 		this.nombreFicticio = nombreFicticio;
@@ -17,13 +16,6 @@ public class Base extends Entidad {
 	
 	public Base(){
 		
-	}
-	
-	public String getNombreFicticio() {
-		return nombreFicticio;
-	}
-	public void setNombreFicticio(String nombreFicticio) {
-		this.nombreFicticio = nombreFicticio;
 	}
 	public String getDescripcion() {
 		return descripcion;

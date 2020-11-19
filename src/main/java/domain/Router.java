@@ -1,5 +1,9 @@
 package domain;
 
+import static spark.Spark.after;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -9,8 +13,6 @@ public class Router {
 				new HandlebarsTemplateEngine();
 		Spark.staticFiles.location("/public");
 		//RepositorioOrganizaciones.getInstance().init();
-		//RepositorioEntidadJuridica.getInstance().init();
-		//RepositorioEntidadBase.getInstance().init();
 		Spark.get("/", ControllerHome::index, transformer);		
 		Spark.get("/login", ControllerHome::show, transformer);
 		Spark.post("/login", ControllerHome::login, transformer);
@@ -31,16 +33,19 @@ public class Router {
 		Spark.get("/entidades", ControllerHome::verEntidades, transformer);
 		Spark.get("/entidades-juridicas/:id_entidad", ControllerHome::verUnaJuridica, transformer);
 		Spark.get("/entidades-bases/:id_entidad", ControllerHome::verUnaBase,transformer);
-		Spark.post("/entidades-juridicas/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-		Spark.post("/entidades-bases/:entidadJuridicaId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
-		ControllerHome unController = new ControllerHome();
-		/*Spark.before((req, res) -> {
+		Spark.post("/entidades-juridicas/:entidadId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		Spark.post("/entidades-bases/:entidadId/categoria/:categoriaId", ControllerHome::cambiarCategoriaDeEntidad,transformer);
+		after((request, response) -> {
+            PerThreadEntityManagers.getEntityManager();
+            PerThreadEntityManagers.closeEntityManager();
+        });
+		Spark.before((req, res) -> {
 			if (req.pathInfo().equals("/login")) {
 				return;
 			}
 			if (SessionService.getSessionId(req) == null) {
 				res.redirect("/login");
 			}
-		});*/
+		});
 	}
 }

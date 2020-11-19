@@ -8,7 +8,6 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "id_entidad_madre" )
 public class Juridica extends Entidad {
 	String razonSocial;
-	String nombreFicticio;
 	int cuit;
 	String direccionPostal;
 	int codInscripcion;

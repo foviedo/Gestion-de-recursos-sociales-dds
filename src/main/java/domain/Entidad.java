@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public abstract class Entidad extends PersistentEntity {
 	protected List<Egreso> egresos = new ArrayList<>();
 	@ManyToOne
 	protected Categoria categoria;
+	String nombreFicticio;
 	
 	public Reporte generarReporte(String etiqueta) {
 		List<Egreso> egresosEtiquetados = egresos.stream().filter(unEgreso-> unEgreso.contieneEtiqueta(etiqueta)).collect(Collectors.toList());
@@ -48,5 +50,20 @@ public abstract class Entidad extends PersistentEntity {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public String getNombreFicticio() {
+		return nombreFicticio;
+	}
+	public void setNombreFicticio(String nombreFicticio) {
+		this.nombreFicticio = nombreFicticio;
+	}
+	
+	public HashMap<String,Object> agregarmeAHashmap(HashMap<String,Object> mapa, long idOrganizacion){
+		mapa.put("nombreFicticio",this.getNombreFicticio());
+		mapa.put("categoria", this.getCategoria());
+		mapa.put("idOrg", idOrganizacion);
+		mapa.put("id", this.getId());
+		return mapa;
 	}
 }
