@@ -16,7 +16,11 @@ public enum Validacion {
 		@Override
 		public boolean esValido(Egreso unEgreso) {
 			//return unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> unEgreso.getListaDeItems().equals(unPresupuesto.getListaItems())); // Se puede delegar
-			return unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> this.coinciden(unEgreso.getListaDeItems(),unPresupuesto.getListaItems()));
+			boolean resultado = unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> this.coinciden(unEgreso.getListaDeItems(),unPresupuesto.getListaItems()));
+			if(!resultado) {
+				System.out.println("fallo en 2");
+			}
+			return resultado;
 		}
 		public boolean coinciden(List<Item> listaEgreso, List<Item> listaPresupuesto) {
 			boolean primerCond = listaEgreso.stream().allMatch(unItemDeEgreso -> listaPresupuesto.stream()
@@ -30,7 +34,11 @@ public enum Validacion {
 		public boolean esValido(Egreso unEgreso) {
 			double minimoPresupuesto = unEgreso.getPresupuestos().stream()
 					.mapToDouble(unPresupuesto -> unPresupuesto.total()).min().getAsDouble();
-			return minimoPresupuesto == unEgreso.getMontoTotal();
+			boolean resultado =  minimoPresupuesto == unEgreso.getMontoTotal();
+			if (!resultado) {
+				System.out.println("fallo en 3");
+			}
+			return resultado;
 		}
 	};
 	public abstract boolean esValido(Egreso unEgreso);

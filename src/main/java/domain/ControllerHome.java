@@ -1,13 +1,11 @@
 package domain;
 
 import java.nio.charset.Charset;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
 import domain.validacionDeEgresos.Validacion;
 import exception.PasswordInvalidoException;
 import org.apache.http.NameValuePair;
@@ -18,7 +16,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import java.util.stream.Collectors;
-import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class ControllerHome implements WithGlobalEntityManager {
 	public static ModelAndView index(Request req, Response res) {
@@ -157,10 +154,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		transaccion.commit();
 		res.redirect("/");
 		return null;
-	} //TODO: hacer un logout
-	//TODO: ponerle boostrap a la tabla de ver egresos
-	//TODO: hacer andar el css de los que tienen .../:id/...
-	//TODO: que el registro pueda accederse pq me redirige a login
+	} 
 	public static ModelAndView verPresupuestos(Request req, Response res) {
 		String id = req.params("id");
 		HashMap<String,Object> elMap = new HashMap<>();

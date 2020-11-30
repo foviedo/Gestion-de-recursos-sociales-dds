@@ -10,7 +10,7 @@ public class Usuario extends PersistentEntity {
     private String usuario;
     private String password;
     @Transient
-    public List<Egreso> bandejaDeEntrada;
+    public List<Egreso> bandejaDeEntrada = new ArrayList<>();
 
     public Usuario(String usuario, String password) {
         this.usuario = usuario;

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -9,21 +10,25 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 public class RepositorioEgresos implements WithGlobalEntityManager {
 	static final RepositorioEgresos INSTANCE = new RepositorioEgresos();
-	//List<Egreso> todosLosEgresos = new ArrayList<Egreso>();
 	EntityTransaction transaction = entityManager().getTransaction();
+
 	List<Egreso> getTodosLosEgresos(){
 		return entityManager().createQuery("from Egreso",Egreso.class).getResultList();
 	}
 	
-	public List<Egreso> egresosSinValidar(){
-		return entityManager().createQuery("from Egreso where estadoValidacion = 'SIN_VALIDAR'",Egreso.class).getResultList();
-		//return todosLosEgresos.stream().filter(Egreso::estoySinValidar).collect(Collectors.toList());
+	public List<Egreso> egresosSinValidar(EntityManager unEntity){
+		EntityTransaction transaction = unEntity.getTransaction();
+		transaction.begin();
+		List<Egreso> losEgresos = unEntity.createQuery("from Egreso where estadoValidacion = 'SIN_VALIDAR'",Egreso.class).getResultList();
+		transaction.commit();
+		losEgresos.forEach(unEgreso -> unEgreso.instanciaTuValidador());
+		return losEgresos;
 	}
-	void agregarEgreso(Egreso unEgreso) {
+	public void agregarEgreso(Egreso unEgreso) {
+		EntityTransaction transaction = entityManager().getTransaction();
 		transaction.begin();
 		entityManager().persist(unEgreso);
 		transaction.commit();
-		//todosLosEgresos.add(unEgreso);
 	}
 	
 	private RepositorioEgresos() {

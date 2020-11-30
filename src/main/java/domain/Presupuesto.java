@@ -9,7 +9,7 @@ public class Presupuesto extends PersistentEntity {
 
 
 	String detalle;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="id_presupuesto")
 	List<Item> items = new ArrayList<Item>();
 

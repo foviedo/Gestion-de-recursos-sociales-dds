@@ -56,6 +56,10 @@ public class Egreso extends PersistentEntity {
 	};
 	
 	
+	void instanciaTuValidador() {
+		this.validador = new ValidadorDeEgresos(criterio);
+	}
+	
 	List<String> getEtiquetas(){
 		return etiquetas;
 	}
@@ -122,13 +126,18 @@ public class Egreso extends PersistentEntity {
 	}
 
 	public Boolean tenesLosPresupuestosSuficientes() {
-		return cantidadPresupuestosNecesarios == presupuestos.size();
+		if(cantidadPresupuestosNecesarios >= presupuestos.size()) { //TODO: borrar esto
+			System.out.println("fallo en 1");
+		}
+		
+		return cantidadPresupuestosNecesarios >= presupuestos.size();
 	}
 	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
 		cantidadPresupuestosNecesarios = unaCant;
 	}
 	public void validarme() {
-		this.validador.validar(this);
+		this.validador
+		.validar(this);
 	}
 	public boolean estoySinValidar() {
 		return estadoValidacion == EstadoEgreso.SIN_VALIDAR;

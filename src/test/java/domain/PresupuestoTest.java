@@ -2,16 +2,12 @@ package domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import static org.mockito.Mockito.mock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.mockito.runners.MockitoJUnitRunner;
 import domain.validacionDeEgresos.Validacion;
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class PresupuestoTest {
 	private Item item1;
 	private Item item2;
@@ -34,14 +30,14 @@ public class PresupuestoTest {
 
 	@Before
 	public void setup() {
-		unaMoneda = new Moneda();
+		unaMoneda = new Moneda("57", "otra moneda normal", "$");
 		item1 = new Item("desc1",unaMoneda, 10);
 		item2 = new Item("desc2",unaMoneda, 20);
 		item3 = new Item("desc3",unaMoneda, 30);
 		item4 = new Item("desc4",unaMoneda, 40);
 		unDocumento = new Documento("factura",123);
 		unMedioDePago = new MedioDePago(TipoMedioDePago.DINERO_EN_CUENTA,"127");
-		unaDireccionPostal = mock(DireccionPostal.class);
+		unaDireccionPostal = new DireccionPostal("122", "bar", "foo", "42", "juancito", "elsulo", "gaston", "lucasaprobanoseltp");
 		unProveedor = new Proveedor("unNombre",345,unaDireccionPostal);
 		unaFecha = LocalDateTime.of(2020, 2, 2, 0, 0);
 		items1 = new ArrayList<Item>();
