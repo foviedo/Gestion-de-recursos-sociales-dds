@@ -32,9 +32,9 @@
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tpadds" /> 
-            <property name="hibernate.connection.username" value="root" /> 
-            <property name="hibernate.connection.password" value="mysql" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://bf285a257df4a4:6634265e@us-cdbr-east-02.cleardb.com/heroku_58d9a1a7454d807?reconnect=true" /> 
+            <property name="hibernate.connection.username" value="b22d0ce2652ee7" /> 
+            <property name="hibernate.connection.password" value="81912528" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             
 

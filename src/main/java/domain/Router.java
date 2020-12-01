@@ -12,7 +12,7 @@ public class Router {
 		HandlebarsTemplateEngine transformer = 
 				new HandlebarsTemplateEngine();
 		Spark.staticFiles.location("/public");
-		RepositorioOrganizaciones.getInstance().init();
+		//RepositorioOrganizaciones.getInstance().init();
 		Spark.get("/", ControllerHome::index, transformer);		
 		Spark.get("/login", ControllerHome::show, transformer);
 		Spark.post("/login", ControllerHome::login, transformer);
