@@ -14,7 +14,7 @@ public class RepositorioEntidad extends AbstractPersistenceTest implements WithG
 	public void modificarCategoria(Long entidadId, Optional<String> categoriaNombre, EntityManager unEntity) {
 		Entidad entidad = unEntity.find(Entidad.class, entidadId);
 		if (categoriaNombre != null) {
-			Query query = unEntity.createNativeQuery("SELECT id FROM categoria WHERE nombre = :categoriaNombre");
+			Query query = unEntity.createNativeQuery("SELECT id FROM Categoria WHERE nombre = :categoriaNombre");
 			query.setParameter("categoriaNombre", categoriaNombre.get());
 			BigInteger id; 
 			try {
@@ -32,7 +32,7 @@ public class RepositorioEntidad extends AbstractPersistenceTest implements WithG
 				categoriaNueva.setNombre(categoriaNombre.get());;
 				unEntity.persist(categoriaNueva);
 					
-				Query queryNuevo = unEntity.createNativeQuery("SELECT id FROM categoria WHERE nombre = :nombreCategoria");
+				Query queryNuevo = unEntity.createNativeQuery("SELECT id FROM Categoria WHERE nombre = :nombreCategoria");
 				queryNuevo.setParameter("nombreCategoria", categoriaNombre.get());
 				id = (BigInteger) queryNuevo.getSingleResult();
 			}
