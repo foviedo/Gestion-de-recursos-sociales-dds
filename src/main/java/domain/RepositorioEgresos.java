@@ -16,14 +16,14 @@ public class RepositorioEgresos {
 	}
 	
 	public List<Egreso> egresosSinValidar(EntityManager unEntity){
-		EntityTransaction transaction = unEntity.getTransaction();
-		transaction.begin();
 		List<Egreso> losEgresos = unEntity.createQuery("from Egreso where estadoValidacion = 'SIN_VALIDAR'",Egreso.class).getResultList();
-		transaction.commit();
 		losEgresos.forEach(unEgreso -> unEgreso.instanciaTuValidador());
 		return losEgresos;
 	}
 	public void agregarEgreso(Egreso unEgreso, EntityManager unEntity) {
+		System.out.println("Persitiendo egreso");
+		System.out.println(unEgreso.getId());
+		System.out.println(unEgreso.getEstadoValidacion());
 		unEntity.persist(unEgreso);
 	}
 	

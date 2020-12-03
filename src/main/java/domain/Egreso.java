@@ -135,7 +135,8 @@ public class Egreso extends PersistentEntity {
 	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
 		cantidadPresupuestosNecesarios = unaCant;
 	}
-	public void validarme(EntityManager unEntity) {
+	public void validarme(EntityManager unEntity) { 
+		System.out.println(this.getId());
 		this.validador
 		.validar(this,unEntity);
 	}

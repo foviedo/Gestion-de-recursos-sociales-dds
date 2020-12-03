@@ -40,7 +40,7 @@ public class ValidadorDeEgresos {
 		} else {
 
 			unEgreso.setEstadoValidacion(EstadoEgreso.INVALIDO);
-			//RepositorioEgresos.getInstance().agregarEgreso(unEgreso);
+			RepositorioEgresos.getInstance().agregarEgreso(unEgreso, unEntity);
 		}
 
 		unEgreso.enviarResultadoACadaUsuario();
