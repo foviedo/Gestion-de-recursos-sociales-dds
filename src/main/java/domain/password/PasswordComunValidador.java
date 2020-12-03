@@ -10,14 +10,15 @@ import java.util.stream.Stream;
 public class PasswordComunValidador implements Validador {
     @Override
     public boolean esValido(String nombreUsuario, String password) {
-        Path path = Paths.get("src/main/resources/utils/10k-most-common.txt");
+        //Path path = Paths.get("src/main/resources/utils/10k-most-common.txt"); //para mi
+        Path path = Paths.get("target/classes/utils/10k-most-common.txt"); //para heroku
         Stream<String> stream;
         try {
             stream = Files.lines(path);
             return stream.noneMatch(palabraComun -> palabraComun.equals(password));
         } catch (IOException e) {
-         //   throw new ReadFileException();
-        	return true; //trolleo hermano
+            throw new ReadFileException();
+        //	return true; //trolleo hermano
         }
     }
 }
