@@ -33,7 +33,7 @@ public class RepositorioEntidadBase extends RepositorioEntidad{
 		}
 
 		public long getJuridica(Long entidadBaseId, EntityManager unEntity) {
-			Query query = unEntity.createNativeQuery("SELECT id_juridica FROM Base WHERE id_entidad_madre = :idBase");
+			Query query = unEntity.createNativeQuery("SELECT id_juridica FROM base WHERE id_entidad_madre = :idBase");
 			query.setParameter("idBase", entidadBaseId);
 			BigInteger id = (BigInteger) query.getSingleResult();
 			return id.longValue();
