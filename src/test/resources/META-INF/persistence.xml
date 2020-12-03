@@ -32,10 +32,11 @@
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
-            <property name="hibernate.connection.url" value="jdbc:mysql://bf285a257df4a4:6634265e@us-cdbr-east-02.cleardb.com/heroku_58d9a1a7454d807?reconnect=true" /> 
-            <property name="hibernate.connection.username" value="b22d0ce2652ee7" /> 
-            <property name="hibernate.connection.password" value="81912528" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://uzfntzrwllywwsf6:r2d7qt91tdsiofap@de1tmi3t63foh7fa.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xthcanuaayy2rcsq" /> 
+            <property name="hibernate.connection.username" value="uzfntzrwllywwsf6" /> 
+            <property name="hibernate.connection.password" value="r2d7qt91tdsiofap" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+
             
 
             <!--property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 

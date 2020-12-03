@@ -3,7 +3,7 @@ package domain.validacionDeEgresos;
 import java.util.Timer;
 
 public class ValidadorDeEgresosEjecutable {
-long tiempoEnMilisegundos = 10000; //10000
+long tiempoEnMilisegundos = 100000; //10000
 static final ValidadorDeEgresosEjecutable INSTANCE = new ValidadorDeEgresosEjecutable();
 private ValidadorDeEgresosEjecutable() {};
 

@@ -8,12 +8,11 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 
-public class RepositorioEgresos implements WithGlobalEntityManager {
+public class RepositorioEgresos {
 	static final RepositorioEgresos INSTANCE = new RepositorioEgresos();
-	EntityTransaction transaction = entityManager().getTransaction();
 
-	List<Egreso> getTodosLosEgresos(){
-		return entityManager().createQuery("from Egreso",Egreso.class).getResultList();
+	List<Egreso> getTodosLosEgresos(EntityManager unEntity){
+		return unEntity.createQuery("from Egreso",Egreso.class).getResultList();
 	}
 	
 	public List<Egreso> egresosSinValidar(EntityManager unEntity){
@@ -24,11 +23,8 @@ public class RepositorioEgresos implements WithGlobalEntityManager {
 		losEgresos.forEach(unEgreso -> unEgreso.instanciaTuValidador());
 		return losEgresos;
 	}
-	public void agregarEgreso(Egreso unEgreso) {
-		EntityTransaction transaction = entityManager().getTransaction();
-		transaction.begin();
-		entityManager().persist(unEgreso);
-		transaction.commit();
+	public void agregarEgreso(Egreso unEgreso, EntityManager unEntity) {
+		unEntity.persist(unEgreso);
 	}
 	
 	private RepositorioEgresos() {

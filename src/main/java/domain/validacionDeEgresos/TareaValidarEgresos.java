@@ -13,7 +13,7 @@ public class TareaValidarEgresos extends TimerTask {
 	@Override
 	public void run() {
         EntityManager unEntity = PerThreadEntityManagers.getEntityManager();
-		RepositorioEgresos.getInstance().egresosSinValidar(unEntity).forEach(Egreso::validarme);
+		RepositorioEgresos.getInstance().egresosSinValidar(unEntity).forEach(unEgreso -> unEgreso.validarme(unEntity));
         PerThreadEntityManagers.closeEntityManager();
 
 		System.out.println("Validando egresos");

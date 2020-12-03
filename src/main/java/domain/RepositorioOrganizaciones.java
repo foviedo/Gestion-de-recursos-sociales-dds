@@ -105,8 +105,8 @@ public class RepositorioOrganizaciones extends AbstractPersistenceTest implement
 		    crearOrganizaciones.commit();
 		    }
 
-			public long getOrganizacion(Long entidadId) {
-				Query query = entityManager().createNativeQuery("SELECT id_organizacion FROM entidad WHERE id = :idOrg");
+			public long getOrganizacion(Long entidadId, EntityManager unEntity) {
+				Query query = unEntity.createNativeQuery("SELECT id_organizacion FROM Entidad WHERE id = :idOrg");
 				query.setParameter("idOrg", entidadId);
 				BigInteger id = (BigInteger) query.getSingleResult();
 				return id.longValue();

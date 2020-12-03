@@ -1,16 +1,10 @@
 package domain;
 
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
 
-import java.math.BigInteger;
+
 import java.util.List;
-import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 public class RepositorioEntidadJuridica extends RepositorioEntidad {
     private static RepositorioEntidadJuridica instancia;
@@ -22,11 +16,11 @@ public class RepositorioEntidadJuridica extends RepositorioEntidad {
         return instancia;
     }
 
-    public List<Juridica> getJuridicas() {
-        return entityManager().createQuery("from Juridica").getResultList();
+    public List<Juridica> getJuridicas(EntityManager unEntity) {
+        return unEntity.createQuery("from Juridica").getResultList();
     }
 
-	public Juridica getJuridica(long juridicaId) {
-		return entityManager().find(Juridica.class, juridicaId);
+	public Juridica getJuridica(long juridicaId, EntityManager unEntity) {
+		return unEntity.find(Juridica.class, juridicaId);
 	}
 }

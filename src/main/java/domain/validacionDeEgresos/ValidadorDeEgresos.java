@@ -2,6 +2,8 @@ package domain.validacionDeEgresos;
 
 import java.util.*;
 
+import javax.persistence.EntityManager;
+
 import domain.Egreso;
 import domain.EstadoEgreso;
 import domain.RepositorioEgresos;
@@ -28,12 +30,12 @@ public class ValidadorDeEgresos {
 
 	}*/
 
-	public void validar(Egreso unEgreso) {
+	public void validar(Egreso unEgreso, EntityManager unEntity) {
 		System.out.println("estoy en validador de egresos");
 		validaciones.forEach(action -> 	System.out.println("Tengo un validador"));
 		if (validaciones.stream().allMatch(validacion -> validacion.esValido(unEgreso))) {
 			unEgreso.setEstadoValidacion(EstadoEgreso.VALIDO);
-			RepositorioEgresos.getInstance().agregarEgreso(unEgreso);
+			RepositorioEgresos.getInstance().agregarEgreso(unEgreso, unEntity);
 
 		} else {
 

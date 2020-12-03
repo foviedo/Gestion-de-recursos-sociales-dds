@@ -24,16 +24,16 @@ public class RepositorioEntidadBase extends RepositorioEntidad{
 	        return instancia;
 	    }
 	
-	    public List<Base> getBase() {
-	    	return entityManager().createQuery("from Base").getResultList();
+	    public List<Base> getBase(EntityManager unEntity) {
+	    	return unEntity.createQuery("from Base").getResultList();
 	    }
 
-		public Base getBase(long entidadBaseId) {
-			return entityManager().find(Base.class, entidadBaseId);
+		public Base getBase(long entidadBaseId,EntityManager unEntity) {
+			return unEntity.find(Base.class, entidadBaseId);
 		}
 
-		public long getJuridica(Long entidadBaseId) {
-			Query query = entityManager().createNativeQuery("SELECT id_juridica FROM base WHERE id_entidad_madre = :idBase");
+		public long getJuridica(Long entidadBaseId, EntityManager unEntity) {
+			Query query = unEntity.createNativeQuery("SELECT id_juridica FROM Base WHERE id_entidad_madre = :idBase");
 			query.setParameter("idBase", entidadBaseId);
 			BigInteger id = (BigInteger) query.getSingleResult();
 			return id.longValue();

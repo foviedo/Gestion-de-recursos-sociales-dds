@@ -135,9 +135,9 @@ public class Egreso extends PersistentEntity {
 	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
 		cantidadPresupuestosNecesarios = unaCant;
 	}
-	public void validarme() {
+	public void validarme(EntityManager unEntity) {
 		this.validador
-		.validar(this);
+		.validar(this,unEntity);
 	}
 	public boolean estoySinValidar() {
 		return estadoValidacion == EstadoEgreso.SIN_VALIDAR;
