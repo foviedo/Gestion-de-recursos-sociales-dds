@@ -125,7 +125,7 @@ public class Egreso extends PersistentEntity {
 	}
 
 	public Boolean tenesLosPresupuestosSuficientes() {
-		if(cantidadPresupuestosNecesarios >= presupuestos.size()) { //TODO: borrar esto
+		if(cantidadPresupuestosNecesarios > presupuestos.size()) { //TODO: borrar esto
 			System.out.println("fallo en 1");
 		}
 		
