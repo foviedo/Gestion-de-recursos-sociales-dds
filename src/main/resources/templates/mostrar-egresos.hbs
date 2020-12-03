@@ -3,18 +3,16 @@
     <title>Egresos</title>
 {{/partial}}
 {{# partial "contenido"}}
-
         <div class="container">
+
         <h1 class="bienvenida">Lista de egresos</h1>
     
           		<table class="table table-hover">
 			<tr>
 				<th scope="col"> Tipo Documento </th>
-				<th scope="col"> Nro Documento </th>
+				<th scope="col"> Nro Documento</th>
 				<th scope="col"> Medio de pago </th>
-				<th scope="col"> Id Medio </th>
 				<th scope="col"> Nombre proveedor </th>
-				<th scope="col"> Identificador proveedor </th>
 				<th scope="col"> Estado validacion </th>
 				<th scope="col"> Ver items </th>
 				<th scope="col"> Ver presupuestos </th>
@@ -26,9 +24,7 @@
 				<td> {{ documentoComercial.tipo }} </td>
 				<td> {{ documentoComercial.numeroDocumento }} </td>
 				<td> {{ medioDePago.tipo }} </td>
-				<td> {{ medioDePago.identificador }} </td>
 				<td> {{ proveedor.nombreProveedor }} </td>
-				<td> {{ proveedor.identificador }} </td>
 				<td> {{ estadoValidacion}} </td>
 				<td> <a href="/egresos/{{ id }}/item" class="btn btn-primary">Ver items</a> </td>
 				<td> <a href="/egresos/{{ id }}/presupuesto" class="btn btn-primary">Ver presupuestos</a> </td>
@@ -38,6 +34,7 @@
 			</tr>
 			{{/each}}
 			</table>
+				<a href="/egreso" class="btn btn-danger" style = "float: right;">Agregar egreso</a>
 			
           <form method="POST" name="item/">
             
