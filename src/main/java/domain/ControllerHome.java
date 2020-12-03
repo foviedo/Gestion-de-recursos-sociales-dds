@@ -129,7 +129,7 @@ public class ControllerHome implements WithGlobalEntityManager {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("id",unEgreso.getId());
 		transaccion.commit();
-		res.redirect("/");
+		res.redirect("/egresos");
 		return null;
 	//TODO: hacer validaciones varias
 		//TODO: pasar por body esta informacion, no por query params. Lucas consulta por otra manera de hacerlo

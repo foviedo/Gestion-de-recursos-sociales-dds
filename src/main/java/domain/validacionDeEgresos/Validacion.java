@@ -16,7 +16,8 @@ public enum Validacion {
 		@Override
 		public boolean esValido(Egreso unEgreso) {
 			//return unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> unEgreso.getListaDeItems().equals(unPresupuesto.getListaItems())); // Se puede delegar
-			boolean resultado = unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> this.coinciden(unEgreso.getListaDeItems(),unPresupuesto.getListaItems()));
+			boolean resultado = unEgreso.getPresupuestos().stream().anyMatch(unPresupuesto -> this.coinciden(unEgreso.getListaDeItems(),
+					unPresupuesto.getListaItems()));
 			if(!resultado) {
 				System.out.println("fallo en 2");
 			}
