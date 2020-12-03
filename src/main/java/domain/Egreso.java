@@ -52,7 +52,6 @@ public class Egreso extends PersistentEntity {
 		this.etiquetas = etiquetas;
 	}
 	public Egreso() {
-		//no se si hay que instanciar el validador
 	};
 	
 	
@@ -130,7 +129,7 @@ public class Egreso extends PersistentEntity {
 			System.out.println("fallo en 1");
 		}
 		
-		return cantidadPresupuestosNecesarios >= presupuestos.size();
+		return cantidadPresupuestosNecesarios <= presupuestos.size();
 	}
 	public static void modificarCantidadPresupuestosNecesarios(int unaCant) {
 		cantidadPresupuestosNecesarios = unaCant;

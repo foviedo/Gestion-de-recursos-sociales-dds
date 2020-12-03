@@ -35,7 +35,7 @@ public class ValidadorDeEgresos {
 		validaciones.forEach(action -> 	System.out.println("Tengo un validador"));
 		if (validaciones.stream().allMatch(validacion -> validacion.esValido(unEgreso))) {
 			unEgreso.setEstadoValidacion(EstadoEgreso.VALIDO);
-			RepositorioEgresos.getInstance().agregarEgreso(unEgreso, unEntity);
+		//	RepositorioEgresos.getInstance().agregarEgreso(unEgreso, unEntity);
 
 		} else {
 
