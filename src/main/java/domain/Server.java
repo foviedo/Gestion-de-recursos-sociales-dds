@@ -7,7 +7,7 @@ import spark.debug.DebugScreen;
 public class Server {
 	public static void main(String[] args) {
 		
-		ValidadorDeEgresosEjecutable.getInstance().validarTareasCadaTiempoEnMilisegundos();	
+		//ValidadorDeEgresosEjecutable.getInstance().validarTareasCadaTiempoEnMilisegundos();	
 
 		DebugScreen.enableDebugScreen();
 		Spark.port(getHerokuAssignedPort());
