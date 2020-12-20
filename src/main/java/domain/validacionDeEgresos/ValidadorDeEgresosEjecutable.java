@@ -15,7 +15,8 @@ public void setTiempo(long tiempoNuevo) {
 public void validarTareasCadaTiempoEnMilisegundos() {
 	Timer t = new Timer();
 	TareaValidarEgresos unaTareaQueValida = new TareaValidarEgresos();
-    t.scheduleAtFixedRate(unaTareaQueValida, 0, tiempoEnMilisegundos);
+  //  t.scheduleAtFixedRate(unaTareaQueValida, 0, tiempoEnMilisegundos);
+	//DEPRECADO
 }
 
 static public ValidadorDeEgresosEjecutable getInstance(){

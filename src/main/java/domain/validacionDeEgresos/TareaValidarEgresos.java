@@ -1,18 +1,15 @@
 package domain.validacionDeEgresos;
 
-import java.util.TimerTask;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import domain.Egreso;
 import domain.RepositorioEgresos;
 
-public class TareaValidarEgresos extends TimerTask {
-	@Override
-	public void run() {
+public class TareaValidarEgresos {
+	public static void main(String[] args) {
         EntityManager unEntity = PerThreadEntityManagers.getEntityManager();
         EntityTransaction transaccion = unEntity.getTransaction();
         transaccion.begin();
