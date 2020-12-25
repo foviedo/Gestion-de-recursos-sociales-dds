@@ -33,8 +33,8 @@
         
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
             <property name="hibernate.connection.url" value="jdbc:mysql://uzfntzrwllywwsf6:r2d7qt91tdsiofap@de1tmi3t63foh7fa.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xthcanuaayy2rcsq" /> 
-            <property name="hibernate.connection.username" value="uzfntzrwllywwsf6" /> 
-            <property name="hibernate.connection.password" value="r2d7qt91tdsiofap" /> 
+            <property name="hibernate.connection.username" value="esto tambien es secreto" /> 
+            <property name="hibernate.connection.password" value="bro" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
             
